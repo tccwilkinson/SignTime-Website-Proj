@@ -21,6 +21,7 @@ import GlobalBrains from './pages/case-studies/GlobalBrains';
 import Greenvolt from './pages/case-studies/Greenvolt';
 import CsiThailand from './pages/case-studies/CsiThailand';
 import LeaseJapanHr from './pages/case-studies/LeaseJapanHr';
+import Integrations from './pages/Integrations';
 import PageStub from './pages/PageStub';
 
 export default function App() {
@@ -53,7 +54,7 @@ export default function App() {
             <Route path="/customers/lease-japan-hr" element={<LeaseJapanHr />} />
             <Route path="/customers/:slug" element={<PageStub title="Customer Story" />} />
 
-            <Route path="/integrations" element={<PageStub title="Integrations" />} />
+            <Route path="/integrations" element={<Integrations />} />
             <Route path="/partners" element={<PageStub title="Partners" />} />
 
             <Route path="/resources" element={<PageStub title="Resources" />} />
