@@ -6,6 +6,7 @@ import { DemoModalProvider } from './context/DemoModalContext';
 import Home from './pages/Home';
 import Features from './pages/Features';
 import Pricing from './pages/Pricing';
+import Security from './pages/Security';
 import PageStub from './pages/PageStub';
 
 export default function App() {
@@ -20,7 +21,7 @@ export default function App() {
 
             <Route path="/features" element={<Features />} />
             <Route path="/pricing" element={<Pricing />} />
-            <Route path="/security" element={<PageStub title="Security & Compliance" />} />
+            <Route path="/security" element={<Security />} />
 
             <Route path="/customers" element={<PageStub title="Customer Success Stories" />} />
             <Route path="/customers/:slug" element={<PageStub title="Customer Story" />} />

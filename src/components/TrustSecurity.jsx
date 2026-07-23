@@ -1,47 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ShieldCheck, Lock, FileText, KeyRound, UserCheck, MailCheck, ArrowRight } from 'lucide-react';
+import ComplianceGrid from './ComplianceGrid';
 
-export default function TrustSecurity({ onOpenDemo }) {
-  const securityItems = [
-    {
-      icon: <ShieldCheck size={32} color="#fff" />,
-      bg: 'var(--navy)',
-      title: 'ESIGN & UETA Compliant'
-    },
-    {
-      icon: <Lock size={32} color="#fff" />,
-      bg: 'var(--coral)',
-      title: 'Multi-Factor Authentication'
-    },
-    {
-      icon: <FileText size={32} color="#fff" />,
-      bg: 'var(--navy)',
-      title: 'Full Audit Trail'
-    },
-    {
-      icon: <KeyRound size={32} color="#fff" />,
-      bg: 'var(--coral)',
-      title: 'Encrypted In Transit & At Rest'
-    },
-    {
-      icon: <UserCheck size={32} color="#fff" />,
-      bg: 'var(--navy)',
-      title: 'Role-Based Access Controls'
-    },
-    {
-      icon: <MailCheck size={32} color="#fff" />,
-      bg: 'var(--coral)',
-      title: 'Anti-Phishing Mail Routing'
-    }
-  ];
+const securityItems = [
+  { icon: <ShieldCheck size={32} color="#fff" />, bg: 'var(--navy)', title: 'ESIGN & UETA Compliant' },
+  { icon: <Lock size={32} color="#fff" />, bg: 'var(--coral)', title: 'Multi-Factor Authentication' },
+  { icon: <FileText size={32} color="#fff" />, bg: 'var(--navy)', title: 'Full Audit Trail' },
+  { icon: <KeyRound size={32} color="#fff" />, bg: 'var(--coral)', title: 'Encrypted In Transit & At Rest' },
+  { icon: <UserCheck size={32} color="#fff" />, bg: 'var(--navy)', title: 'Role-Based Access Controls' },
+  { icon: <MailCheck size={32} color="#fff" />, bg: 'var(--coral)', title: 'Anti-Phishing Mail Routing' },
+];
 
-  // Duplicate for seamless 50% loop
-  const marqueeTrack = [...securityItems, ...securityItems];
-
+export default function TrustSecurity() {
   return (
     <section id="security" style={{ background: 'var(--sky)', padding: '5rem 0', position: 'relative' }}>
       <div className="container">
-        
+
         {/* Header Row */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '40px', marginBottom: '3.5rem', flexWrap: 'wrap' }}>
           <div style={{ maxWidth: '640px' }}>
@@ -53,61 +28,25 @@ export default function TrustSecurity({ onOpenDemo }) {
             </p>
           </div>
 
-          <button
-            onClick={onOpenDemo}
+          <Link
+            to="/security"
             style={{
-              background: 'none',
-              border: 'none',
               fontSize: '15px',
               fontWeight: 700,
               color: 'var(--navy)',
-              cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              whiteSpace: 'nowrap'
+              whiteSpace: 'nowrap',
+              textDecoration: 'none',
             }}
           >
             Security & compliance specs <ArrowRight size={18} color="var(--navy)" />
-          </button>
+          </Link>
         </div>
 
         {/* Security Badge Marquee */}
-        <div className="marquee-mask" style={{ margin: '0 -1.5rem' }}>
-          <div className="marquee-track" style={{ gap: '44px', animationDuration: '28s' }}>
-            {marqueeTrack.map((item, idx) => (
-              <div
-                key={idx}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px',
-                  width: '140px',
-                  flexShrink: 0
-                }}
-              >
-                <div
-                  style={{
-                    width: '88px',
-                    height: '88px',
-                    borderRadius: '50%',
-                    background: item.bg,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    boxShadow: 'var(--shadow-md)'
-                  }}
-                >
-                  {item.icon}
-                </div>
-                <div style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--ink)', textAlign: 'center', lineHeight: 1.3 }}>
-                  {item.title}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <ComplianceGrid items={securityItems} />
 
         <div style={{ textAlign: 'center', fontSize: '12px', color: 'var(--slate)', marginTop: '2.5rem' }}>
           Reflects capabilities described by SignTime today — replace with formal certification marks (SOC 2, ISO 27001, etc.) once verified and audited.
