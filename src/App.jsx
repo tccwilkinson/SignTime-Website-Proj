@@ -13,6 +13,14 @@ import CodeChrysalis from './pages/case-studies/CodeChrysalis';
 import Qtnet from './pages/case-studies/Qtnet';
 import KcDat from './pages/case-studies/KcDat';
 import Rotoworks from './pages/case-studies/Rotoworks';
+import KravMaga from './pages/case-studies/KravMaga';
+import Hccr from './pages/case-studies/Hccr';
+import Curvegrid from './pages/case-studies/Curvegrid';
+import HimenoGumi from './pages/case-studies/HimenoGumi';
+import GlobalBrains from './pages/case-studies/GlobalBrains';
+import Greenvolt from './pages/case-studies/Greenvolt';
+import CsiThailand from './pages/case-studies/CsiThailand';
+import LeaseJapanHr from './pages/case-studies/LeaseJapanHr';
 import PageStub from './pages/PageStub';
 
 export default function App() {
@@ -35,6 +43,14 @@ export default function App() {
             <Route path="/customers/qtnet" element={<Qtnet />} />
             <Route path="/customers/kc-dat" element={<KcDat />} />
             <Route path="/customers/rotoworks" element={<Rotoworks />} />
+            <Route path="/customers/krav-maga" element={<KravMaga />} />
+            <Route path="/customers/hccr" element={<Hccr />} />
+            <Route path="/customers/curvegrid" element={<Curvegrid />} />
+            <Route path="/customers/himeno-gumi" element={<HimenoGumi />} />
+            <Route path="/customers/global-brains" element={<GlobalBrains />} />
+            <Route path="/customers/greenvolt" element={<Greenvolt />} />
+            <Route path="/customers/csi-thailand" element={<CsiThailand />} />
+            <Route path="/customers/lease-japan-hr" element={<LeaseJapanHr />} />
             <Route path="/customers/:slug" element={<PageStub title="Customer Story" />} />
 
             <Route path="/integrations" element={<PageStub title="Integrations" />} />
