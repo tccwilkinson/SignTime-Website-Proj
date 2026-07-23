@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import DemoModal from './components/DemoModal';
 import { DemoModalProvider } from './context/DemoModalContext';
 import Home from './pages/Home';
+import Features from './pages/Features';
 import PageStub from './pages/PageStub';
 
 export default function App() {
@@ -16,7 +17,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
 
-            <Route path="/features" element={<PageStub title="Every E-Signature Feature Your Team Needs" />} />
+            <Route path="/features" element={<Features />} />
             <Route path="/pricing" element={<PageStub title="Pricing" />} />
             <Route path="/security" element={<PageStub title="Security & Compliance" />} />
 
