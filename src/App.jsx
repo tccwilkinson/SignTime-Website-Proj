@@ -26,6 +26,7 @@ import Partners from './pages/Partners';
 import Resources from './pages/Resources';
 import ResourceArticleStub from './pages/ResourceArticleStub';
 import News from './pages/News';
+import Contact from './pages/Contact';
 import PageStub from './pages/PageStub';
 
 export default function App() {
@@ -65,7 +66,7 @@ export default function App() {
             <Route path="/resources/:slug" element={<ResourceArticleStub />} />
             <Route path="/news" element={<News />} />
 
-            <Route path="/contact" element={<PageStub title="Contact Us" />} />
+            <Route path="/contact" element={<Contact />} />
 
             <Route path="/solutions" element={<PageStub title="Solutions" />} />
             <Route path="/solutions/use-case" element={<PageStub title="Solutions by Use Case" />} />
