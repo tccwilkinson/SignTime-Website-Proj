@@ -22,6 +22,7 @@ import Greenvolt from './pages/case-studies/Greenvolt';
 import CsiThailand from './pages/case-studies/CsiThailand';
 import LeaseJapanHr from './pages/case-studies/LeaseJapanHr';
 import Integrations from './pages/Integrations';
+import Partners from './pages/Partners';
 import PageStub from './pages/PageStub';
 
 export default function App() {
@@ -55,7 +56,7 @@ export default function App() {
             <Route path="/customers/:slug" element={<PageStub title="Customer Story" />} />
 
             <Route path="/integrations" element={<Integrations />} />
-            <Route path="/partners" element={<PageStub title="Partners" />} />
+            <Route path="/partners" element={<Partners />} />
 
             <Route path="/resources" element={<PageStub title="Resources" />} />
             <Route path="/resources/:slug" element={<PageStub title="Resource Article" />} />
