@@ -8,6 +8,11 @@ import Features from './pages/Features';
 import Pricing from './pages/Pricing';
 import Security from './pages/Security';
 import CustomersHub from './pages/CustomersHub';
+import TempleUniversityJapan from './pages/case-studies/TempleUniversityJapan';
+import CodeChrysalis from './pages/case-studies/CodeChrysalis';
+import Qtnet from './pages/case-studies/Qtnet';
+import KcDat from './pages/case-studies/KcDat';
+import Rotoworks from './pages/case-studies/Rotoworks';
 import PageStub from './pages/PageStub';
 
 export default function App() {
@@ -25,6 +30,11 @@ export default function App() {
             <Route path="/security" element={<Security />} />
 
             <Route path="/customers" element={<CustomersHub />} />
+            <Route path="/customers/temple-university-japan" element={<TempleUniversityJapan />} />
+            <Route path="/customers/code-chrysalis" element={<CodeChrysalis />} />
+            <Route path="/customers/qtnet" element={<Qtnet />} />
+            <Route path="/customers/kc-dat" element={<KcDat />} />
+            <Route path="/customers/rotoworks" element={<Rotoworks />} />
             <Route path="/customers/:slug" element={<PageStub title="Customer Story" />} />
 
             <Route path="/integrations" element={<PageStub title="Integrations" />} />
