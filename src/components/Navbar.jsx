@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Menu, X, ArrowRight, Shield, Layers, FileText, Users, Code, Briefcase, GraduationCap, Building, Stethoscope, HeartPulse } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ChevronDown, Menu, X } from 'lucide-react';
+import { useDemoModal } from '../context/DemoModalContext';
 
-export default function Navbar({ onOpenDemo }) {
+export default function Navbar() {
+  const { open } = useDemoModal();
   const [activeDropdown, setActiveDropdown] = useState(null); // 'product' | 'solutions' | 'resources' | null
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -31,6 +34,11 @@ export default function Navbar({ onOpenDemo }) {
     setActiveDropdown(activeDropdown === name ? null : name);
   };
 
+  const closeMenus = () => {
+    setActiveDropdown(null);
+    setMobileMenuOpen(false);
+  };
+
   return (
     <div ref={navRef} style={{ position: 'sticky', top: 0, zIndex: 100 }}>
       <nav
@@ -46,9 +54,9 @@ export default function Navbar({ onOpenDemo }) {
       >
         {/* Left Brand & Menu Links */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '36px' }}>
-          
+
           {/* Logo */}
-          <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+          <Link to="/" onClick={closeMenus} style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
             <svg width="30" height="30" viewBox="0 0 34 34" fill="none">
               <circle cx="17" cy="17" r="11.5" fill="var(--sky)" stroke="#fff" strokeWidth="2.2" />
               <path d="M17 6.5v3M17 24.5v3M27.5 17h-3M9.5 17h-3" stroke="var(--navy)" strokeWidth="2" strokeLinecap="round" />
@@ -64,7 +72,7 @@ export default function Navbar({ onOpenDemo }) {
                 Intuitive e-signatures
               </div>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <div
@@ -76,6 +84,7 @@ export default function Navbar({ onOpenDemo }) {
               <button
                 onClick={() => toggleDropdown('product')}
                 className={`st-trigger ${activeDropdown === 'product' ? 'st-active' : ''}`}
+                aria-expanded={activeDropdown === 'product'}
                 style={{
                   background: 'none',
                   border: 'none',
@@ -112,33 +121,40 @@ export default function Navbar({ onOpenDemo }) {
                 >
                   <div className="st-col">
                     <h4>Signing & Verification</h4>
-                    <a href="#features">Signer Sequencing</a>
-                    <a href="#features">Guarantor Feature</a>
-                    <a href="#features">Long-Term Signature (PAdES)</a>
-                    <a href="#features">Signature Certificates</a>
-                    <a href="#features">Handwritten Signatures</a>
-                    <a href="#features">SMS Signature Requests</a>
+                    <Link to="/features#send-sign" onClick={closeMenus}>Signer Sequencing</Link>
+                    <Link to="/features#send-sign" onClick={closeMenus}>Guarantor Feature</Link>
+                    <Link to="/features#stay-compliant" onClick={closeMenus}>Long-Term Signature (PAdES)</Link>
+                    <Link to="/features#stay-compliant" onClick={closeMenus}>Signature Certificates</Link>
+                    <Link to="/features#send-sign" onClick={closeMenus}>Handwritten Signatures</Link>
+                    <Link to="/features#send-sign" onClick={closeMenus}>SMS Signature Requests</Link>
                   </div>
                   <div className="st-col">
                     <h4>Workflow Automation</h4>
-                    <a href="#features">Internal Approval Workflows</a>
-                    <a href="#features">Create & Manage Templates</a>
-                    <a href="#features">Bulk Sending Documents</a>
-                    <a href="#features">Attachments</a>
+                    <Link to="/features#automate-workflows" onClick={closeMenus}>Internal Approval Workflows</Link>
+                    <Link to="/features#automate-workflows" onClick={closeMenus}>Create & Manage Templates</Link>
+                    <Link to="/features#automate-workflows" onClick={closeMenus}>Bulk Sending Documents</Link>
+                    <Link to="/features#send-sign" onClick={closeMenus}>Attachments</Link>
                   </div>
                   <div className="st-col">
                     <h4>Document Management</h4>
-                    <a href="#features">Multiple File Format Support</a>
-                    <a href="#features">Timestamps</a>
-                    <a href="#features">Document Search & Tagging</a>
-                    <a href="#features">Share Documents & Files</a>
+                    <Link to="/features#connect-your-tools" onClick={closeMenus}>Multiple File Format Support</Link>
+                    <Link to="/features#stay-compliant" onClick={closeMenus}>Timestamps</Link>
+                    <Link to="/features#automate-workflows" onClick={closeMenus}>Document Search & Tagging</Link>
+                    <Link to="/features#connect-your-tools" onClick={closeMenus}>Share Documents & Files</Link>
                   </div>
                   <div className="st-col">
                     <h4>Teams & Security</h4>
-                    <a href="#features">Multiple Teams</a>
-                    <a href="#features">Member Role Management</a>
-                    <a href="#features">Two-Factor Authentication</a>
-                    <a href="#features">Customized Branding</a>
+                    <Link to="/security" onClick={closeMenus}>Multiple Teams</Link>
+                    <Link to="/features#stay-compliant" onClick={closeMenus}>Member Role Management</Link>
+                    <Link to="/security" onClick={closeMenus}>Two-Factor Authentication</Link>
+                    <Link to="/features#stay-compliant" onClick={closeMenus}>Customized Branding</Link>
+                  </div>
+                  <div className="st-col">
+                    <h4>Integrations</h4>
+                    <Link to="/integrations" onClick={closeMenus}>Web API</Link>
+                    <Link to="/integrations" onClick={closeMenus}>Salesforce Integration</Link>
+                    <Link to="/integrations" onClick={closeMenus}>Google Drive Integration</Link>
+                    <Link to="/partners" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>Partner program ›</Link>
                   </div>
                 </div>
               )}
@@ -149,6 +165,7 @@ export default function Navbar({ onOpenDemo }) {
               <button
                 onClick={() => toggleDropdown('solutions')}
                 className={`st-trigger ${activeDropdown === 'solutions' ? 'st-active' : ''}`}
+                aria-expanded={activeDropdown === 'solutions'}
                 style={{
                   background: 'none',
                   border: 'none',
@@ -185,27 +202,27 @@ export default function Navbar({ onOpenDemo }) {
                 >
                   <div className="st-col">
                     <h4>Use Case</h4>
-                    <a href="#features">eSignatures</a>
-                    <a href="#features">Approval Workflows</a>
-                    <a href="#features">Templates</a>
-                    <a href="#features">Bulk Sending</a>
-                    <a href="#features" style={{ color: 'var(--coral)', fontWeight: 600 }}>All use cases ›</a>
+                    <Link to="/solutions/use-case/esignatures" onClick={closeMenus}>eSignatures</Link>
+                    <Link to="/solutions/use-case/approval-workflows" onClick={closeMenus}>Approval Workflows</Link>
+                    <Link to="/solutions/use-case/templates" onClick={closeMenus}>Templates</Link>
+                    <Link to="/solutions/use-case/bulk-sending" onClick={closeMenus}>Bulk Sending</Link>
+                    <Link to="/solutions/use-case" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>All use cases ›</Link>
                   </div>
                   <div className="st-col">
                     <h4>Industry</h4>
-                    <a href="#features">Real Estate & Relocation</a>
-                    <a href="#features">Education</a>
-                    <a href="#features">Professional Services</a>
-                    <a href="#features">Healthcare</a>
-                    <a href="#features" style={{ color: 'var(--coral)', fontWeight: 600 }}>All industries ›</a>
+                    <Link to="/solutions/industry/real-estate-relocation" onClick={closeMenus}>Real Estate & Relocation</Link>
+                    <Link to="/solutions/industry/education" onClick={closeMenus}>Education</Link>
+                    <Link to="/solutions/industry/professional-services" onClick={closeMenus}>Professional Services</Link>
+                    <Link to="/solutions/industry/healthcare" onClick={closeMenus}>Healthcare</Link>
+                    <Link to="/solutions/industry" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>All industries ›</Link>
                   </div>
                   <div className="st-col">
                     <h4>Team</h4>
-                    <a href="#features">Sales</a>
-                    <a href="#features">HR</a>
-                    <a href="#features">Legal</a>
-                    <a href="#features">Operations</a>
-                    <a href="#features" style={{ color: 'var(--coral)', fontWeight: 600 }}>All teams ›</a>
+                    <Link to="/solutions/team/sales" onClick={closeMenus}>Sales</Link>
+                    <Link to="/solutions/team/hr" onClick={closeMenus}>HR</Link>
+                    <Link to="/solutions/team/legal" onClick={closeMenus}>Legal</Link>
+                    <Link to="/solutions/team/operations" onClick={closeMenus}>Operations</Link>
+                    <Link to="/solutions/team" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>All teams ›</Link>
                   </div>
                 </div>
               )}
@@ -216,6 +233,7 @@ export default function Navbar({ onOpenDemo }) {
               <button
                 onClick={() => toggleDropdown('resources')}
                 className={`st-trigger ${activeDropdown === 'resources' ? 'st-active' : ''}`}
+                aria-expanded={activeDropdown === 'resources'}
                 style={{
                   background: 'none',
                   border: 'none',
@@ -252,43 +270,47 @@ export default function Navbar({ onOpenDemo }) {
                 >
                   <div className="st-col">
                     <h4>Learn</h4>
-                    <a href="#security">Tips & How to Use</a>
-                    <a href="#security">FAQ & Knowledge Center</a>
-                    <a href="#security">Blog & Customer Stories</a>
+                    <Link to="/resources" onClick={closeMenus}>Tips & Best Practices</Link>
+                    <Link to="/resources" onClick={closeMenus}>Compliance & Security Guides</Link>
+                    <Link to="/customers" onClick={closeMenus}>Customer Success Stories</Link>
                   </div>
                   <div className="st-col">
                     <h4>News</h4>
-                    <a href="#security">Press Releases</a>
-                    <a href="#security">Product Updates</a>
+                    <Link to="/news" onClick={closeMenus}>Press Releases</Link>
+                    <Link to="/news" onClick={closeMenus}>Product Updates</Link>
                   </div>
                   <div className="st-col">
                     <h4>Get Started</h4>
-                    <a href="#contact">Onboarding Services</a>
-                    <a href="#contact">Contact Support</a>
+                    <Link to="/contact" onClick={closeMenus}>Onboarding Services</Link>
+                    <Link to="/contact" onClick={closeMenus}>Contact Support</Link>
                   </div>
                 </div>
               )}
             </div>
 
-            <a href="#carousel" className="nav-link" style={{ color: '#fff', textDecoration: 'none', fontWeight: 600 }}>Features</a>
+            <Link to="/pricing" className="nav-link" onClick={closeMenus} style={{ color: '#fff', textDecoration: 'none', fontWeight: 600 }}>
+              Pricing
+            </Link>
           </div>
         </div>
 
         {/* Right CTA Actions */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '22px', fontSize: '14px' }}>
-          <span onClick={onOpenDemo} style={{ color: 'var(--coral)', fontWeight: 600, cursor: 'pointer' }}>
+          <Link to="/contact" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600, textDecoration: 'none' }}>
             Contact Us
-          </span>
-          <span onClick={onOpenDemo} style={{ color: '#9BAAC7', cursor: 'pointer', fontWeight: 500 }}>
+          </Link>
+          <span style={{ color: '#9BAAC7', cursor: 'pointer', fontWeight: 500 }}>
             Login
           </span>
-          <button onClick={onOpenDemo} className="btn btn-coral" style={{ padding: '10px 20px', fontSize: '14px' }}>
+          <button onClick={open} className="btn btn-coral" style={{ padding: '10px 20px', fontSize: '14px' }}>
             Start Free Today
           </button>
 
           {/* Mobile drawer toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
             className="mobile-btn"
             style={{
               background: 'rgba(255, 255, 255, 0.1)',
@@ -324,10 +346,16 @@ export default function Navbar({ onOpenDemo }) {
             overflowY: 'auto'
           }}
         >
-          <a href="#features" className="mobile-link" onClick={() => setMobileMenuOpen(false)}>Product Features</a>
-          <a href="#security" className="mobile-link" onClick={() => setMobileMenuOpen(false)}>Security & Compliance</a>
-          <a href="#carousel" className="mobile-link" onClick={() => setMobileMenuOpen(false)}>Interactive Carousel</a>
-          <button onClick={() => { setMobileMenuOpen(false); onOpenDemo(); }} className="btn btn-coral" style={{ width: '100%', marginTop: '1rem' }}>
+          <Link to="/features" className="mobile-link" onClick={closeMenus}>Features</Link>
+          <Link to="/pricing" className="mobile-link" onClick={closeMenus}>Pricing</Link>
+          <Link to="/security" className="mobile-link" onClick={closeMenus}>Security & Compliance</Link>
+          <Link to="/customers" className="mobile-link" onClick={closeMenus}>Customer Stories</Link>
+          <Link to="/contact" className="mobile-link" onClick={closeMenus}>Contact Us</Link>
+          <button
+            onClick={() => { setMobileMenuOpen(false); open(); }}
+            className="btn btn-coral"
+            style={{ width: '100%', marginTop: '1rem' }}
+          >
             Start Free Today
           </button>
         </div>

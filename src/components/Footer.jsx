@@ -1,23 +1,27 @@
 import React from 'react';
-import { Shield, Zap, Mail, Phone, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Mail, Phone } from 'lucide-react';
+import { useDemoModal } from '../context/DemoModalContext';
 
-export default function Footer({ onOpenDemo }) {
+export default function Footer() {
+  const { open } = useDemoModal();
+
   return (
     <footer id="contact" style={{ background: '#090E1A', borderTop: '1px solid var(--navy-light)', color: '#9BAAC7', paddingTop: '4rem', paddingBottom: '3rem' }}>
       <div className="container">
-        
-        {/* Main Footer Columns */}
+
+        {/* Main Footer Columns — mirrors the Nav: Product / Solutions / Resources / Company */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
             gap: '2.5rem',
             marginBottom: '3.5rem'
           }}
         >
           {/* Brand Info */}
           <div style={{ gridColumn: 'span 2' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1rem' }}>
+            <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1rem', textDecoration: 'none' }}>
               <svg width="28" height="28" viewBox="0 0 34 34" fill="none">
                 <circle cx="17" cy="17" r="11.5" fill="var(--sky)" stroke="#fff" strokeWidth="2.2" />
                 <path d="M17 6.5v3M17 24.5v3M27.5 17h-3M9.5 17h-3" stroke="var(--navy)" strokeWidth="2" strokeLinecap="round" />
@@ -27,9 +31,9 @@ export default function Footer({ onOpenDemo }) {
               <span style={{ fontSize: '20px', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-heading)' }}>
                 SignTime
               </span>
-            </div>
+            </Link>
             <p style={{ fontSize: '0.9rem', lineHeight: 1.6, maxWidth: '320px', marginBottom: '1.5rem', color: '#9BAAC7' }}>
-              Combining unlimited users with workflow automation — empowering digital teams to send, sign, and manage contracts effortlessly.
+              Unlimited users, one flat price — e-signatures and workflow automation for U.S. teams, without the per-seat markup.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.88rem' }}>
@@ -42,37 +46,48 @@ export default function Footer({ onOpenDemo }) {
             </div>
           </div>
 
-          {/* Product Links */}
+          {/* Product */}
           <div>
             <h4 style={{ color: '#fff', fontSize: '0.95rem', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Product</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.9rem' }}>
-              <li><a href="#features" className="f-link">Signer Sequencing</a></li>
-              <li><a href="#features" className="f-link">PAdES Signature</a></li>
-              <li><a href="#features" className="f-link">SMS Requests</a></li>
-              <li><a href="#features" className="f-link">Bulk Sending</a></li>
-              <li><a href="#features" className="f-link">Templates</a></li>
+              <li><Link to="/features" className="f-link">All Features</Link></li>
+              <li><Link to="/pricing" className="f-link">Pricing</Link></li>
+              <li><Link to="/integrations" className="f-link">Integrations</Link></li>
+              <li><Link to="/security" className="f-link">Security & Compliance</Link></li>
+              <li><Link to="/partners" className="f-link">Partner Program</Link></li>
             </ul>
           </div>
 
-          {/* Solutions Links */}
+          {/* Solutions */}
           <div>
             <h4 style={{ color: '#fff', fontSize: '0.95rem', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Solutions</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.9rem' }}>
-              <li><a href="#security" className="f-link">Real Estate & Relocation</a></li>
-              <li><a href="#security" className="f-link">Education & Schools</a></li>
-              <li><a href="#security" className="f-link">Healthcare & Fitness</a></li>
-              <li><a href="#security" className="f-link">Sales & Legal Teams</a></li>
+              <li><Link to="/solutions/industry/real-estate-relocation" className="f-link">Real Estate & Relocation</Link></li>
+              <li><Link to="/solutions/industry/education" className="f-link">Education & Schools</Link></li>
+              <li><Link to="/solutions/industry/healthcare" className="f-link">Healthcare</Link></li>
+              <li><Link to="/solutions/team/sales" className="f-link">Sales & Legal Teams</Link></li>
             </ul>
           </div>
 
-          {/* Security & Company */}
+          {/* Resources */}
           <div>
-            <h4 style={{ color: '#fff', fontSize: '0.95rem', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Security</h4>
+            <h4 style={{ color: '#fff', fontSize: '0.95rem', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Resources</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.9rem' }}>
-              <li><a href="#security" className="f-link">ESIGN & UETA Compliance</a></li>
-              <li><a href="#security" className="f-link">Audit Trails</a></li>
-              <li><a href="#security" className="f-link">Privacy Policy</a></li>
-              <li><a href="#security" className="f-link">Terms of Service</a></li>
+              <li><Link to="/customers" className="f-link">Customer Success Stories</Link></li>
+              <li><Link to="/resources" className="f-link">Blog & Guides</Link></li>
+              <li><Link to="/news" className="f-link">News & Updates</Link></li>
+              <li><Link to="/features" className="f-link">SignTime vs. DocuSign vs. PandaDoc</Link></li>
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 style={{ color: '#fff', fontSize: '0.95rem', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Company</h4>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.9rem' }}>
+              <li><Link to="/contact" className="f-link">Contact Us</Link></li>
+              <li><Link to="/security" className="f-link">ESIGN & UETA Compliance</Link></li>
+              <li><span onClick={open} className="f-link" style={{ cursor: 'pointer' }}>Privacy Policy</span></li>
+              <li><span onClick={open} className="f-link" style={{ cursor: 'pointer' }}>Terms of Service</span></li>
             </ul>
           </div>
         </div>
@@ -83,7 +98,7 @@ export default function Footer({ onOpenDemo }) {
             borderTop: '1px solid rgba(255, 255, 255, 0.08)',
             paddingTop: '1.8rem',
             display: 'flex',
-            justify: 'space-between',
+            justifyContent: 'space-between',
             alignItems: 'center',
             flexWrap: 'wrap',
             gap: '1rem',
@@ -94,9 +109,9 @@ export default function Footer({ onOpenDemo }) {
             © {new Date().getFullYear()} SignTime Inc. All rights reserved. Built for modern U.S. enterprises.
           </div>
           <div style={{ display: 'flex', gap: '1.2rem' }}>
-            <span onClick={onOpenDemo} style={{ color: 'var(--coral)', cursor: 'pointer', fontWeight: 600 }}>Privacy</span>
-            <span onClick={onOpenDemo} style={{ color: 'var(--coral)', cursor: 'pointer', fontWeight: 600 }}>Security</span>
-            <span onClick={onOpenDemo} style={{ color: 'var(--coral)', cursor: 'pointer', fontWeight: 600 }}>Contact Us</span>
+            <span onClick={open} style={{ color: 'var(--coral)', cursor: 'pointer', fontWeight: 600 }}>Privacy</span>
+            <span onClick={open} style={{ color: 'var(--coral)', cursor: 'pointer', fontWeight: 600 }}>Security</span>
+            <Link to="/contact" style={{ color: 'var(--coral)', fontWeight: 600, textDecoration: 'none' }}>Contact Us</Link>
           </div>
         </div>
 
