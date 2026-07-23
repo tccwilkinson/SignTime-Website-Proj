@@ -1,0 +1,207 @@
+/* ==========================================================================
+   SignTime Design System - Polished Brand Identity
+   Palette: Navy (#16213E), Coral (#E8604C), Sky (#EAF2FC), Ink (#1E293B)
+   ========================================================================== */
+
+:root {
+  /* Brand Palette */
+  --navy: #16213E;
+  --navy-dark: #0D1730;
+  --navy-light: #233055;
+  --ink: #1E293B;
+  --paper: #FFFFFF;
+  --sky: #EAF2FC;
+  --sky-hover: #D7E6F7;
+  --skyline: #D7E6F7;
+  --coral: #E8604C;
+  --coral-dark: #D14B38;
+  --coral-glow: rgba(232, 96, 76, 0.35);
+  --slate: #5B6472;
+  --line: #E6E9EF;
+  --emerald: #10B981;
+
+  /* Typography */
+  --font-heading: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* Elevation & Shadows */
+  --shadow-subtle: 0 4px 20px rgba(20, 33, 62, 0.06);
+  --shadow-md: 0 12px 36px rgba(20, 33, 62, 0.12);
+  --shadow-lg: 0 24px 60px rgba(20, 33, 62, 0.18);
+  --shadow-coral: 0 8px 25px rgba(232, 96, 76, 0.3);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset & Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography Utility */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.25;
+}
+
+.gradient-text-coral {
+  background: linear-gradient(135deg, var(--coral) 0%, #F43F5E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-coral {
+  background: var(--coral);
+  color: #fff;
+  box-shadow: var(--shadow-coral);
+}
+
+.btn-coral:hover {
+  background: var(--coral-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(232, 96, 76, 0.45);
+}
+
+.btn-navy {
+  background: var(--navy);
+  color: #fff;
+}
+
+.btn-navy:hover {
+  background: var(--navy-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline-navy {
+  background: transparent;
+  color: var(--navy);
+  border: 1px solid var(--line);
+}
+
+.btn-outline-navy:hover {
+  border-color: var(--navy);
+  background: rgba(22, 33, 62, 0.04);
+  transform: translateY(-2px);
+}
+
+/* Pill Badges */
+.badge-sky {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--sky);
+  color: var(--navy);
+  border: 1px solid var(--skyline);
+}
+
+/* Infinite Marquee Mask & Track */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  width: max-content;
+  animation: marqueeScroll 25s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-logo {
+  font-family: 'Plus Jakarta Sans', serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--slate);
+  white-space: nowrap;
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
+}
+
+.marquee-logo:hover {
+  opacity: 1;
+  color: var(--navy);
+}
+
+/* Card Hover Elevation */
+.hover-card {
+  transition: all var(--transition-normal);
+}
+
+.hover-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--skyline) !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
