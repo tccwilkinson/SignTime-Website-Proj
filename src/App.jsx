@@ -23,6 +23,9 @@ import CsiThailand from './pages/case-studies/CsiThailand';
 import LeaseJapanHr from './pages/case-studies/LeaseJapanHr';
 import Integrations from './pages/Integrations';
 import Partners from './pages/Partners';
+import Resources from './pages/Resources';
+import ResourceArticleStub from './pages/ResourceArticleStub';
+import News from './pages/News';
 import PageStub from './pages/PageStub';
 
 export default function App() {
@@ -58,9 +61,9 @@ export default function App() {
             <Route path="/integrations" element={<Integrations />} />
             <Route path="/partners" element={<Partners />} />
 
-            <Route path="/resources" element={<PageStub title="Resources" />} />
-            <Route path="/resources/:slug" element={<PageStub title="Resource Article" />} />
-            <Route path="/news" element={<PageStub title="News" />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/resources/:slug" element={<ResourceArticleStub />} />
+            <Route path="/news" element={<News />} />
 
             <Route path="/contact" element={<PageStub title="Contact Us" />} />
 
