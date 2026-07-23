@@ -98,7 +98,7 @@ export default function CostComparisonSlider() {
       </div>
 
       <div style={{ textAlign: 'center', fontSize: '0.8rem', color: 'var(--slate)' }}>
-        Illustrative estimate. <TodoFlag>confirm SignTime flat rate (placeholder ${SIGNTIME_FLAT_RATE}/mo) and typical competitor per-seat rate (placeholder ${COMPETITOR_PER_SEAT_RATE}/user/mo) with Jim before publishing</TodoFlag>
+        Illustrative estimate. <TodoFlag>{`confirm SignTime flat rate (placeholder $${SIGNTIME_FLAT_RATE}/mo) and typical competitor per-seat rate (placeholder $${COMPETITOR_PER_SEAT_RATE}/user/mo) with Jim before publishing`}</TodoFlag>
       </div>
     </div>
   );

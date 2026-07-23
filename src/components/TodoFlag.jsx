@@ -23,7 +23,7 @@ export default function TodoFlag({ children }) {
       }}
     >
       <AlertTriangle size={12} strokeWidth={2.5} />
-      {`TODO: ${children}`}
+      TODO: {children}
     </span>
   );
 }

@@ -27,6 +27,10 @@ import Resources from './pages/Resources';
 import ResourceArticleStub from './pages/ResourceArticleStub';
 import News from './pages/News';
 import Contact from './pages/Contact';
+import SolutionsHub from './pages/solutions/SolutionsHub';
+import SolutionCategoryHub from './pages/solutions/SolutionCategoryHub';
+import SolutionDetail from './pages/solutions/SolutionDetail';
+import { useCaseItems, industryItems, teamItems } from './data/solutions';
 import PageStub from './pages/PageStub';
 
 export default function App() {
@@ -68,13 +72,31 @@ export default function App() {
 
             <Route path="/contact" element={<Contact />} />
 
-            <Route path="/solutions" element={<PageStub title="Solutions" />} />
-            <Route path="/solutions/use-case" element={<PageStub title="Solutions by Use Case" />} />
-            <Route path="/solutions/use-case/:slug" element={<PageStub title="Solutions by Use Case" />} />
-            <Route path="/solutions/industry" element={<PageStub title="Solutions by Industry" />} />
-            <Route path="/solutions/industry/:slug" element={<PageStub title="Solutions by Industry" />} />
-            <Route path="/solutions/team" element={<PageStub title="Solutions by Team" />} />
-            <Route path="/solutions/team/:slug" element={<PageStub title="Solutions by Team" />} />
+            <Route path="/solutions" element={<SolutionsHub />} />
+            <Route
+              path="/solutions/use-case"
+              element={<SolutionCategoryHub category="By Use Case" basePath="/solutions/use-case" items={useCaseItems} />}
+            />
+            <Route
+              path="/solutions/use-case/:slug"
+              element={<SolutionDetail category="Use Cases" basePath="/solutions/use-case" />}
+            />
+            <Route
+              path="/solutions/industry"
+              element={<SolutionCategoryHub category="By Industry" basePath="/solutions/industry" items={industryItems} />}
+            />
+            <Route
+              path="/solutions/industry/:slug"
+              element={<SolutionDetail category="Industries" basePath="/solutions/industry" />}
+            />
+            <Route
+              path="/solutions/team"
+              element={<SolutionCategoryHub category="By Team" basePath="/solutions/team" items={teamItems} />}
+            />
+            <Route
+              path="/solutions/team/:slug"
+              element={<SolutionDetail category="Teams" basePath="/solutions/team" />}
+            />
 
             <Route path="*" element={<PageStub title="Page Not Found" />} />
           </Routes>
