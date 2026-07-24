@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { TrendingDown } from 'lucide-react';
-import TodoFlag from './TodoFlag';
 
-const SIGNTIME_FLAT_RATE = 59;
+const SIGNTIME_FLAT_RATE = 49;
 const COMPETITOR_PER_SEAT_RATE = 40;
 
 export default function CostComparisonSlider() {
@@ -98,8 +97,9 @@ export default function CostComparisonSlider() {
       </div>
 
       <div style={{ textAlign: 'center', fontSize: '0.8rem', color: 'var(--slate)' }}>
-        Illustrative estimate. <TodoFlag>{`confirm SignTime flat rate (placeholder $${SIGNTIME_FLAT_RATE}/mo) and typical competitor per-seat rate (placeholder $${COMPETITOR_PER_SEAT_RATE}/user/mo) with Jim before publishing`}</TodoFlag>
+        Illustrative estimate based on flat-rate vs per-user pricing tiers.
       </div>
     </div>
   );
 }
+

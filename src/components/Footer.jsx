@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone } from 'lucide-react';
 import { useDemoModal } from '../context/DemoModalContext';
+import SignTimeLogo from './SignTimeLogo';
 
 export default function Footer() {
   const { open } = useDemoModal();
@@ -21,16 +22,8 @@ export default function Footer() {
         >
           {/* Brand Info */}
           <div style={{ gridColumn: 'span 2' }}>
-            <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1rem', textDecoration: 'none' }}>
-              <svg width="28" height="28" viewBox="0 0 34 34" fill="none">
-                <circle cx="17" cy="17" r="11.5" fill="var(--sky)" stroke="#fff" strokeWidth="2.2" />
-                <path d="M17 6.5v3M17 24.5v3M27.5 17h-3M9.5 17h-3" stroke="var(--navy)" strokeWidth="2" strokeLinecap="round" />
-                <path d="M17.3 16.7 Q20.5 13 25.5 7.5 Q21.8 14.3 17.9 17.4 Z" fill="var(--navy)" />
-                <circle cx="17" cy="17" r="1.9" fill="var(--navy)" />
-              </svg>
-              <span style={{ fontSize: '20px', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-heading)' }}>
-                SignTime
-              </span>
+            <Link to="/" style={{ display: 'inline-block', marginBottom: '1rem', textDecoration: 'none' }}>
+              <SignTimeLogo textColor="#ffffff" iconColor="#ffffff" />
             </Link>
             <p style={{ fontSize: '0.9rem', lineHeight: 1.6, maxWidth: '320px', marginBottom: '1.5rem', color: '#9BAAC7' }}>
               Unlimited users, one flat price — e-signatures and workflow automation for U.S. teams, without the per-seat markup.

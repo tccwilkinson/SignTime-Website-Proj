@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { useDemoModal } from '../context/DemoModalContext';
+import SignTimeLogo from './SignTimeLogo';
 
 export default function Navbar() {
   const { open } = useDemoModal();
@@ -55,23 +56,9 @@ export default function Navbar() {
         {/* Left Brand & Menu Links */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '36px' }}>
 
-          {/* Logo */}
-          <Link to="/" onClick={closeMenus} style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
-            <svg width="30" height="30" viewBox="0 0 34 34" fill="none">
-              <circle cx="17" cy="17" r="11.5" fill="var(--sky)" stroke="#fff" strokeWidth="2.2" />
-              <path d="M17 6.5v3M17 24.5v3M27.5 17h-3M9.5 17h-3" stroke="var(--navy)" strokeWidth="2" strokeLinecap="round" />
-              <path d="M17.3 16.7 Q20.5 13 25.5 7.5 Q21.8 14.3 17.9 17.4 Z" fill="var(--navy)" />
-              <path d="M17.3 16.7L24.3 9.3" stroke="var(--navy)" strokeWidth="0.8" strokeLinecap="round" />
-              <circle cx="17" cy="17" r="1.9" fill="var(--navy)" />
-            </svg>
-            <div>
-              <div style={{ fontSize: '20px', fontWeight: 800, color: '#fff', lineHeight: 1.1, fontFamily: 'var(--font-heading)' }}>
-                SignTime
-              </div>
-              <div style={{ fontSize: '11px', color: '#9BAAC7', fontWeight: 500 }}>
-                Intuitive e-signatures
-              </div>
-            </div>
+          {/* Logo matching user screenshot with white pen icon & white text */}
+          <Link to="/" onClick={closeMenus} style={{ textDecoration: 'none' }}>
+            <SignTimeLogo textColor="#ffffff" iconColor="#ffffff" />
           </Link>
 
           {/* Desktop Nav Links */}
