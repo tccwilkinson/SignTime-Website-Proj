@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Send, ShieldCheck, ListOrdered, Stamp, PenTool, FileText, Type, FileSignature, GitBranch, Clock, FileLock2, Layers, Search, Tag, Share2, KeyRound, Users, Building2, Code2, Cloud, HardDrive } from 'lucide-react';
 import { useDemoModal } from '../context/DemoModalContext';
-import FlipCardCarousel from '../components/FlipCardCarousel';
 
 const sendAndSign = [
   { id: 'sms', title: 'SMS Signature Requests', icon: <Send size={36} color="#fff" />, bgCollapsed: '#0D1730', textColor: '#fff', border: '1px solid rgba(255,255,255,0.15)', desc: "Send a signing link straight to a signer's phone — no email required, no app to install." },
@@ -52,7 +51,40 @@ function CategorySection({ id, eyebrow, heading, description, items, background 
           </h2>
           <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: 'var(--slate)' }}>{description}</p>
         </div>
-        <FlipCardCarousel items={items} />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="hover-card"
+              style={{
+                background: '#fff',
+                border: '1px solid var(--line)',
+                borderRadius: 'var(--radius-lg)',
+                padding: '28px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '14px',
+              }}
+            >
+              <div
+                style={{
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: 'var(--radius-md)',
+                  background: item.bgCollapsed,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                {item.icon}
+              </div>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--navy)', margin: 0 }}>{item.title}</h3>
+              <p style={{ fontSize: '0.92rem', lineHeight: 1.6, color: 'var(--slate)', margin: 0 }}>{item.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
