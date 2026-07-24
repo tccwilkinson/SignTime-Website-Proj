@@ -22,15 +22,28 @@ export default function Hero({ onOpenDemo }) {
   return (
     <section style={{ position: 'relative', overflow: 'hidden', background: 'radial-gradient(circle at 50% -10%, #DCEAFC 0%, #fff 55%)', paddingTop: '4rem' }}>
       
-      {/* Background Ambient Glowing Orbs */}
-      <div style={{ position: 'absolute', top: '-140px', left: '-120px', width: '360px', height: '360px', background: 'var(--coral)', opacity: 0.14, borderRadius: '50%', filter: 'blur(70px)', pointerEvents: 'none' }}></div>
-      <div style={{ position: 'absolute', top: '20px', right: '-160px', width: '400px', height: '400px', background: 'var(--navy)', opacity: 0.09, borderRadius: '50%', filter: 'blur(80px)', pointerEvents: 'none' }}></div>
-      <div style={{ position: 'absolute', bottom: '-160px', left: '38%', width: '340px', height: '340px', background: 'var(--sky)', opacity: 0.7, borderRadius: '50%', filter: 'blur(70px)', pointerEvents: 'none' }}></div>
+      {/* Background wash — settles in once on load; drifts with scroll in a later pass */}
+      <div
+        className="hero-wash"
+        style={{
+          position: 'absolute',
+          top: '-180px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '900px',
+          height: '520px',
+          background: 'var(--coral)',
+          opacity: 0.16,
+          borderRadius: '50%',
+          filter: 'blur(110px)',
+          pointerEvents: 'none'
+        }}
+      ></div>
 
       {/* Hero Copy */}
       <div style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem 1.5rem 0', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-        
-        <div className="badge-sky" style={{ marginBottom: '1.5rem' }}>
+
+        <div className="badge-sky hero-pill" style={{ marginBottom: '1.5rem', display: 'inline-block' }}>
           Now serving U.S. teams
         </div>
 
@@ -45,10 +58,36 @@ export default function Hero({ onOpenDemo }) {
             maxWidth: '740px'
           }}
         >
-          E-Signatures and Workflow Automation for <span className="gradient-text-coral">Digital Contracts</span>
+          <span className="hero-line-mask">
+            <span className="hero-line-inner line-1">E-Signatures and Workflow Automation for</span>
+          </span>
+          <span className="hero-line-mask">
+            <span className="hero-line-inner line-2 gradient-text-coral">Digital Contracts</span>
+          </span>
         </h1>
 
+        <svg
+          className="hero-signature-svg"
+          width="240"
+          height="60"
+          viewBox="0 0 260 70"
+          fill="none"
+          aria-hidden="true"
+          style={{ display: 'block', margin: '-0.4rem auto 1.4rem' }}
+        >
+          <path
+            className="hero-signature-path"
+            d="M8 44 C 10 20, 22 14, 28 30 C 32 42, 24 50, 16 46 C 8 42, 14 28, 26 26 C 42 23, 48 6, 58 20 C 66 32, 56 46, 46 42 C 54 36, 66 16, 78 24 C 88 31, 84 44, 94 42 C 106 39, 102 18, 116 22 C 128 25, 124 42, 136 40 C 152 37, 156 14, 172 20 C 184 24, 180 42, 196 38 C 210 34, 214 48, 228 42 L 244 36 M14 56 C 60 66, 160 66, 236 54"
+            stroke="var(--coral)"
+            strokeWidth="3.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+        </svg>
+
         <p
+          className="hero-subhead"
           style={{
             fontSize: '1.2rem',
             lineHeight: 1.6,
@@ -62,15 +101,15 @@ export default function Hero({ onOpenDemo }) {
 
         {/* Buttons */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '1rem', flexWrap: 'wrap' }}>
-          <button onClick={onOpenDemo} className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px' }}>
-            Start Free Today <ArrowRight size={18} />
+          <button onClick={onOpenDemo} className="btn btn-coral hero-cta-primary hero-btn-primary" style={{ padding: '16px 32px', fontSize: '15px' }}>
+            Start Free Today <ArrowRight size={18} className="hero-cta-arrow" />
           </button>
-          <button onClick={onOpenDemo} className="btn btn-outline-navy" style={{ padding: '16px 32px', fontSize: '15px' }}>
+          <button onClick={onOpenDemo} className="btn btn-outline-navy hero-cta-secondary hero-btn-secondary" style={{ padding: '16px 32px', fontSize: '15px' }}>
             Contact Us
           </button>
         </div>
 
-        <div style={{ fontSize: '13px', color: 'var(--slate)', marginBottom: '3rem' }}>
+        <div className="hero-cta-secondary" style={{ fontSize: '13px', color: 'var(--slate)', marginBottom: '3rem' }}>
           No credit card required · Cancel anytime
         </div>
 
