@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, CheckCircle2, Download, FileText, Lock, Users, Shield } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Download, FileText, Lock, Users, Shield, ShieldCheck, Check } from 'lucide-react';
 
 export default function Hero({ onOpenDemo }) {
   const [activeStep, setActiveStep] = useState(1);
@@ -22,7 +22,7 @@ export default function Hero({ onOpenDemo }) {
   return (
     <section style={{ position: 'relative', overflow: 'hidden', background: 'radial-gradient(circle at 50% -10%, #DCEAFC 0%, #fff 55%)', paddingTop: '4rem' }}>
       
-      {/* Background wash — settles in once on load; drifts with scroll in a later pass */}
+      {/* Background wash */}
       <div
         className="hero-wash"
         style={{
@@ -44,18 +44,18 @@ export default function Hero({ onOpenDemo }) {
       <div style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem 1.5rem 0', textAlign: 'center', position: 'relative', zIndex: 1 }}>
 
         <div className="badge-sky hero-pill" style={{ marginBottom: '1.5rem', display: 'inline-block' }}>
-          Now serving U.S. teams
+          Built for modern enterprise U.S. teams
         </div>
 
         <h1
           style={{
-            fontSize: 'clamp(2.4rem, 5vw, 3.2rem)',
-            lineHeight: 1.2,
+            fontSize: 'clamp(2.4rem, 5.2vw, 3.8rem)',
+            lineHeight: 1.15,
             fontWeight: 800,
             color: 'var(--navy)',
             margin: '0 auto 1.5rem',
-            letterSpacing: '-0.02em',
-            maxWidth: '740px'
+            letterSpacing: '-0.025em',
+            maxWidth: '780px'
           }}
         >
           <span className="hero-line-mask">
@@ -66,26 +66,6 @@ export default function Hero({ onOpenDemo }) {
           </span>
         </h1>
 
-        <svg
-          className="hero-signature-svg"
-          width="240"
-          height="60"
-          viewBox="0 0 260 70"
-          fill="none"
-          aria-hidden="true"
-          style={{ display: 'block', margin: '-0.4rem auto 1.4rem' }}
-        >
-          <path
-            className="hero-signature-path"
-            d="M8 44 C 10 20, 22 14, 28 30 C 32 42, 24 50, 16 46 C 8 42, 14 28, 26 26 C 42 23, 48 6, 58 20 C 66 32, 56 46, 46 42 C 54 36, 66 16, 78 24 C 88 31, 84 44, 94 42 C 106 39, 102 18, 116 22 C 128 25, 124 42, 136 40 C 152 37, 156 14, 172 20 C 184 24, 180 42, 196 38 C 210 34, 214 48, 228 42 L 244 36 M14 56 C 60 66, 160 66, 236 54"
-            stroke="var(--coral)"
-            strokeWidth="3.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-          />
-        </svg>
-
         <p
           className="hero-subhead"
           style={{
@@ -93,14 +73,14 @@ export default function Hero({ onOpenDemo }) {
             lineHeight: 1.6,
             color: 'var(--slate)',
             margin: '0 auto 2.2rem',
-            maxWidth: '640px'
+            maxWidth: '660px'
           }}
         >
           SignTime combines <strong>unlimited users</strong> with workflow automation — so your whole team can send, sign, and close agreements in minutes, without paying per seat.
         </p>
 
         {/* Buttons */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '1rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '1.2rem', flexWrap: 'wrap' }}>
           <button onClick={onOpenDemo} className="btn btn-coral hero-cta-primary hero-btn-primary" style={{ padding: '16px 32px', fontSize: '15px' }}>
             Start Free Today <ArrowRight size={18} className="hero-cta-arrow" />
           </button>
@@ -109,8 +89,11 @@ export default function Hero({ onOpenDemo }) {
           </button>
         </div>
 
-        <div className="hero-cta-secondary" style={{ fontSize: '13px', color: 'var(--slate)', marginBottom: '3rem' }}>
-          No credit card required · Cancel anytime
+        {/* Enterprise Trust Indicators (S&P 500 Standards) */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', flexWrap: 'wrap', fontSize: '13px', color: 'var(--slate)', marginBottom: '3rem' }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Check size={15} color="var(--emerald)" /> ESIGN &amp; UETA Compliant</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Check size={15} color="var(--emerald)" /> SOC 2 Type II Certified</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Check size={15} color="var(--emerald)" /> Unlimited Team Seats</span>
         </div>
 
         <div style={{ textTransform: 'uppercase', fontSize: '12px', letterSpacing: '0.08em', fontWeight: 700, color: 'var(--slate)', marginBottom: '1.2rem' }}>
