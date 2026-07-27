@@ -27,14 +27,29 @@ export default function Hero({ onOpenDemo }) {
   }, []);
 
   const marqueeLogos = [
-    'Meridian Realty Group',
-    'Crestview Academy',
-    'Harborline Hospitality',
-    'Northgate Fitness Co.',
-    'Union Property Partners',
-    'Bellwether Legal Group',
-    'Fairmont Relocation Services',
-    'Sterling Health Partners'
+    'Finesse Ventures',
+    'HCCR K.K.',
+    'H&R Group',
+    'INSPIRE Japan',
+    'Temple University Japan Campus',
+    'Krav Maga Japan',
+    'mihaku',
+    'Numata',
+    'OKESHO (沖創建設)',
+    'Asian Tigers Japan',
+    'Ohmura Paper Co., Ltd. (大村紙業株式会社)',
+    'BerryMobile Co., Ltd.',
+    'Global Brains Co., Ltd.',
+    'Greenvolt Power',
+    'Laurus International School of Science',
+    'Chudoukai Med. Corp.',
+    'Qsol Inc.',
+    'QTnet',
+    'Shizen Capital',
+    'TOKAI Group',
+    'AIC Corporation (AIC アイコーポレーション)',
+    'C.S.I. Group',
+    'Curvegrid'
   ];
 
   // Duplicate for seamless 50% loop
