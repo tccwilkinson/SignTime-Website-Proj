@@ -67,18 +67,20 @@ export default function Security() {
       {/* Hero */}
       <section style={{ background: 'radial-gradient(circle at 50% -10%, #DCEAFC 0%, #fff 55%)', padding: '4.5rem 0 3rem' }}>
         <div className="container" style={{ maxWidth: '760px', textAlign: 'center' }}>
-          <div className="badge-sky" style={{ marginBottom: '1.5rem' }}>Security & Compliance</div>
-          <h1 style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '1.2rem', letterSpacing: '-0.02em' }}>
+          <div className="st-subpage-badge" style={{ marginBottom: '1.5rem' }}>
+            <span className="badge-sky cute-badge-pulse">Security &amp; Compliance</span>
+          </div>
+          <h1 className="st-subpage-title" style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '1.2rem', letterSpacing: '-0.02em' }}>
             Safe, secure, and legally binding
           </h1>
-          <p style={{ fontSize: '1.15rem', lineHeight: 1.6, color: 'var(--slate)', marginBottom: '2rem' }}>
+          <p className="st-subpage-subhead" style={{ fontSize: '1.15rem', lineHeight: 1.6, color: 'var(--slate)', marginBottom: '2rem' }}>
             SignTime signatures comply with the U.S. ESIGN Act and state UETA statutes. Every signature is protected by multi-factor authentication, encrypted in transit and at rest, and backed by a complete, timestamped audit trail — for unlimited users, at one flat price.
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-            <button onClick={open} className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px' }}>
-              Start Free Trial — No Credit Card Required <ArrowRight size={18} />
+          <div className="st-subpage-subhead" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
+            <button onClick={open} className="btn btn-coral hero-btn-primary" style={{ padding: '16px 32px', fontSize: '15px' }}>
+              Start Free Trial — No Credit Card Required <ArrowRight size={18} className="hero-cta-arrow" />
             </button>
-            <Link to="/contact" className="btn btn-outline-navy" style={{ padding: '16px 32px', fontSize: '15px' }}>
+            <Link to="/contact" className="btn btn-outline-navy hero-btn-secondary" style={{ padding: '16px 32px', fontSize: '15px' }}>
               Book a 15-Minute Demo
             </Link>
           </div>

@@ -45,15 +45,20 @@ export default function Resources() {
       {/* Hero + top-of-page CTA */}
       <section style={{ background: 'radial-gradient(circle at 50% -10%, #DCEAFC 0%, #fff 55%)', padding: '3.5rem 0' }}>
         <div className="container" style={{ maxWidth: '760px', textAlign: 'center' }}>
-          <h1 style={{ fontSize: 'clamp(2rem, 4.2vw, 2.8rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '1rem', letterSpacing: '-0.02em' }}>
+          <div className="st-subpage-badge" style={{ marginBottom: '1.2rem' }}>
+            <span className="badge-sky cute-badge-pulse">Resources &amp; Playbooks</span>
+          </div>
+          <h1 className="st-subpage-title" style={{ fontSize: 'clamp(2rem, 4.2vw, 2.8rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '1rem', letterSpacing: '-0.02em' }}>
             Resources
           </h1>
-          <p style={{ fontSize: '1.1rem', lineHeight: 1.6, color: 'var(--slate)', marginBottom: '1.8rem' }}>
+          <p className="st-subpage-subhead" style={{ fontSize: '1.1rem', lineHeight: 1.6, color: 'var(--slate)', marginBottom: '1.8rem' }}>
             Guides on workflow automation, e-signature best practices, compliance, and industry-specific playbooks.
           </p>
-          <button onClick={open} className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px' }}>
-            Start Free Trial — No Credit Card Required <ArrowRight size={16} />
-          </button>
+          <div className="st-subpage-subhead">
+            <button onClick={open} className="btn btn-coral hero-btn-primary" style={{ padding: '14px 28px', fontSize: '15px' }}>
+              Start Free Trial — No Credit Card Required <ArrowRight size={16} className="hero-cta-arrow" />
+            </button>
+          </div>
         </div>
       </section>
 

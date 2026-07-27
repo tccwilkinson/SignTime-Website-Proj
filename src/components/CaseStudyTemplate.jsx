@@ -16,11 +16,13 @@ export default function CaseStudyTemplate({ industry, title, subhead, metrics, q
           >
             <ArrowLeft size={14} /> All Customer Stories
           </Link>
-          <div className="badge-sky" style={{ marginBottom: '1.2rem' }}>{industry}</div>
-          <h1 style={{ fontSize: 'clamp(2rem, 4vw, 2.6rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '1rem', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+          <div className="st-subpage-badge" style={{ marginBottom: '1.2rem' }}>
+            <span className="badge-sky cute-badge-pulse">{industry}</span>
+          </div>
+          <h1 className="st-subpage-title" style={{ fontSize: 'clamp(2rem, 4vw, 2.6rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '1rem', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
             {title}
           </h1>
-          <p style={{ fontSize: '1.1rem', lineHeight: 1.6, color: 'var(--slate)' }}>{subhead}</p>
+          <p className="st-subpage-subhead" style={{ fontSize: '1.1rem', lineHeight: 1.6, color: 'var(--slate)' }}>{subhead}</p>
         </div>
       </section>
 
@@ -28,8 +30,8 @@ export default function CaseStudyTemplate({ industry, title, subhead, metrics, q
       <section style={{ background: '#fff', padding: '0 0 3rem' }}>
         <div className="container" style={{ maxWidth: '780px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: `repeat(${metrics.length}, 1fr)`, gap: '20px' }}>
-            {metrics.map((m) => (
-              <div key={m.label} style={{ border: '1px solid var(--line)', borderRadius: '14px', padding: '20px', textAlign: 'center' }}>
+            {metrics.map((m, idx) => (
+              <div key={m.label} className={`st-subpage-card-${(idx % 3) + 1} cute-card-hover`} style={{ border: '1px solid var(--line)', borderRadius: '14px', padding: '20px', textAlign: 'center', background: '#FAFBFD' }}>
                 <div style={{ fontSize: 'clamp(1.4rem, 3vw, 1.8rem)', fontWeight: 800, color: 'var(--coral)', marginBottom: '4px' }}>
                   {m.value}
                 </div>

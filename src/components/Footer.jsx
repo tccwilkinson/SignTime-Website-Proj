@@ -79,8 +79,8 @@ export default function Footer() {
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.9rem' }}>
               <li><Link to="/contact" className="f-link">Contact Us</Link></li>
               <li><Link to="/security" className="f-link">ESIGN & UETA Compliance</Link></li>
-              <li><span onClick={open} className="f-link" style={{ cursor: 'pointer' }}>Privacy Policy</span></li>
-              <li><span onClick={open} className="f-link" style={{ cursor: 'pointer' }}>Terms of Service</span></li>
+              <li><Link to="/privacy" className="f-link">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="f-link">Terms of Service</Link></li>
             </ul>
           </div>
         </div>
@@ -102,8 +102,8 @@ export default function Footer() {
             © {new Date().getFullYear()} SignTime Inc. All rights reserved. Built for modern U.S. enterprises.
           </div>
           <div style={{ display: 'flex', gap: '1.2rem' }}>
-            <span onClick={open} style={{ color: 'var(--coral)', cursor: 'pointer', fontWeight: 600 }}>Privacy</span>
-            <span onClick={open} style={{ color: 'var(--coral)', cursor: 'pointer', fontWeight: 600 }}>Security</span>
+            <Link to="/privacy" style={{ color: 'var(--coral)', fontWeight: 600, textDecoration: 'none' }}>Privacy</Link>
+            <Link to="/security" style={{ color: 'var(--coral)', fontWeight: 600, textDecoration: 'none' }}>Security</Link>
             <Link to="/contact" style={{ color: 'var(--coral)', fontWeight: 600, textDecoration: 'none' }}>Contact Us</Link>
           </div>
         </div>

@@ -146,15 +146,15 @@ export default function Pricing() {
       {/* Hero Header (Compact & High Impact) */}
       <section style={{ background: 'radial-gradient(circle at 50% -10%, #DCEAFC 0%, #fff 60%)', padding: '3rem 0 2rem' }}>
         <div className="container" style={{ maxWidth: '760px', textAlign: 'center' }}>
-          <h1 style={{ fontSize: 'clamp(2rem, 4vw, 2.7rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.8rem', letterSpacing: '-0.02em' }}>
+          <h1 className="st-subpage-title" style={{ fontSize: 'clamp(2rem, 4vw, 2.7rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.8rem', letterSpacing: '-0.02em' }}>
             Transparent Pricing for E-Signatures
           </h1>
-          <p style={{ fontSize: '1.05rem', lineHeight: 1.5, color: 'var(--slate)', margin: '0 auto 1.5rem', maxWidth: '640px' }}>
+          <p className="st-subpage-subhead" style={{ fontSize: '1.05rem', lineHeight: 1.5, color: 'var(--slate)', margin: '0 auto 1.5rem', maxWidth: '640px' }}>
             Scalable plans with <strong>unlimited users</strong>. One flat rate with no per-seat fees.
           </p>
 
           {/* Billing Cycle Toggle */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', background: '#EAF2FC', borderRadius: '30px', padding: '4px' }}>
+          <div className="st-subpage-subhead" style={{ display: 'inline-flex', alignItems: 'center', background: '#EAF2FC', borderRadius: '30px', padding: '4px' }}>
             <button
               onClick={() => setBillingCycle('annual')}
               style={{

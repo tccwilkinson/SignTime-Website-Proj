@@ -33,6 +33,8 @@ import SolutionDetail from './pages/solutions/SolutionDetail';
 import { useCaseItems, industryItems, teamItems } from './data/solutions';
 import PageStub from './pages/PageStub';
 
+import FeatureDetail from './pages/FeatureDetail';
+
 export default function App() {
   return (
     <DemoModalProvider>
@@ -44,6 +46,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
 
             <Route path="/features" element={<Features />} />
+            <Route path="/features/:slug" element={<FeatureDetail />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/security" element={<Security />} />
 
@@ -64,6 +67,7 @@ export default function App() {
             <Route path="/customers/:slug" element={<PageStub title="Customer Story" />} />
 
             <Route path="/integrations" element={<Integrations />} />
+            <Route path="/integrations/:slug" element={<FeatureDetail />} />
             <Route path="/partners" element={<Partners />} />
 
             <Route path="/resources" element={<Resources />} />
@@ -98,7 +102,12 @@ export default function App() {
               element={<SolutionDetail category="Teams" basePath="/solutions/team" />}
             />
 
-            <Route path="*" element={<PageStub title="Page Not Found" />} />
+            <Route path="/privacy" element={<PageStub title="Privacy Policy" category="Legal & Privacy" />} />
+            <Route path="/terms" element={<PageStub title="Terms of Service" category="Legal & Compliance" />} />
+            <Route path="/legal" element={<PageStub title="Legal & Regulatory Notices" category="Legal & Compliance" />} />
+            <Route path="/status" element={<PageStub title="System Operational Status" category="Infrastructure & Reliability" />} />
+
+            <Route path="*" element={<PageStub title="Page Not Found" category="Navigation" />} />
           </Routes>
         </main>
 

@@ -108,39 +108,39 @@ export default function Navbar() {
                 >
                   <div className="st-col">
                     <h4>Signing & Verification</h4>
-                    <Link to="/features#send-sign" onClick={closeMenus}>Signer Sequencing</Link>
-                    <Link to="/features#send-sign" onClick={closeMenus}>Guarantor Feature</Link>
-                    <Link to="/features#stay-compliant" onClick={closeMenus}>Long-Term Signature (PAdES)</Link>
-                    <Link to="/features#stay-compliant" onClick={closeMenus}>Signature Certificates</Link>
-                    <Link to="/features#send-sign" onClick={closeMenus}>Handwritten Signatures</Link>
-                    <Link to="/features#send-sign" onClick={closeMenus}>SMS Signature Requests</Link>
+                    <Link to="/features/signer-sequencing" onClick={closeMenus}>Signer Sequencing</Link>
+                    <Link to="/features/guarantor-feature" onClick={closeMenus}>Guarantor Feature</Link>
+                    <Link to="/features/pades-long-term-signature" onClick={closeMenus}>Long-Term Signature (PAdES)</Link>
+                    <Link to="/features/signature-certificates" onClick={closeMenus}>Signature Certificates</Link>
+                    <Link to="/features/handwritten-signatures" onClick={closeMenus}>Handwritten Signatures</Link>
+                    <Link to="/features/sms-signature-requests" onClick={closeMenus}>SMS Signature Requests</Link>
                   </div>
                   <div className="st-col">
                     <h4>Workflow Automation</h4>
-                    <Link to="/features#automate-workflows" onClick={closeMenus}>Internal Approval Workflows</Link>
-                    <Link to="/features#automate-workflows" onClick={closeMenus}>Create & Manage Templates</Link>
-                    <Link to="/features#automate-workflows" onClick={closeMenus}>Bulk Sending Documents</Link>
-                    <Link to="/features#send-sign" onClick={closeMenus}>Attachments</Link>
+                    <Link to="/features/internal-approval-workflows" onClick={closeMenus}>Internal Approval Workflows</Link>
+                    <Link to="/features/templates-management" onClick={closeMenus}>Create & Manage Templates</Link>
+                    <Link to="/features/bulk-sending-documents" onClick={closeMenus}>Bulk Sending Documents</Link>
+                    <Link to="/features/document-attachments" onClick={closeMenus}>Attachments</Link>
                   </div>
                   <div className="st-col">
                     <h4>Document Management</h4>
-                    <Link to="/features#connect-your-tools" onClick={closeMenus}>Multiple File Format Support</Link>
-                    <Link to="/features#stay-compliant" onClick={closeMenus}>Timestamps</Link>
-                    <Link to="/features#automate-workflows" onClick={closeMenus}>Document Search & Tagging</Link>
-                    <Link to="/features#connect-your-tools" onClick={closeMenus}>Share Documents & Files</Link>
+                    <Link to="/features/multiple-file-format-support" onClick={closeMenus}>Multiple File Format Support</Link>
+                    <Link to="/features/legal-timestamps" onClick={closeMenus}>Timestamps</Link>
+                    <Link to="/features/document-search-tagging" onClick={closeMenus}>Document Search & Tagging</Link>
+                    <Link to="/features/share-documents-files" onClick={closeMenus}>Share Documents & Files</Link>
                   </div>
                   <div className="st-col">
                     <h4>Teams & Security</h4>
-                    <Link to="/security" onClick={closeMenus}>Multiple Teams</Link>
-                    <Link to="/features#stay-compliant" onClick={closeMenus}>Member Role Management</Link>
-                    <Link to="/security" onClick={closeMenus}>Two-Factor Authentication</Link>
-                    <Link to="/features#stay-compliant" onClick={closeMenus}>Customized Branding</Link>
+                    <Link to="/features/multiple-teams" onClick={closeMenus}>Multiple Teams</Link>
+                    <Link to="/features/member-role-management" onClick={closeMenus}>Member Role Management</Link>
+                    <Link to="/features/two-factor-authentication" onClick={closeMenus}>Two-Factor Authentication</Link>
+                    <Link to="/features/customized-branding" onClick={closeMenus}>Customized Branding</Link>
                   </div>
                   <div className="st-col">
                     <h4>Integrations</h4>
-                    <Link to="/integrations" onClick={closeMenus}>Web API</Link>
-                    <Link to="/integrations" onClick={closeMenus}>Salesforce Integration</Link>
-                    <Link to="/integrations" onClick={closeMenus}>Google Drive Integration</Link>
+                    <Link to="/integrations/web-api" onClick={closeMenus}>Web API</Link>
+                    <Link to="/integrations/salesforce" onClick={closeMenus}>Salesforce Integration</Link>
+                    <Link to="/integrations/google-drive" onClick={closeMenus}>Google Drive Integration</Link>
                     <Link to="/partners" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>Partner program ›</Link>
                   </div>
                 </div>

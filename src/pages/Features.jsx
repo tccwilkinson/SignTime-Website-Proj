@@ -45,17 +45,17 @@ function CategorySection({ id, eyebrow, heading, description, items, background 
     <section id={id} style={{ background, padding: '4.5rem 0', scrollMarginTop: '96px' }}>
       <div className="container">
         <div style={{ maxWidth: '640px', marginBottom: '2.5rem' }}>
-          <div className="badge-sky" style={{ marginBottom: '1rem' }}>{eyebrow}</div>
+          <div className="badge-sky cute-badge-pulse" style={{ marginBottom: '1rem' }}>{eyebrow}</div>
           <h2 style={{ fontSize: 'clamp(1.8rem, 3.4vw, 2.3rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.8rem' }}>
             {heading}
           </h2>
           <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: 'var(--slate)' }}>{description}</p>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
-          {items.map((item) => (
+          {items.map((item, idx) => (
             <div
               key={item.id}
-              className="hover-card"
+              className={`hover-card cute-card-hover st-subpage-card-${(idx % 4) + 1}`}
               style={{
                 background: '#fff',
                 border: '1px solid var(--line)',
@@ -67,6 +67,7 @@ function CategorySection({ id, eyebrow, heading, description, items, background 
               }}
             >
               <div
+                className="cute-icon-spin"
                 style={{
                   width: '56px',
                   height: '56px',
@@ -98,16 +99,18 @@ export default function Features() {
       {/* Hero */}
       <section style={{ background: 'radial-gradient(circle at 50% -10%, #DCEAFC 0%, #fff 55%)', padding: '4.5rem 0 3.5rem' }}>
         <div className="container" style={{ maxWidth: '820px', textAlign: 'center' }}>
-          <div className="badge-sky" style={{ marginBottom: '1.5rem' }}>Full feature list</div>
-          <h1 style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '1.2rem', letterSpacing: '-0.02em' }}>
+          <div className="st-subpage-badge" style={{ marginBottom: '1.5rem' }}>
+            <span className="badge-sky cute-badge-pulse">Full feature list</span>
+          </div>
+          <h1 className="st-subpage-title" style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '1.2rem', letterSpacing: '-0.02em' }}>
             Every E-Signature Feature Your Team Needs. <span className="gradient-text-coral">No Per-User Fees.</span>
           </h1>
-          <p style={{ fontSize: '1.15rem', lineHeight: 1.6, color: 'var(--slate)', marginBottom: '2rem' }}>
+          <p className="st-subpage-subhead" style={{ fontSize: '1.15rem', lineHeight: 1.6, color: 'var(--slate)', marginBottom: '2rem' }}>
             Unlimited users, unlimited documents, one flat price — with the workflows, integrations, and compliance U.S. teams expect.
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-            <button onClick={open} className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px' }}>
-              Start Free Trial — No Credit Card Required <ArrowRight size={18} />
+          <div className="st-subpage-subhead" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
+            <button onClick={open} className="btn btn-coral hero-btn-primary" style={{ padding: '16px 32px', fontSize: '15px' }}>
+              Start Free Trial — No Credit Card Required <ArrowRight size={18} className="hero-cta-arrow" />
             </button>
             <Link to="/contact" className="btn btn-outline-navy" style={{ padding: '16px 32px', fontSize: '15px' }}>
               Book a 15-Minute Demo

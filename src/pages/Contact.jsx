@@ -49,16 +49,19 @@ export default function Contact() {
     <section style={{ background: 'var(--sky)', padding: '4rem 0', minHeight: '70vh' }}>
       <div className="container" style={{ maxWidth: '640px' }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <h1 style={{ fontSize: 'clamp(2rem, 4vw, 2.6rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.8rem', letterSpacing: '-0.02em' }}>
+          <div className="st-subpage-badge" style={{ marginBottom: '1rem' }}>
+            <span className="badge-sky cute-badge-pulse">Onboarding &amp; Sales</span>
+          </div>
+          <h1 className="st-subpage-title" style={{ fontSize: 'clamp(2rem, 4vw, 2.6rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.8rem', letterSpacing: '-0.02em' }}>
             Book a 15-Minute Demo
           </h1>
-          <p style={{ fontSize: '1.05rem', color: 'var(--slate)' }}>
+          <p className="st-subpage-subhead" style={{ fontSize: '1.05rem', color: 'var(--slate)' }}>
             See how unlimited users at one flat price works for your team — no pressure, no commitment.
           </p>
         </div>
 
         <div
-          className="hover-card"
+          className="hover-card cute-card-hover st-subpage-card-1"
           style={{ background: '#fff', border: '1px solid var(--line)', borderRadius: '16px', padding: '2.5rem', boxShadow: 'var(--shadow-subtle)' }}
         >
           {!submitted ? (
