@@ -1,0 +1,17 @@
+.ui-card {
+  background: var(--card-fill);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow-rest);
+  transition: transform var(--card-transition), box-shadow var(--card-transition), border-color var(--card-transition);
+}
+
+.ui-card--padded {
+  padding: var(--card-padding);
+}
+
+.ui-card--hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: var(--card-border-hover);
+}
