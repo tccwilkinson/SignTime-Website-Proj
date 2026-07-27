@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { useDemoModal } from '../context/DemoModalContext';
 import SignTimeLogo from './SignTimeLogo';
@@ -11,14 +11,22 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   const navRef = useRef(null);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const threshold = isHome ? 560 : 20;
+      setScrolled(window.scrollY > threshold);
     };
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHome]);
+
+  const navTextColor = isHome ? 'var(--text-inverse)' : '#fff';
+  const navMutedColor = isHome ? 'var(--text-inverse-muted)' : '#9BAAC7';
+  const navActiveColor = isHome ? '#fff' : 'var(--coral)';
 
   // Click outside to close dropdown
   useEffect(() => {
@@ -41,24 +49,30 @@ export default function Navbar() {
   };
 
   return (
-    <div ref={navRef} style={{ position: 'sticky', top: 0, zIndex: 100 }}>
+    <div ref={navRef} style={isHome ? { position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100 } : { position: 'sticky', top: 0, zIndex: 100 }}>
       <nav
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '16px 40px',
-          background: 'var(--navy)',
-          boxShadow: scrolled ? '0 10px 30px rgba(20, 33, 62, 0.35)' : '0 2px 24px rgba(20, 33, 62, 0.25)',
-          transition: 'box-shadow 0.3s ease'
+          background: isHome
+            ? (scrolled ? 'rgba(var(--surface-dark-deep-rgb), 0.82)' : 'transparent')
+            : 'var(--navy)',
+          backdropFilter: isHome && scrolled ? 'blur(12px)' : 'none',
+          WebkitBackdropFilter: isHome && scrolled ? 'blur(12px)' : 'none',
+          boxShadow: isHome
+            ? 'none'
+            : (scrolled ? '0 10px 30px rgba(20, 33, 62, 0.35)' : '0 2px 24px rgba(20, 33, 62, 0.25)'),
+          transition: 'background 200ms ease, backdrop-filter 200ms ease, box-shadow 0.3s ease'
         }}
       >
         {/* Left Brand & Menu Links */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '36px' }}>
 
-          {/* Logo matching user screenshot with white pen icon & white text */}
+          {/* Logo */}
           <Link to="/" onClick={closeMenus} style={{ textDecoration: 'none' }}>
-            <SignTimeLogo textColor="#ffffff" iconColor="#ffffff" />
+            <SignTimeLogo textColor={navTextColor} iconColor={navTextColor} subtitleColor={navMutedColor} />
           </Link>
 
           {/* Desktop Nav Links */}
@@ -75,7 +89,7 @@ export default function Navbar() {
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: activeDropdown === 'product' ? 'var(--coral)' : '#fff',
+                  color: activeDropdown === 'product' ? navActiveColor : navTextColor,
                   cursor: 'pointer',
                   fontWeight: 600,
                   fontSize: '14px',
@@ -156,7 +170,7 @@ export default function Navbar() {
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: activeDropdown === 'solutions' ? 'var(--coral)' : '#fff',
+                  color: activeDropdown === 'solutions' ? navActiveColor : navTextColor,
                   cursor: 'pointer',
                   fontWeight: 600,
                   fontSize: '14px',
@@ -224,7 +238,7 @@ export default function Navbar() {
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: activeDropdown === 'resources' ? 'var(--coral)' : '#fff',
+                  color: activeDropdown === 'resources' ? navActiveColor : navTextColor,
                   cursor: 'pointer',
                   fontWeight: 600,
                   fontSize: '14px',
@@ -275,7 +289,7 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link to="/pricing" className="nav-link" onClick={closeMenus} style={{ color: '#fff', textDecoration: 'none', fontWeight: 600 }}>
+            <Link to="/pricing" className="nav-link" onClick={closeMenus} style={{ color: navTextColor, textDecoration: 'none', fontWeight: 600, transition: 'color 200ms ease' }}>
               Pricing
             </Link>
           </div>
@@ -283,13 +297,17 @@ export default function Navbar() {
 
         {/* Right CTA Actions */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '22px', fontSize: '14px' }}>
-          <Link to="/contact" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600, textDecoration: 'none' }}>
+          <Link to="/contact" onClick={closeMenus} style={{ color: isHome ? navTextColor : 'var(--coral)', fontWeight: 600, textDecoration: 'none', transition: 'color 200ms ease' }}>
             Contact Us
           </Link>
-          <span style={{ color: '#9BAAC7', cursor: 'pointer', fontWeight: 500 }}>
+          <span style={{ color: navMutedColor, cursor: 'pointer', fontWeight: 500, transition: 'color 200ms ease' }}>
             Login
           </span>
-          <button onClick={open} className="btn btn-coral" style={{ padding: '10px 20px', fontSize: '14px' }}>
+          <button
+            onClick={open}
+            className={isHome ? 'btn nav-cta-cream' : 'btn btn-coral'}
+            style={{ padding: '10px 20px', fontSize: '14px' }}
+          >
             Start Free Today
           </button>
 
@@ -304,7 +322,7 @@ export default function Navbar() {
               border: 'none',
               borderRadius: '6px',
               padding: '6px',
-              color: '#fff',
+              color: navTextColor,
               cursor: 'pointer',
               display: 'none'
             }}
@@ -315,7 +333,9 @@ export default function Navbar() {
       </nav>
 
       {/* Decorative gradient strip */}
-      <div style={{ height: '3px', background: 'linear-gradient(90deg, var(--coral), var(--navy) 50%, var(--sky))' }}></div>
+      {!isHome && (
+        <div style={{ height: '3px', background: 'linear-gradient(90deg, var(--coral), var(--navy) 50%, var(--sky))' }}></div>
+      )}
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
@@ -356,6 +376,8 @@ export default function Navbar() {
         .st-col a { display: block; font-size: 13px; color: var(--ink); text-decoration: none; margin-bottom: 8px; line-height: 1.4; transition: color 0.15s ease; }
         .st-col a:hover { color: var(--coral); }
         .mobile-link { color: #fff; font-size: 1.1rem; font-weight: 600; text-decoration: none; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-cta-cream { background: var(--surface-light); color: var(--navy); box-shadow: none; }
+        .nav-cta-cream:hover { background: #fff; color: var(--navy); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
         @media (min-width: 860px) {
           .desktop-menu { display: flex !important; }
         }

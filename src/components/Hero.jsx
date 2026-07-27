@@ -1,9 +1,30 @@
-import React, { useState } from 'react';
-import { ArrowRight, CheckCircle2, Download, FileText, Lock, Users, Shield, ShieldCheck, Check } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { ArrowRight, CheckCircle2, Download, FileText, Lock, Users, Shield } from 'lucide-react';
 
 export default function Hero({ onOpenDemo }) {
   const [activeStep, setActiveStep] = useState(1);
   const [fieldAdded, setFieldAdded] = useState(false);
+  const signatureRef = useRef(null);
+
+  // Subtle depth parallax on the signature backdrop, tied directly to scroll — not decorative/looping.
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        if (signatureRef.current) {
+          const offset = Math.min(window.scrollY * 0.12, 90);
+          signatureRef.current.style.transform = `translateX(-50%) translateY(${offset}px)`;
+        }
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const marqueeLogos = [
     'Meridian Realty Group',
@@ -20,49 +41,66 @@ export default function Hero({ onOpenDemo }) {
   const logoTrack = [...marqueeLogos, ...marqueeLogos];
 
   return (
-    <section style={{ position: 'relative', overflow: 'hidden', background: 'radial-gradient(circle at 50% -10%, #DCEAFC 0%, #fff 55%)', paddingTop: '4rem' }}>
-      
-      {/* Background wash */}
-      <div
-        className="hero-wash"
+    <section className="hero-dark-backdrop" style={{ position: 'relative', zIndex: 0, overflow: 'hidden', paddingTop: '4rem' }}>
+
+      <div className="hero-grain"></div>
+
+      {/* Signature backdrop — the hero's one flourish, scaled up and pushed behind the copy */}
+      <svg
+        ref={signatureRef}
+        className="hero-signature-backdrop"
+        viewBox="0 0 1000 260"
+        aria-hidden="true"
         style={{
           position: 'absolute',
-          top: '-180px',
+          top: '40px',
           left: '50%',
           transform: 'translateX(-50%)',
-          width: '900px',
-          height: '520px',
-          background: 'var(--coral)',
-          opacity: 0.16,
-          borderRadius: '50%',
-          filter: 'blur(110px)',
+          width: 'min(1500px, 170vw)',
+          height: 'auto',
+          zIndex: -1,
           pointerEvents: 'none'
         }}
-      ></div>
+      >
+        <text
+          className="hero-signature-path"
+          x="500"
+          y="180"
+          textAnchor="middle"
+          fontFamily="'Mrs Saint Delafield', cursive"
+          fontSize="220"
+          fill="none"
+          stroke="var(--text-inverse)"
+          strokeWidth="2.5"
+        >
+          SignTime
+        </text>
+      </svg>
 
       {/* Hero Copy */}
       <div style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem 1.5rem 0', textAlign: 'center', position: 'relative', zIndex: 1 }}>
 
-        <div className="badge-sky hero-pill" style={{ marginBottom: '1.5rem', display: 'inline-block' }}>
-          Built for modern enterprise U.S. teams
+        <div className="hero-eyebrow-plain hero-pill" style={{ marginBottom: '1.5rem', display: 'inline-block' }}>
+          Now serving U.S. teams
         </div>
 
         <h1
           style={{
-            fontSize: 'clamp(2.4rem, 5.2vw, 3.8rem)',
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(2.6rem, 5.4vw, 3.6rem)',
             lineHeight: 1.15,
-            fontWeight: 800,
-            color: 'var(--navy)',
+            fontWeight: 400,
+            color: 'var(--text-inverse)',
             margin: '0 auto 1.5rem',
-            letterSpacing: '-0.025em',
-            maxWidth: '780px'
+            letterSpacing: '-0.01em',
+            maxWidth: '740px'
           }}
         >
           <span className="hero-line-mask">
             <span className="hero-line-inner line-1">E-Signatures and Workflow Automation for</span>
           </span>
           <span className="hero-line-mask">
-            <span className="hero-line-inner line-2 gradient-text-coral">Digital Contracts</span>
+            <span className="hero-line-inner line-2 hero-accent-italic">Digital Contracts</span>
           </span>
         </h1>
 
@@ -71,7 +109,7 @@ export default function Hero({ onOpenDemo }) {
           style={{
             fontSize: '1.2rem',
             lineHeight: 1.6,
-            color: 'var(--slate)',
+            color: 'var(--text-inverse-muted)',
             margin: '0 auto 2.2rem',
             maxWidth: '660px'
           }}
@@ -80,23 +118,20 @@ export default function Hero({ onOpenDemo }) {
         </p>
 
         {/* Buttons */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '1.2rem', flexWrap: 'wrap' }}>
-          <button onClick={onOpenDemo} className="btn btn-coral hero-cta-primary hero-btn-primary" style={{ padding: '16px 32px', fontSize: '15px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '1rem', flexWrap: 'wrap' }}>
+          <button onClick={onOpenDemo} className="btn hero-cta-primary hero-btn-primary" style={{ padding: '16px 32px', fontSize: '15px' }}>
             Start Free Today <ArrowRight size={18} className="hero-cta-arrow" />
           </button>
-          <button onClick={onOpenDemo} className="btn btn-outline-navy hero-cta-secondary hero-btn-secondary" style={{ padding: '16px 32px', fontSize: '15px' }}>
+          <button onClick={onOpenDemo} className="btn hero-cta-secondary hero-btn-secondary" style={{ padding: '16px 32px', fontSize: '15px' }}>
             Contact Us
           </button>
         </div>
 
-        {/* Enterprise Trust Indicators (S&P 500 Standards) */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', flexWrap: 'wrap', fontSize: '13px', color: 'var(--slate)', marginBottom: '3rem' }}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Check size={15} color="var(--emerald)" /> ESIGN &amp; UETA Compliant</span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Check size={15} color="var(--emerald)" /> SOC 2 Type II Certified</span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Check size={15} color="var(--emerald)" /> Unlimited Team Seats</span>
+        <div className="hero-cta-secondary" style={{ fontSize: '13px', color: 'var(--text-inverse-muted)', marginBottom: '3rem' }}>
+          No credit card required · Cancel anytime
         </div>
 
-        <div style={{ textTransform: 'uppercase', fontSize: '12px', letterSpacing: '0.08em', fontWeight: 700, color: 'var(--slate)', marginBottom: '1.2rem' }}>
+        <div style={{ textTransform: 'uppercase', fontSize: '12px', letterSpacing: '0.08em', fontWeight: 700, color: 'var(--text-inverse-muted)', marginBottom: '1.2rem' }}>
           Trusted by teams like yours
         </div>
       </div>
@@ -112,26 +147,31 @@ export default function Hero({ onOpenDemo }) {
         </div>
       </div>
 
-      <div style={{ textAlign: 'center', fontSize: '12px', color: 'var(--slate)', marginBottom: '4rem' }}>
+      <div style={{ textAlign: 'center', fontSize: '12px', color: 'var(--text-inverse-muted)', marginBottom: '4rem' }}>
         Proven legal compliance across enterprise U.S. customer teams
       </div>
 
       {/* Interactive App Mockup Showcase */}
-      <div style={{ maxWidth: '1180px', margin: '0 auto', padding: '0 1.5rem 5.5rem', position: 'relative' }}>
-        <div style={{ position: 'absolute', top: '-40px', left: '50%', transform: 'translateX(-50%)', width: '520px', height: '220px', background: 'var(--skyline)', borderRadius: '50%', zIndex: 0, opacity: 0.5, filter: 'blur(4px)' }}></div>
+      <div className="hero-mockup-wrapper" style={{ maxWidth: '1180px', margin: '0 auto', padding: '28px 1.5rem 0', overflow: 'hidden', position: 'relative' }}>
 
-        <div
-          className="hover-card"
-          style={{
-            position: 'relative',
-            zIndex: 1,
-            background: '#fff',
-            border: '1px solid var(--line)',
-            borderRadius: '16px',
-            boxShadow: 'var(--shadow-lg)',
-            overflow: 'hidden'
-          }}
-        >
+        <div className="hero-trust-pill">
+          <Lock size={14} /> Secure &amp; Legally Binding · ESIGN &amp; UETA Compliant · AES-256 Encrypted
+        </div>
+
+        <div className="hero-product-card">
+
+          <div
+            className="hover-card"
+            style={{
+              position: 'relative',
+              zIndex: 1,
+              background: '#fff',
+              border: '1px solid var(--line)',
+              borderRadius: '16px',
+              boxShadow: 'var(--shadow-lg)',
+              overflow: 'hidden'
+            }}
+          >
           {/* Header Bar */}
           <div
             style={{
@@ -263,16 +303,18 @@ export default function Hero({ onOpenDemo }) {
                 <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--navy)', marginBottom: '12px' }}>Document Details</div>
                 <div style={{ fontSize: '12px', color: 'var(--slate)', marginBottom: '16px', background: '#F8FAFC', padding: '8px 12px', borderRadius: '6px' }}>
                   Name: <strong>Enterprise_Service_Agreement.pdf</strong>
+                  <br />
+                  128 Harborview Lane, Suite 400, Austin, TX 78701
                 </div>
 
                 <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--navy)', marginBottom: '10px' }}>Recipients & Signers</div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
                   <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: 'var(--coral)', color: '#fff', fontSize: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>1</div>
-                  <div style={{ fontSize: '12px', color: 'var(--slate)' }}>J. Sato — <span style={{ color: 'var(--navy)', fontWeight: 600 }}>signer@signtime.com</span></div>
+                  <div style={{ fontSize: '12px', color: 'var(--slate)' }}>Jordan Mitchell — <span style={{ color: 'var(--navy)', fontWeight: 600 }}>signer@signtime.com</span></div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px' }}>
                   <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: 'var(--navy)', color: '#fff', fontSize: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>2</div>
-                  <div style={{ fontSize: '12px', color: 'var(--slate)' }}>M. Tanaka — <span style={{ color: 'var(--navy)', fontWeight: 600 }}>demo@signtime.com</span></div>
+                  <div style={{ fontSize: '12px', color: 'var(--slate)' }}>Casey Reynolds — <span style={{ color: 'var(--navy)', fontWeight: 600 }}>demo@signtime.com</span></div>
                 </div>
 
                 <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
@@ -292,9 +334,13 @@ export default function Hero({ onOpenDemo }) {
             <button className="btn btn-outline-navy" style={{ padding: '8px 20px', fontSize: '13px' }}>Back</button>
             <button onClick={onOpenDemo} className="btn btn-navy" style={{ padding: '8px 24px', fontSize: '13px' }}>Next: Send Document</button>
           </div>
-        </div>
+          </div>
 
+        </div>
       </div>
+
+      {/* Softens the hard seam into the light section below */}
+      <div className="hero-fade-to-next-strip"></div>
     </section>
   );
 }

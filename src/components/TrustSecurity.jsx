@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Lock, FileText, KeyRound, UserCheck, MailCheck, ArrowRight } from 'lucide-react';
 import ComplianceGrid from './ComplianceGrid';
+import Reveal from './Reveal';
 
 const securityItems = [
   { icon: <ShieldCheck size={32} color="#fff" />, bg: 'var(--navy)', title: 'ESIGN & UETA Compliant' },
@@ -14,11 +15,11 @@ const securityItems = [
 
 export default function TrustSecurity() {
   return (
-    <section id="security" style={{ background: 'var(--sky)', padding: '5rem 0', position: 'relative' }}>
+    <section id="security" style={{ background: 'var(--surface-light)', padding: '5rem 0', position: 'relative' }}>
       <div className="container">
 
         {/* Header Row */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '40px', marginBottom: '3.5rem', flexWrap: 'wrap' }}>
+        <Reveal as="div" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '40px', marginBottom: '3.5rem', flexWrap: 'wrap' }}>
           <div style={{ maxWidth: '640px' }}>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.8rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '1.2rem', lineHeight: 1.15 }}>
               Safe, secure, and<br />legally binding
@@ -43,7 +44,7 @@ export default function TrustSecurity() {
           >
             Security & compliance specs <ArrowRight size={18} color="var(--navy)" />
           </Link>
-        </div>
+        </Reveal>
 
         {/* Security Badge Marquee */}
         <ComplianceGrid items={securityItems} />
