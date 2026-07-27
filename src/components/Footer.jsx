@@ -8,7 +8,7 @@ export default function Footer() {
   const { open } = useDemoModal();
 
   return (
-    <footer id="contact" style={{ background: '#090E1A', borderTop: '1px solid var(--navy-light)', color: '#9BAAC7', paddingTop: '4rem', paddingBottom: '3rem' }}>
+    <footer id="contact" style={{ background: 'var(--surface-dark-deep)', borderTop: '1px solid var(--navy-light)', color: '#9BAAC7', paddingTop: '4rem', paddingBottom: '3rem' }}>
       <div className="container">
 
         {/* Main Footer Columns — mirrors the Nav: Product / Solutions / Resources / Company */}

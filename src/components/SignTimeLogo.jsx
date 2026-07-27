@@ -35,7 +35,7 @@ export function SignTimeIcon({ size = 38, color = '#ffffff' }) {
   );
 }
 
-export default function SignTimeLogo({ size = 'medium', textColor = '#ffffff', iconColor = '#ffffff' }) {
+export default function SignTimeLogo({ size = 'medium', textColor = '#ffffff', iconColor = '#ffffff', subtitleColor }) {
   const isLarge = size === 'large';
   const iconSize = isLarge ? 48 : 38;
   const titleSize = isLarge ? '26px' : '21px';
@@ -62,7 +62,7 @@ export default function SignTimeLogo({ size = 'medium', textColor = '#ffffff', i
           style={{
             fontSize: subtitleSize,
             fontWeight: 400,
-            color: textColor === '#ffffff' ? 'rgba(255, 255, 255, 0.85)' : 'var(--slate)',
+            color: subtitleColor ?? (textColor === '#ffffff' ? 'rgba(255, 255, 255, 0.85)' : 'var(--slate)'),
             lineHeight: 1.2,
             letterSpacing: '0.01em',
             marginTop: '2px',

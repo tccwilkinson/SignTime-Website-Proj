@@ -20,9 +20,33 @@
   --line: #E6E9EF;
   --emerald: #10B981;
 
+  /* Surfaces — one navy family, three steps only */
+  --surface-dark: var(--navy);
+  --surface-dark-deep: #090E1A;
+  --surface-dark-deep-rgb: 9, 14, 26;
+  --surface-light: #FDFBF8;
+
+  /* Accent — one hue */
+  --accent: var(--coral);
+  --accent-rgb: 232, 96, 76;
+  --accent-hover: var(--coral-dark);
+  --accent-muted: rgba(var(--accent-rgb), 0.14);
+
+  /* Text neutrals — derived from navy, never pure gray */
+  --text-primary: var(--ink);
+  --text-muted: var(--slate);
+  --text-inverse: #EDF1F7;
+  --text-inverse-muted: rgba(237, 241, 247, 0.68);
+
+  /* Hero backdrop — coral + slate bloom, one light source, no amber/brown */
+  --hero-bloom-accent: rgba(var(--accent-rgb), 0.40);
+  --hero-bloom-slate: rgba(91, 100, 114, 0.32);
+  --hero-vignette: rgba(var(--surface-dark-deep-rgb), 0.46);
+
   /* Typography */
   --font-heading: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
+  --font-display: 'Newsreader', 'Plus Jakarta Sans', serif;
 
   /* Elevation & Shadows */
   --shadow-subtle: 0 4px 20px rgba(20, 33, 62, 0.06);
@@ -149,6 +173,25 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid var(--skyline);
 }
 
+.hero-eyebrow-plain {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-inverse-muted);
+}
+
+.hero-accent-italic {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-subhead strong {
+  color: var(--text-inverse);
+  font-weight: 700;
+}
+
 /* Infinite Marquee Mask & Track */
 .marquee-mask {
   -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
@@ -178,15 +221,15 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Plus Jakarta Sans', serif;
   font-weight: 700;
   font-size: 1.1rem;
-  color: var(--slate);
+  color: var(--text-inverse-muted);
   white-space: nowrap;
   opacity: 0.65;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, color 0.2s ease;
 }
 
 .marquee-logo:hover {
   opacity: 1;
-  color: var(--navy);
+  color: var(--text-inverse);
 }
 
 /* Card Hover Elevation */
@@ -206,6 +249,43 @@ h1, h2, h3, h4, h5, h6 {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Hero dark atmospheric backdrop — surface-dark family, coral + slate read as one light source */
+.hero-dark-backdrop {
+  background:
+    radial-gradient(ellipse 900px 700px at 32% 18%, var(--hero-bloom-accent) 0%, transparent 58%),
+    radial-gradient(ellipse 1150px 900px at 38% 24%, var(--hero-bloom-slate) 0%, transparent 66%),
+    radial-gradient(ellipse 1400px 1000px at 50% 45%, transparent 40%, var(--hero-vignette) 100%),
+    linear-gradient(160deg, var(--surface-dark) 0%, var(--surface-dark-deep) 100%);
+}
+
+@media (max-width: 640px) {
+  .hero-dark-backdrop {
+    background:
+      radial-gradient(ellipse 650px 550px at 75% 14%, var(--hero-bloom-accent) 0%, transparent 58%),
+      radial-gradient(ellipse 820px 700px at 80% 20%, var(--hero-bloom-slate) 0%, transparent 66%),
+      radial-gradient(ellipse 900px 900px at 50% 40%, transparent 35%, var(--hero-vignette) 100%),
+      linear-gradient(160deg, var(--surface-dark) 0%, var(--surface-dark-deep) 100%);
+  }
+}
+
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-fade-to-next-strip {
+  position: relative;
+  z-index: 0;
+  height: 140px;
+  margin-top: -1px;
+  background: linear-gradient(to bottom, var(--surface-dark-deep), var(--surface-light));
+  pointer-events: none;
+}
+
 /* Hero entrance choreography — load-triggered, non-repeating */
 @keyframes heroFadeUp {
   from { opacity: 0; transform: translateY(18px); }
@@ -215,11 +295,6 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes heroLineReveal {
   from { transform: translateY(110%); }
   to { transform: translateY(0); }
-}
-
-@keyframes heroWashIn {
-  from { opacity: 0; transform: scale(1.08); }
-  to { opacity: 0.16; transform: scale(1); }
 }
 
 @keyframes heroSignatureDraw {
@@ -246,20 +321,20 @@ h1, h2, h3, h4, h5, h6 {
 .hero-line-inner.line-1 { animation-delay: 100ms; }
 .hero-line-inner.line-2 { animation-delay: 200ms; }
 
-.hero-signature-text {
-  opacity: 0;
-  animation: heroFadeUp 600ms cubic-bezier(0.16, 1, 0.3, 1) 450ms forwards;
+@keyframes heroSignatureBackdropIn {
+  from { opacity: 0; }
+  to { opacity: 0.22; }
 }
 
-.hero-signature-svg {
+.hero-signature-backdrop {
   opacity: 0;
-  animation: heroFadeUp 300ms cubic-bezier(0.16, 1, 0.3, 1) 720ms forwards;
+  animation: heroSignatureBackdropIn 300ms cubic-bezier(0.16, 1, 0.3, 1) 720ms forwards;
 }
 
 .hero-signature-path {
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
-  animation: heroSignatureDraw 800ms cubic-bezier(0.65, 0, 0.35, 1) 750ms forwards;
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: heroSignatureDraw 1400ms cubic-bezier(0.65, 0, 0.35, 1) 750ms forwards;
 }
 
 .hero-subhead {
@@ -277,20 +352,18 @@ h1, h2, h3, h4, h5, h6 {
   animation: heroFadeUp 550ms cubic-bezier(0.16, 1, 0.3, 1) 1060ms forwards;
 }
 
-.hero-wash {
-  opacity: 0;
-  animation: heroWashIn 900ms cubic-bezier(0.16, 1, 0.3, 1) 0ms forwards;
-}
-
 /* CTA microinteractions */
 .hero-btn-primary {
+  background: var(--surface-light);
+  color: var(--navy);
+  border-radius: var(--radius-full);
   transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-btn-primary:hover,
 .hero-btn-primary:focus-visible {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(232, 96, 76, 0.38);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
 }
 
 .hero-btn-primary .hero-cta-arrow {
@@ -303,19 +376,102 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-btn-secondary {
-  transition: color 160ms ease, border-color 160ms ease;
+  background: transparent;
+  color: var(--text-inverse);
+  border: none;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.hero-btn-secondary:hover,
+.hero-btn-secondary:focus-visible {
+  background: rgba(237, 241, 247, 0.1);
+  color: #fff;
+}
+
+/* Product card */
+.hero-product-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 3.5rem 2rem 0;
+  background: var(--surface-light);
+  overflow: hidden;
+}
+
+.hero-product-card::before,
+.hero-product-card::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.hero-product-card::before {
+  top: -20%;
+  left: -10%;
+  width: 60%;
+  height: 140%;
+  background: var(--accent);
+  opacity: 0.22;
+}
+
+.hero-product-card::after {
+  bottom: -30%;
+  right: -10%;
+  width: 60%;
+  height: 140%;
+  background: var(--surface-dark);
+  opacity: 0.18;
+}
+
+.hero-mockup-wrapper {
+  max-height: clamp(380px, 45vw, 460px);
+}
+
+@media (max-width: 640px) {
+  .hero-mockup-wrapper {
+    max-height: 720px;
+  }
+}
+
+.hero-trust-pill {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--surface-dark-deep);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+@media (max-width: 480px) {
+  .hero-trust-pill {
+    white-space: normal;
+    text-align: center;
+    max-width: 90%;
+  }
 }
 
 .hero-btn-primary:focus-visible,
 .hero-btn-secondary:focus-visible {
-  outline: 2px solid var(--navy);
+  outline: 2px solid var(--surface-light);
   outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-pill,
   .hero-line-inner,
-  .hero-signature-svg,
   .hero-subhead,
   .hero-cta-primary,
   .hero-cta-secondary {
@@ -324,10 +480,9 @@ h1, h2, h3, h4, h5, h6 {
     transform: none !important;
   }
 
-  .hero-wash {
+  .hero-signature-backdrop {
     animation: none !important;
-    opacity: 0.16 !important;
-    transform: none !important;
+    opacity: 0.22 !important;
   }
 
   .hero-signature-path {
@@ -339,6 +494,27 @@ h1, h2, h3, h4, h5, h6 {
   .hero-btn-secondary,
   .hero-btn-primary .hero-cta-arrow {
     transition: none !important;
+  }
+}
+
+/* Scroll-reveal — one-time reveal as content enters the viewport */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 

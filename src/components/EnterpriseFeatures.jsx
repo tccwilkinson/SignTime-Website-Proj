@@ -1,5 +1,6 @@
 import React from 'react';
 import { Users, FileCode, Scan, ShieldCheck, Code2, Send, ArrowRight } from 'lucide-react';
+import Reveal from './Reveal';
 
 export default function EnterpriseFeatures({ onOpenDemo }) {
   const cards = [
@@ -42,18 +43,18 @@ export default function EnterpriseFeatures({ onOpenDemo }) {
   ];
 
   return (
-    <section id="features" style={{ padding: '5.5rem 0', background: '#fff' }}>
+    <section id="features" style={{ padding: '5.5rem 0', background: 'var(--surface-light)' }}>
       <div className="container">
         
         {/* Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 3.5rem auto' }}>
+        <Reveal style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 3.5rem auto' }}>
           <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.6rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '1rem' }}>
             Built for the Modern U.S. Enterprise
           </h2>
           <p style={{ fontSize: '1.15rem', lineHeight: 1.6, color: 'var(--slate)' }}>
             We tore down the limitations of legacy e-signature tools to build a platform that scales seamlessly with your business workflow.
           </p>
-        </div>
+        </Reveal>
 
         {/* 6-Card Grid */}
         <div
@@ -64,14 +65,15 @@ export default function EnterpriseFeatures({ onOpenDemo }) {
           }}
         >
           {cards.map((card, idx) => (
-            <div
+            <Reveal
               key={idx}
+              delay={(idx % 3) * 90}
               className="hover-card"
               style={{
                 border: '1px solid var(--line)',
                 borderRadius: '14px',
                 padding: '28px',
-                background: '#fff'
+                background: 'var(--surface-light)'
               }}
             >
               <div
@@ -96,7 +98,7 @@ export default function EnterpriseFeatures({ onOpenDemo }) {
               <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: 'var(--slate)' }}>
                 {card.desc}
               </p>
-            </div>
+            </Reveal>
           ))}
         </div>
 

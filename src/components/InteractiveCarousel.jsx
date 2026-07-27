@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Lock, FileText, Send, Smartphone, GitPullRequest, ShieldCheck, ArrowRight } from 'lucide-react';
 import FlipCardCarousel from './FlipCardCarousel';
+import Reveal from './Reveal';
 
 export default function InteractiveCarousel({ onOpenDemo }) {
   const cards = [
@@ -74,11 +75,11 @@ export default function InteractiveCarousel({ onOpenDemo }) {
   ];
 
   return (
-    <section id="carousel" style={{ position: 'relative', background: 'var(--navy)', padding: '64px 0 56px' }}>
+    <section id="carousel" style={{ position: 'relative', background: 'var(--surface-dark)', padding: '64px 0 56px' }}>
       <div className="container">
 
         {/* Section Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '24px', marginBottom: '36px', flexWrap: 'wrap' }}>
+        <Reveal style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '24px', marginBottom: '36px', flexWrap: 'wrap' }}>
           <h2 style={{ color: '#fff', fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontWeight: 800, lineHeight: 1.2, margin: 0, maxWidth: '640px' }}>
             Transforming the entire contract and signing process with SignTime
           </h2>
@@ -98,9 +99,11 @@ export default function InteractiveCarousel({ onOpenDemo }) {
           >
             See All Features <ArrowRight size={16} />
           </Link>
-        </div>
+        </Reveal>
 
-        <FlipCardCarousel items={cards} />
+        <Reveal delay={120}>
+          <FlipCardCarousel items={cards} />
+        </Reveal>
 
       </div>
     </section>
