@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowRight, CheckCircle2, Download, FileText, Lock, Users, Shield } from 'lucide-react';
+import PageHero from './ui/PageHero';
 
 export default function Hero({ onOpenDemo }) {
   const [activeStep, setActiveStep] = useState(1);
@@ -56,9 +57,7 @@ export default function Hero({ onOpenDemo }) {
   const logoTrack = [...marqueeLogos, ...marqueeLogos];
 
   return (
-    <section className="hero-dark-backdrop" style={{ position: 'relative', zIndex: 0, overflow: 'hidden', paddingTop: '4rem' }}>
-
-      <div className="hero-grain"></div>
+    <PageHero size="full">
 
       {/* Signature backdrop — the hero's one flourish, scaled up and pushed behind the copy */}
       <svg
@@ -93,7 +92,7 @@ export default function Hero({ onOpenDemo }) {
       </svg>
 
       {/* Hero Copy */}
-      <div style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem 1.5rem 0', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+      <div style={{ maxWidth: 'var(--pagehero-copy-max-width)', margin: '0 auto', padding: '2rem 1.5rem 0', textAlign: 'center', position: 'relative', zIndex: 1 }}>
 
         <div className="hero-eyebrow-plain hero-pill" style={{ marginBottom: '1.5rem', display: 'inline-block' }}>
           Now serving U.S. teams
@@ -101,14 +100,14 @@ export default function Hero({ onOpenDemo }) {
 
         <h1
           style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(2.6rem, 5.4vw, 3.6rem)',
-            lineHeight: 1.15,
-            fontWeight: 400,
+            fontFamily: 'var(--pagehero-h1-font)',
+            fontSize: 'var(--pagehero-h1-size)',
+            lineHeight: 'var(--pagehero-h1-line-height)',
+            fontWeight: 'var(--pagehero-h1-weight)',
             color: 'var(--text-inverse)',
             margin: '0 auto 1.5rem',
-            letterSpacing: '-0.01em',
-            maxWidth: '740px'
+            letterSpacing: 'var(--pagehero-h1-tracking)',
+            maxWidth: 'var(--pagehero-h1-max-width)'
           }}
         >
           <span className="hero-line-mask">
@@ -122,11 +121,11 @@ export default function Hero({ onOpenDemo }) {
         <p
           className="hero-subhead"
           style={{
-            fontSize: '1.2rem',
-            lineHeight: 1.6,
+            fontSize: 'var(--pagehero-subhead-size)',
+            lineHeight: 'var(--pagehero-subhead-line-height)',
             color: 'var(--text-inverse-muted)',
             margin: '0 auto 2.2rem',
-            maxWidth: '660px'
+            maxWidth: 'var(--pagehero-subhead-max-width)'
           }}
         >
           SignTime combines <strong>unlimited users</strong> with workflow automation — so your whole team can send, sign, and close agreements in minutes, without paying per seat.
@@ -354,8 +353,6 @@ export default function Hero({ onOpenDemo }) {
         </div>
       </div>
 
-      {/* Softens the hard seam into the light section below */}
-      <div className="hero-fade-to-next-strip"></div>
-    </section>
+    </PageHero>
   );
 }

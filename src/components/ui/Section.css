@@ -1,0 +1,12 @@
+.ui-section {
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
+}
+
+.ui-section-inner {
+  width: 100%;
+  max-width: var(--section-max-width);
+  margin: 0 auto;
+  padding-left: var(--section-x);
+  padding-right: var(--section-x);
+}

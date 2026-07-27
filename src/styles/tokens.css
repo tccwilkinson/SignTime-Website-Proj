@@ -1,0 +1,107 @@
+/* ==========================================================================
+   SignTime UI Kit — Design Tokens
+   Consumed EXCLUSIVELY by src/components/ui/*.jsx. Never redefines or
+   overrides anything in src/index.css's :root — only adds new, more
+   specific tokens, several of which alias existing index.css tokens 1:1
+   so today's visual values don't drift.
+   ========================================================================== */
+
+:root {
+  /* Section — background variants + vertical rhythm */
+  --section-bg-light: var(--surface-light);
+  --section-bg-panel: var(--surface-dark);
+  --section-bg-deep:  var(--surface-dark-deep);
+
+  --section-fg-light: var(--text-primary);
+  --section-fg-muted-light: var(--text-muted);
+  --section-border-light: var(--line);
+
+  --section-fg-dark: var(--text-inverse);
+  --section-fg-muted-dark: var(--text-inverse-muted);
+  --section-border-panel: var(--navy-light);
+  --section-border-deep: rgba(255, 255, 255, 0.08);
+
+  --section-y: clamp(3rem, 6vw, 5rem);
+  --section-max-width: 1240px;
+  --section-x: 1.5rem;
+
+  /* SectionHeader */
+  --eyebrow-font-size: 0.8rem;
+  --eyebrow-font-weight: 600;
+  --eyebrow-letter-spacing: 0.08em;
+  --eyebrow-fg: var(--text-muted);
+
+  --sh-heading-font: var(--font-display);
+  --sh-heading-weight: 500;
+  --sh-heading-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  --sh-heading-line-height: 1.2;
+  --sh-heading-tracking: -0.01em;
+  --sh-heading-fg: var(--navy);
+  --sh-accent-fg: var(--accent);
+
+  --sh-subhead-size: 1.05rem;
+  --sh-subhead-line-height: 1.6;
+  --sh-subhead-fg: var(--text-muted);
+
+  --sh-max-width: 640px;
+  --sh-gap-eyebrow: 1rem;
+  --sh-gap-subhead: 1rem;
+
+  /* Card */
+  --card-fill: #FFFFFF;
+  --card-border: var(--line);
+  --card-radius: var(--radius-md);
+  --card-padding: 1.75rem;
+  --card-shadow-rest: none;
+  --card-shadow-hover: var(--shadow-md);
+  --card-border-hover: var(--skyline);
+  --card-transition: var(--transition-normal);
+
+  /* Button — scoped to Button/PageHero only, does not change existing .btn-coral etc */
+  --btn-font-family: var(--font-heading);
+  --btn-font-weight: 600;
+  --btn-font-size: 0.95rem;
+  --btn-padding-y: 0.95rem;
+  --btn-padding-x: 1.75rem;
+  --btn-radius: var(--radius-full);
+  --btn-transition: var(--transition-fast);
+
+  --btn-primary-bg: var(--surface-light);
+  --btn-primary-fg: var(--navy);
+  --btn-primary-shadow-hover: 0 14px 30px rgba(0, 0, 0, 0.35);
+
+  --btn-secondary-bg: transparent;
+  --btn-secondary-fg: var(--navy);
+  --btn-secondary-border: currentColor;
+  --btn-secondary-bg-hover: rgba(237, 241, 247, 0.1);
+
+  /* PageHero — size="full" aliases existing hero-* tokens 1:1 (byte-identical render);
+     size="compact" is new, tokenizes the #DCEAFC gradient duplicated across ~10 pages
+     today, but is NOT wired into any page in this task. */
+  --pagehero-top-pad: 4rem;
+  --pagehero-bloom-accent: var(--hero-bloom-accent);
+  --pagehero-bloom-slate: var(--hero-bloom-slate);
+  --pagehero-vignette: var(--hero-vignette);
+  --pagehero-surface-start: var(--surface-dark);
+  --pagehero-surface-end: var(--surface-dark-deep);
+  --pagehero-grain-opacity: 0.05;
+  --pagehero-fade-from: var(--surface-dark-deep);
+  --pagehero-fade-to: var(--surface-light);
+  --pagehero-fade-height: 140px;
+
+  --pagehero-compact-bg-start: #DCEAFC;
+  --pagehero-compact-bg-end: var(--surface-light);
+  --pagehero-compact-top-pad: 4.5rem;
+  --pagehero-compact-bottom-pad: 3.5rem;
+
+  --pagehero-copy-max-width: 900px;
+  --pagehero-h1-font: var(--font-heading);
+  --pagehero-h1-size: clamp(2.6rem, 5.4vw, 3.6rem);
+  --pagehero-h1-weight: 700;
+  --pagehero-h1-line-height: 1.15;
+  --pagehero-h1-tracking: -0.02em;
+  --pagehero-h1-max-width: 740px;
+  --pagehero-subhead-size: 1.2rem;
+  --pagehero-subhead-line-height: 1.6;
+  --pagehero-subhead-max-width: 660px;
+}
