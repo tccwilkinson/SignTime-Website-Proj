@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Lock, FileText, Send, Smartphone, GitPullRequest, ShieldCheck, ArrowRight } from 'lucide-react';
 import FlipCardCarousel from './FlipCardCarousel';
 import Reveal from './Reveal';
+import Section from './ui/Section';
+import SectionHeader from './ui/SectionHeader';
+import Button from './ui/Button';
 
 export default function InteractiveCarousel({ onOpenDemo }) {
   const cards = [
@@ -20,7 +22,7 @@ export default function InteractiveCarousel({ onOpenDemo }) {
     {
       id: 'templates',
       title: 'Templates',
-      bgCollapsed: 'var(--coral)',
+      bgCollapsed: 'var(--navy-light)',
       textColor: '#fff',
       border: 'none',
       icon: <FileText size={36} color="#fff" />,
@@ -53,7 +55,7 @@ export default function InteractiveCarousel({ onOpenDemo }) {
     {
       id: 'workflows',
       title: 'Internal Approval Workflows',
-      bgCollapsed: 'var(--coral)',
+      bgCollapsed: 'var(--navy-light)',
       textColor: '#fff',
       border: 'none',
       icon: <GitPullRequest size={36} color="#fff" />,
@@ -75,37 +77,24 @@ export default function InteractiveCarousel({ onOpenDemo }) {
   ];
 
   return (
-    <section id="carousel" style={{ position: 'relative', background: 'var(--surface-dark)', padding: '64px 0 56px' }}>
-      <div className="container">
+    <Section id="carousel" variant="deep">
+      <Reveal style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '24px', marginBottom: '36px', flexWrap: 'wrap' }}>
+        <SectionHeader
+          align="left"
+          eyebrow="Product Tour"
+          heading="Transforming the entire contract and signing process with"
+          accent="SignTime"
+          style={{ margin: 0 }}
+        />
 
-        {/* Section Header */}
-        <Reveal style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '24px', marginBottom: '36px', flexWrap: 'wrap' }}>
-          <h2 style={{ color: '#fff', fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontWeight: 800, lineHeight: 1.2, margin: 0, maxWidth: '640px' }}>
-            Transforming the entire contract and signing process with SignTime
-          </h2>
+        <Button variant="secondary" to="/features">
+          See All Features <ArrowRight size={16} />
+        </Button>
+      </Reveal>
 
-          <Link
-            to="/features"
-            style={{
-              color: '#fff',
-              fontSize: '15px',
-              fontWeight: 700,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              whiteSpace: 'nowrap',
-              textDecoration: 'none'
-            }}
-          >
-            See All Features <ArrowRight size={16} />
-          </Link>
-        </Reveal>
-
-        <Reveal delay={120}>
-          <FlipCardCarousel items={cards} />
-        </Reveal>
-
-      </div>
-    </section>
+      <Reveal delay={120}>
+        <FlipCardCarousel items={cards} />
+      </Reveal>
+    </Section>
   );
 }

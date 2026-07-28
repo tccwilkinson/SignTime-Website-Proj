@@ -1,6 +1,10 @@
 import React from 'react';
 import { Users, FileCode, Scan, ShieldCheck, Code2, Send, ArrowRight } from 'lucide-react';
 import Reveal from './Reveal';
+import Section from './ui/Section';
+import SectionHeader from './ui/SectionHeader';
+import Card from './ui/Card';
+import Button from './ui/Button';
 
 export default function EnterpriseFeatures({ onOpenDemo }) {
   const cards = [
@@ -43,39 +47,28 @@ export default function EnterpriseFeatures({ onOpenDemo }) {
   ];
 
   return (
-    <section id="features" style={{ padding: '5.5rem 0', background: 'var(--surface-light)' }}>
-      <div className="container">
-        
-        {/* Section Header */}
-        <Reveal style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 3.5rem auto' }}>
-          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.6rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '1rem' }}>
-            Built for the Modern U.S. Enterprise
-          </h2>
-          <p style={{ fontSize: '1.15rem', lineHeight: 1.6, color: 'var(--slate)' }}>
-            We tore down the limitations of legacy e-signature tools to build a platform that scales seamlessly with your business workflow.
-          </p>
-        </Reveal>
+    <Section id="features" variant="panel">
+      <Reveal>
+        <SectionHeader
+          eyebrow="Enterprise Platform"
+          heading="Built for the Modern"
+          accent="U.S. Enterprise"
+          subhead="We tore down the limitations of legacy e-signature tools to build a platform that scales seamlessly with your business workflow."
+          style={{ maxWidth: '680px', margin: '0 auto 3.5rem auto' }}
+        />
+      </Reveal>
 
-        {/* 6-Card Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '24px'
-          }}
-        >
-          {cards.map((card, idx) => (
-            <Reveal
-              key={idx}
-              delay={(idx % 3) * 90}
-              className="hover-card"
-              style={{
-                border: '1px solid var(--line)',
-                borderRadius: '14px',
-                padding: '28px',
-                background: 'var(--surface-light)'
-              }}
-            >
+      {/* 6-Card Grid */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '24px'
+        }}
+      >
+        {cards.map((card, idx) => (
+          <Reveal key={idx} delay={(idx % 3) * 90}>
+            <Card>
               <div
                 style={{
                   width: '46px',
@@ -98,17 +91,16 @@ export default function EnterpriseFeatures({ onOpenDemo }) {
               <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: 'var(--slate)' }}>
                 {card.desc}
               </p>
-            </Reveal>
-          ))}
-        </div>
-
-        <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-          <button onClick={onOpenDemo} className="btn btn-coral" style={{ padding: '14px 32px', fontSize: '15px' }}>
-            See All Plans & Specs <ArrowRight size={16} />
-          </button>
-        </div>
-
+            </Card>
+          </Reveal>
+        ))}
       </div>
-    </section>
+
+      <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+        <Button variant="primary" onClick={onOpenDemo}>
+          See All Plans & Specs <ArrowRight size={16} />
+        </Button>
+      </div>
+    </Section>
   );
 }
