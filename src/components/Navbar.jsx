@@ -156,6 +156,7 @@ export default function Navbar() {
                     <Link to="/integrations/salesforce" onClick={closeMenus}>Salesforce Integration</Link>
                     <Link to="/integrations/google-drive" onClick={closeMenus}>Google Drive Integration</Link>
                     <Link to="/partners" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>Partner program ›</Link>
+                    <Link to="/features" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>View all features ›</Link>
                   </div>
                 </div>
               )}

@@ -175,6 +175,8 @@ export default function Hero({ onOpenDemo }) {
           <Lock size={14} /> Secure &amp; Legally Binding · ESIGN &amp; UETA Compliant · AES-256 Encrypted
         </div>
 
+        <div className="hero-mockup-fade" aria-hidden="true"></div>
+
         <div className="hero-product-card">
 
           <div

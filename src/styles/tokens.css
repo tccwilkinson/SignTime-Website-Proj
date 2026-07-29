@@ -86,7 +86,7 @@
   --pagehero-surface-end: var(--surface-dark-deep);
   --pagehero-grain-opacity: 0.05;
   --pagehero-fade-from: var(--surface-dark-deep);
-  --pagehero-fade-to: var(--surface-light);
+  --pagehero-fade-to: var(--surface-dark-deep);
   --pagehero-fade-height: 140px;
 
   --pagehero-compact-bg-start: #DCEAFC;

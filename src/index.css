@@ -249,43 +249,6 @@ h1, h2, h3, h4, h5, h6 {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero dark atmospheric backdrop — surface-dark family, coral + slate read as one light source */
-.hero-dark-backdrop {
-  background:
-    radial-gradient(ellipse 900px 700px at 32% 18%, var(--hero-bloom-accent) 0%, transparent 58%),
-    radial-gradient(ellipse 1150px 900px at 38% 24%, var(--hero-bloom-slate) 0%, transparent 66%),
-    radial-gradient(ellipse 1400px 1000px at 50% 45%, transparent 40%, var(--hero-vignette) 100%),
-    linear-gradient(160deg, var(--surface-dark) 0%, var(--surface-dark-deep) 100%);
-}
-
-@media (max-width: 640px) {
-  .hero-dark-backdrop {
-    background:
-      radial-gradient(ellipse 650px 550px at 75% 14%, var(--hero-bloom-accent) 0%, transparent 58%),
-      radial-gradient(ellipse 820px 700px at 80% 20%, var(--hero-bloom-slate) 0%, transparent 66%),
-      radial-gradient(ellipse 900px 900px at 50% 40%, transparent 35%, var(--hero-vignette) 100%),
-      linear-gradient(160deg, var(--surface-dark) 0%, var(--surface-dark-deep) 100%);
-  }
-}
-
-.hero-grain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-fade-to-next-strip {
-  position: relative;
-  z-index: 0;
-  height: 140px;
-  margin-top: -1px;
-  background: linear-gradient(to bottom, var(--surface-dark-deep), var(--surface-light));
-  pointer-events: none;
-}
-
 /* Hero entrance choreography — load-triggered, non-repeating */
 @keyframes heroFadeUp {
   from { opacity: 0; transform: translateY(18px); }
@@ -434,6 +397,18 @@ h1, h2, h3, h4, h5, h6 {
   .hero-mockup-wrapper {
     max-height: 720px;
   }
+}
+
+/* Makes the mockup's crop read as a deliberate bleed off the card edge, not an accidental clip */
+.hero-mockup-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 90px;
+  background: linear-gradient(to bottom, transparent, var(--surface-light));
+  pointer-events: none;
+  z-index: 3;
 }
 
 .hero-trust-pill {
