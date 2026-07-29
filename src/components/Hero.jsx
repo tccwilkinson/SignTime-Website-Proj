@@ -67,12 +67,12 @@ export default function Hero({ onOpenDemo }) {
         aria-hidden="true"
         style={{
           position: 'absolute',
-          top: '650px',
+          top: '120px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: 'min(1500px, 170vw)',
           height: 'auto',
-          zIndex: -1,
+          zIndex: 0,
           pointerEvents: 'none'
         }}
       >
