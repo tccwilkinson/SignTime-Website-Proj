@@ -51,7 +51,7 @@ export default function News() {
             Press releases, company news, and product updates — all in one place.
           </p>
           <div className="st-subpage-subhead">
-            <button onClick={open} className="btn btn-coral hero-btn-primary" style={{ padding: '14px 28px', fontSize: '15px' }}>
+            <button onClick={open} className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px' }}>
               Start Free Trial — No Credit Card Required <ArrowRight size={16} className="hero-cta-arrow" />
             </button>
           </div>

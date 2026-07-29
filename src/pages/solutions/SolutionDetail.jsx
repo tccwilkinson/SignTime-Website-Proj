@@ -43,7 +43,7 @@ export default function SolutionDetail({ category, basePath }) {
             This solutions page is routable and ready for content — copy will follow once the rest of the site is reviewed.
           </div>
           <div className="st-subpage-card-2" style={{ textAlign: 'center' }}>
-            <button onClick={open} className="btn btn-coral hero-btn-primary" style={{ padding: '14px 28px', fontSize: '15px' }}>
+            <button onClick={open} className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px' }}>
               Start Free Trial — No Credit Card Required <ArrowRight size={16} className="hero-cta-arrow" />
             </button>
           </div>

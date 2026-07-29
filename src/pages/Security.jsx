@@ -77,10 +77,10 @@ export default function Security() {
             SignTime signatures comply with the U.S. ESIGN Act and state UETA statutes. Every signature is protected by multi-factor authentication, encrypted in transit and at rest, and backed by a complete, timestamped audit trail — for unlimited users, at one flat price.
           </p>
           <div className="st-subpage-subhead" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-            <button onClick={open} className="btn btn-coral hero-btn-primary" style={{ padding: '16px 32px', fontSize: '15px' }}>
+            <button onClick={open} className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px' }}>
               Start Free Trial — No Credit Card Required <ArrowRight size={18} className="hero-cta-arrow" />
             </button>
-            <Link to="/contact" className="btn btn-outline-navy hero-btn-secondary" style={{ padding: '16px 32px', fontSize: '15px' }}>
+            <Link to="/contact" className="btn btn-outline-navy" style={{ padding: '16px 32px', fontSize: '15px' }}>
               Book a 15-Minute Demo
             </Link>
           </div>

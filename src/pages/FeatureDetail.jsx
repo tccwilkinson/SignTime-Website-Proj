@@ -64,10 +64,10 @@ export default function FeatureDetail() {
           </p>
 
           <div className="st-subpage-subhead" style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
-            <button onClick={open} className="btn btn-coral hero-btn-primary" style={{ padding: '14px 28px', fontSize: '15px' }}>
-              Try {featureTitle} Free <ArrowRight size={16} className="hero-cta-arrow" />
+            <button onClick={open} className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px' }}>
+              Try {featureTitle} Free <ArrowRight size={16} />
             </button>
-            <Link to="/pricing" className="btn btn-outline-navy hero-btn-secondary" style={{ padding: '14px 28px', fontSize: '15px' }}>
+            <Link to="/pricing" className="btn btn-outline-navy" style={{ padding: '14px 28px', fontSize: '15px' }}>
               View Pricing Tiers
             </Link>
           </div>

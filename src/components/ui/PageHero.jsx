@@ -25,8 +25,8 @@ export default function PageHero({ size = 'full', className = '', style = {}, ch
       <style>{`
         .ph-backdrop-full {
           background:
-            radial-gradient(ellipse 900px 700px at 32% 18%, var(--pagehero-bloom-accent) 0%, transparent 58%),
-            radial-gradient(ellipse 1150px 900px at 38% 24%, var(--pagehero-bloom-slate) 0%, transparent 66%),
+            radial-gradient(ellipse 900px 700px at 50% 16%, var(--pagehero-bloom-accent) 0%, transparent 58%),
+            radial-gradient(ellipse 1150px 900px at 50% 24%, var(--pagehero-bloom-slate) 0%, transparent 66%),
             radial-gradient(ellipse 1400px 1000px at 50% 45%, transparent 40%, var(--pagehero-vignette) 100%),
             linear-gradient(160deg, var(--pagehero-surface-start) 0%, var(--pagehero-surface-end) 100%);
         }
@@ -34,8 +34,8 @@ export default function PageHero({ size = 'full', className = '', style = {}, ch
         @media (max-width: 640px) {
           .ph-backdrop-full {
             background:
-              radial-gradient(ellipse 650px 550px at 75% 14%, var(--pagehero-bloom-accent) 0%, transparent 58%),
-              radial-gradient(ellipse 820px 700px at 80% 20%, var(--pagehero-bloom-slate) 0%, transparent 66%),
+              radial-gradient(ellipse 650px 550px at 50% 12%, var(--pagehero-bloom-accent) 0%, transparent 58%),
+              radial-gradient(ellipse 820px 700px at 50% 18%, var(--pagehero-bloom-slate) 0%, transparent 66%),
               radial-gradient(ellipse 900px 900px at 50% 40%, transparent 35%, var(--pagehero-vignette) 100%),
               linear-gradient(160deg, var(--pagehero-surface-start) 0%, var(--pagehero-surface-end) 100%);
           }

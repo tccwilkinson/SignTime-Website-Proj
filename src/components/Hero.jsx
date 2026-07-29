@@ -67,7 +67,7 @@ export default function Hero({ onOpenDemo }) {
         aria-hidden="true"
         style={{
           position: 'absolute',
-          top: '40px',
+          top: '650px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: 'min(1500px, 170vw)',
@@ -108,9 +108,10 @@ export default function Hero({ onOpenDemo }) {
             lineHeight: 'var(--pagehero-h1-line-height)',
             fontWeight: 'var(--pagehero-h1-weight)',
             color: 'var(--text-inverse)',
-            margin: '0 auto 1.5rem',
+            margin: '0 auto 1rem',
             letterSpacing: 'var(--pagehero-h1-tracking)',
-            maxWidth: 'var(--pagehero-h1-max-width)'
+            maxWidth: 'var(--pagehero-h1-max-width)',
+            textWrap: 'balance'
           }}
         >
           <span className="hero-line-mask">
@@ -126,8 +127,8 @@ export default function Hero({ onOpenDemo }) {
           style={{
             fontSize: 'var(--pagehero-subhead-size)',
             lineHeight: 'var(--pagehero-subhead-line-height)',
-            color: 'var(--text-inverse-muted)',
-            margin: '0 auto 2.2rem',
+            color: 'rgba(237, 241, 247, 0.85)',
+            margin: '0 auto 2.8rem',
             maxWidth: 'var(--pagehero-subhead-max-width)'
           }}
         >
