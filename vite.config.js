@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-export default defineConfig(({ command }) => ({
+export default defineConfig({
   plugins: [react()],
-  base: command === 'build' ? './' : '/',
+  base: '/SignTime-Website-Proj/',
   build: {
     outDir: 'docs',
     emptyOutDir: true,
@@ -13,6 +13,6 @@ export default defineConfig(({ command }) => ({
     strictPort: false,
     open: true
   }
-}))
+})
 
 
