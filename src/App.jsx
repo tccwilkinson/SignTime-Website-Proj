@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import DemoModal from './components/DemoModal';
@@ -34,16 +35,20 @@ import { useCaseItems, industryItems, teamItems } from './data/solutions';
 import PageStub from './pages/PageStub';
 
 import FeatureDetail from './pages/FeatureDetail';
+import Login from './pages/Login';
 
-export default function App() {
+function PageRouteWrapper() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [location.pathname]);
+
   return (
-    <DemoModalProvider>
-      <div className="app-root" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <Navbar />
-
-        <main id="main-content" style={{ flex: 1 }}>
-          <Routes>
-            <Route path="/" element={<Home />} />
+    <main id="main-content" key={location.pathname} className="st-page-enter" style={{ flex: 1 }}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
 
             <Route path="/features" element={<Features />} />
             <Route path="/features/:slug" element={<FeatureDetail />} />
@@ -110,7 +115,15 @@ export default function App() {
             <Route path="*" element={<PageStub title="Page Not Found" category="Navigation" />} />
           </Routes>
         </main>
+  );
+}
 
+export default function App() {
+  return (
+    <DemoModalProvider>
+      <div className="app-root" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <Navbar />
+        <PageRouteWrapper />
         <Footer />
         <DemoModal />
       </div>

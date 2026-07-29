@@ -301,9 +301,19 @@ export default function Navbar() {
           <Link to="/contact" onClick={closeMenus} style={{ color: isHome ? navTextColor : 'var(--coral)', fontWeight: 600, textDecoration: 'none', transition: 'color 200ms ease' }}>
             Contact Us
           </Link>
-          <span style={{ color: navMutedColor, cursor: 'pointer', fontWeight: 500, transition: 'color 200ms ease' }}>
+          <Link
+            to="/login"
+            onClick={closeMenus}
+            style={{
+              color: navMutedColor,
+              fontWeight: 600,
+              textDecoration: 'none',
+              transition: 'color 200ms ease',
+              cursor: 'pointer'
+            }}
+          >
             Login
-          </span>
+          </Link>
           <button
             onClick={open}
             className={isHome ? 'btn nav-cta-cream' : 'btn btn-coral'}
@@ -359,6 +369,7 @@ export default function Navbar() {
           <Link to="/security" className="mobile-link" onClick={closeMenus}>Security & Compliance</Link>
           <Link to="/customers" className="mobile-link" onClick={closeMenus}>Customer Stories</Link>
           <Link to="/contact" className="mobile-link" onClick={closeMenus}>Contact Us</Link>
+          <Link to="/login" className="mobile-link" onClick={closeMenus}>Login to Account</Link>
           <button
             onClick={() => { setMobileMenuOpen(false); open(); }}
             className="btn btn-coral"
