@@ -332,8 +332,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-signature-path {
-  stroke-dasharray: 700;
-  stroke-dashoffset: 700;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
   animation: heroSignatureDraw 1400ms cubic-bezier(0.65, 0, 0.35, 1) 750ms forwards;
 }
 

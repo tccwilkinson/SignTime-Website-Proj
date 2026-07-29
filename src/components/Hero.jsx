@@ -59,7 +59,7 @@ export default function Hero({ onOpenDemo }) {
   return (
     <PageHero size="full">
 
-      {/* Signature backdrop — the hero's one flourish, scaled up and pushed behind the copy */}
+      {/* Professional subtle background watermark backdrop */}
       <svg
         ref={signatureRef}
         className="hero-signature-backdrop"
@@ -79,15 +79,18 @@ export default function Hero({ onOpenDemo }) {
         <text
           className="hero-signature-path"
           x="500"
-          y="180"
+          y="170"
           textAnchor="middle"
-          fontFamily="'Mrs Saint Delafield', cursive"
-          fontSize="220"
+          fontFamily="'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif"
+          fontSize="145"
+          fontWeight="800"
+          letterSpacing="22px"
           fill="none"
           stroke="var(--text-inverse)"
-          strokeWidth="2.5"
+          strokeWidth="1.8"
+          style={{ opacity: 0.14 }}
         >
-          SignTime
+          SIGNTIME
         </text>
       </svg>
 
