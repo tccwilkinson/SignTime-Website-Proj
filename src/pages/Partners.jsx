@@ -41,10 +41,10 @@ export default function Partners() {
             White-label and OEM partners use SignTime's signing, workflow, and API infrastructure to power products they sell under their own brand.
           </p>
           <div className="st-subpage-subhead" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-            <button onClick={open} className="btn btn-coral hero-btn-primary" style={{ padding: '16px 32px', fontSize: '15px' }}>
+            <button onClick={open} className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px' }}>
               Start Free Trial — No Credit Card Required <ArrowRight size={18} className="hero-cta-arrow" />
             </button>
-            <Link to="/contact" className="btn btn-outline-navy hero-btn-secondary" style={{ padding: '16px 32px', fontSize: '15px' }}>
+            <Link to="/contact" className="btn btn-outline-navy" style={{ padding: '16px 32px', fontSize: '15px' }}>
               Talk to Our Partnerships Team
             </Link>
           </div>
