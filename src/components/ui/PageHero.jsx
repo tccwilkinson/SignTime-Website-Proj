@@ -51,10 +51,12 @@ export default function PageHero({ size = 'full', className = '', style = {}, ch
         }
 
         .ph-fade-strip {
-          position: relative;
-          z-index: 0;
+          position: absolute;
+          z-index: 2;
+          left: 0;
+          right: 0;
+          bottom: 0;
           height: var(--pagehero-fade-height);
-          margin-top: -1px;
           background: linear-gradient(to bottom, var(--pagehero-fade-from), var(--pagehero-fade-to));
           pointer-events: none;
         }

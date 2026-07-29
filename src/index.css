@@ -362,6 +362,8 @@ h1, h2, h3, h4, h5, h6 {
   padding: 3.5rem 2rem 0;
   background: var(--surface-light);
   overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
 }
 
 .hero-product-card::before,
@@ -399,18 +401,6 @@ h1, h2, h3, h4, h5, h6 {
   .hero-mockup-wrapper {
     max-height: 720px;
   }
-}
-
-/* Makes the mockup's crop read as a deliberate bleed off the card edge, not an accidental clip */
-.hero-mockup-fade {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 90px;
-  background: linear-gradient(to bottom, transparent, var(--surface-light));
-  pointer-events: none;
-  z-index: 3;
 }
 
 .hero-trust-pill {
