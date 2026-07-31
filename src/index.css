@@ -236,6 +236,31 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 8px 24px rgba(245, 65, 70, 0.45) !important;
 }
 
+/* Infinite Marquee Mask & Track (Security & Compliance Wheel) */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 44px;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 /* Card Hover Elevation */
 .hover-card {
   transition: all var(--transition-normal);
