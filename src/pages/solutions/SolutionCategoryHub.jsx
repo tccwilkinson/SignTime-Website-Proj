@@ -12,7 +12,6 @@ export default function SolutionCategoryHub({ category, basePath, items }) {
         >
           <ArrowLeft size={14} /> All Solutions
         </Link>
-        <div className="badge-sky" style={{ marginBottom: '1.2rem' }}>Solutions</div>
         <h1 style={{ fontSize: 'clamp(2rem, 4vw, 2.6rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '2rem', letterSpacing: '-0.02em' }}>
           {category}
         </h1>
