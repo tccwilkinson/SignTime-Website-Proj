@@ -171,6 +171,7 @@ export default function Navbar() {
                 >
                   <Link to="/solutions/use-case" onClick={closeMenus} className="st-nav-item">Use Cases</Link>
                   <Link to="/solutions/industry" onClick={closeMenus} className="st-nav-item">Industries</Link>
+                  <Link to="/solutions/team" onClick={closeMenus} className="st-nav-item">Teams</Link>
                 </div>
               )}
             </div>
@@ -301,8 +302,7 @@ export default function Navbar() {
           <Link to="/features" className="mobile-link" onClick={closeMenus}>Features</Link>
           <Link to="/security" className="mobile-link" onClick={closeMenus}>Security</Link>
           <Link to="/integrations" className="mobile-link" onClick={closeMenus}>Integrations</Link>
-          <Link to="/solutions/use-case" className="mobile-link" onClick={closeMenus}>Use Cases</Link>
-          <Link to="/solutions/industry" className="mobile-link" onClick={closeMenus}>Industries</Link>
+          <Link to="/solutions" className="mobile-link" onClick={closeMenus}>Solutions</Link>
           <Link to="/news" className="mobile-link" onClick={closeMenus}>News</Link>
           <Link to="/resources/manuals-support" className="mobile-link" onClick={closeMenus}>Manuals &amp; Support</Link>
           <Link to="/resources" className="mobile-link" onClick={closeMenus}>Learn</Link>

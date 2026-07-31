@@ -38,6 +38,7 @@ import Terms from './pages/Terms';
 
 import FeatureDetail from './pages/FeatureDetail';
 import Login from './pages/Login';
+import ManualsSupport from './pages/ManualsSupport';
 
 function PageRouteWrapper() {
   const location = useLocation();
@@ -78,6 +79,7 @@ function PageRouteWrapper() {
             <Route path="/partners" element={<Partners />} />
 
             <Route path="/resources" element={<Resources />} />
+            <Route path="/resources/manuals-support" element={<ManualsSupport />} />
             <Route path="/resources/:slug" element={<ResourceArticleStub />} />
             <Route path="/news" element={<News />} />
 
