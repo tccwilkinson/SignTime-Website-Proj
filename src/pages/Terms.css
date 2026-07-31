@@ -1,0 +1,255 @@
+/* ==========================================================================
+   Terms page — legal document layout: hero + sticky TOC + readable column.
+   Mirrors Privacy.css structure/values exactly so the two legal pages read
+   as siblings; adds a conspicuous panel treatment for the disclaimer /
+   liability blocks required to stand out.
+   ========================================================================== */
+
+.terms-hero-inner {
+  max-width: var(--pagehero-copy-max-width, 900px);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.terms-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--coral);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.2rem;
+}
+
+.terms-hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.terms-hero-dates {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.75rem;
+  font-size: 0.95rem;
+  color: var(--slate);
+}
+
+.terms-hero-dates strong {
+  color: var(--navy);
+  font-weight: 700;
+  margin-right: 0.4rem;
+}
+
+/* Body layout: sticky TOC + readable column */
+
+.terms-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 3.5rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .terms-layout {
+    display: block;
+  }
+  .terms-toc {
+    display: none;
+  }
+}
+
+.terms-toc {
+  position: sticky;
+  top: 6.5rem;
+  max-height: calc(100vh - 8rem);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.terms-toc-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--slate);
+  margin-bottom: 0.85rem;
+}
+
+.terms-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 2px solid var(--line);
+}
+
+.terms-toc-list li {
+  margin: 0;
+}
+
+.terms-toc-list a {
+  display: block;
+  padding: 0.4rem 0 0.4rem 0.9rem;
+  margin-left: -2px;
+  border-left: 2px solid transparent;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--slate);
+  text-decoration: none;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.terms-toc-list a:hover {
+  color: var(--navy);
+  border-left-color: var(--skyline);
+}
+
+.terms-toc-list a:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+  color: var(--navy);
+  border-left-color: var(--skyline);
+}
+
+.terms-toc-list a:active {
+  color: var(--coral);
+}
+
+/* Body copy */
+
+.terms-body {
+  max-width: 68ch;
+  color: var(--ink);
+}
+
+.terms-body > p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--slate);
+  margin-bottom: 1.25rem;
+}
+
+.terms-body h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  scroll-margin-top: 6rem;
+}
+
+.terms-body h2:first-of-type {
+  margin-top: 0;
+}
+
+.terms-body h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.3;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  scroll-margin-top: 6rem;
+}
+
+.terms-body ul {
+  margin: 0 0 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.terms-body li {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--slate);
+  margin-bottom: 0.5rem;
+}
+
+.terms-body strong {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.terms-body a {
+  color: var(--coral);
+  text-decoration: underline;
+  text-decoration-color: rgba(245, 65, 70, 0.35);
+  text-underline-offset: 2px;
+  transition: color var(--transition-fast);
+}
+
+.terms-body a:hover {
+  color: var(--coral-dark);
+}
+
+.terms-body a:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.terms-body a:active {
+  color: var(--coral-dark);
+  text-decoration-color: var(--coral-dark);
+}
+
+.terms-divider {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 2.5rem 0;
+}
+
+.terms-contact-block {
+  margin-top: 0.25rem;
+}
+
+.terms-contact-block > div {
+  margin-bottom: 0.4rem;
+}
+
+.terms-footnote {
+  font-size: 0.9rem;
+  color: var(--slate);
+}
+
+/* Disclaimer / liability panel — required by law to stand out from
+   surrounding body copy. Bordered, tinted container using existing tokens. */
+
+.terms-disclaimer-panel {
+  border: 1px solid rgba(var(--accent-rgb), 0.3);
+  border-left: 4px solid var(--coral);
+  background: var(--accent-muted);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.75rem;
+  margin: 1.25rem 0 1.75rem;
+}
+
+.terms-disclaimer-panel p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--navy);
+  margin-bottom: 1rem;
+}
+
+.terms-disclaimer-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.terms-disclaimer-panel strong {
+  color: var(--navy);
+  font-weight: 800;
+}
