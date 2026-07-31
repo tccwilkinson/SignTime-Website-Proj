@@ -120,23 +120,6 @@ export default function Footer() {
           color: var(--coral);
         }
       `}</style>
-
-      {/* Bottom Copyright Strip Banner */}
-      <div
-        style={{
-          background: '#57B5E7',
-          padding: '1.2rem 1.5rem',
-          textAlign: 'center',
-          color: '#FFFFFF',
-          fontSize: '1.05rem',
-          fontWeight: 600,
-          letterSpacing: '0.01em',
-          fontFamily: 'var(--font-heading)',
-          marginTop: '2rem'
-        }}
-      >
-        © 2026 SignTime All Right Reserved.
-      </div>
     </footer>
   );
 }

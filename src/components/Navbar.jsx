@@ -107,57 +107,23 @@ export default function Navbar() {
                   style={{
                     position: 'absolute',
                     top: 'calc(100% + 14px)',
-                    left: '-24px',
-                    width: '780px',
+                    left: '0',
+                    width: '210px',
                     background: '#fff',
                     border: '1px solid var(--line)',
                     borderRadius: '12px',
                     boxShadow: 'var(--shadow-lg)',
-                    padding: '24px',
+                    padding: '10px 6px',
                     display: 'flex',
-                    gap: '16px',
+                    flexDirection: 'column',
+                    gap: '4px',
                     zIndex: 50,
                     animation: 'fadeIn 0.2s ease-out'
                   }}
                 >
-                  <div className="st-col">
-                    <h4>Signing & Verification</h4>
-                    <Link to="/features/signer-sequencing" onClick={closeMenus}>Signer Sequencing</Link>
-                    <Link to="/features/guarantor-feature" onClick={closeMenus}>Guarantor Feature</Link>
-                    <Link to="/features/pades-long-term-signature" onClick={closeMenus}>Long-Term Signature (PAdES)</Link>
-                    <Link to="/features/signature-certificates" onClick={closeMenus}>Signature Certificates</Link>
-                    <Link to="/features/handwritten-signatures" onClick={closeMenus}>Handwritten Signatures</Link>
-                    <Link to="/features/sms-signature-requests" onClick={closeMenus}>SMS Signature Requests</Link>
-                  </div>
-                  <div className="st-col">
-                    <h4>Workflow Automation</h4>
-                    <Link to="/features/internal-approval-workflows" onClick={closeMenus}>Internal Approval Workflows</Link>
-                    <Link to="/features/templates-management" onClick={closeMenus}>Create & Manage Templates</Link>
-                    <Link to="/features/bulk-sending-documents" onClick={closeMenus}>Bulk Sending Documents</Link>
-                    <Link to="/features/document-attachments" onClick={closeMenus}>Attachments</Link>
-                  </div>
-                  <div className="st-col">
-                    <h4>Document Management</h4>
-                    <Link to="/features/multiple-file-format-support" onClick={closeMenus}>Multiple File Format Support</Link>
-                    <Link to="/features/legal-timestamps" onClick={closeMenus}>Timestamps</Link>
-                    <Link to="/features/document-search-tagging" onClick={closeMenus}>Document Search & Tagging</Link>
-                    <Link to="/features/share-documents-files" onClick={closeMenus}>Share Documents & Files</Link>
-                  </div>
-                  <div className="st-col">
-                    <h4>Teams & Security</h4>
-                    <Link to="/features/multiple-teams" onClick={closeMenus}>Multiple Teams</Link>
-                    <Link to="/features/member-role-management" onClick={closeMenus}>Member Role Management</Link>
-                    <Link to="/features/two-factor-authentication" onClick={closeMenus}>Two-Factor Authentication</Link>
-                    <Link to="/features/customized-branding" onClick={closeMenus}>Customized Branding</Link>
-                  </div>
-                  <div className="st-col">
-                    <h4>Integrations</h4>
-                    <Link to="/integrations/web-api" onClick={closeMenus}>Web API</Link>
-                    <Link to="/integrations/salesforce" onClick={closeMenus}>Salesforce Integration</Link>
-                    <Link to="/integrations/google-drive" onClick={closeMenus}>Google Drive Integration</Link>
-                    <Link to="/partners" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>Partner program ›</Link>
-                    <Link to="/features" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>View all features ›</Link>
-                  </div>
+                  <Link to="/features" onClick={closeMenus} className="st-nav-item">Features</Link>
+                  <Link to="/security" onClick={closeMenus} className="st-nav-item">Security</Link>
+                  <Link to="/integrations" onClick={closeMenus} className="st-nav-item">Integrations</Link>
                 </div>
               )}
             </div>
@@ -189,43 +155,22 @@ export default function Navbar() {
                   style={{
                     position: 'absolute',
                     top: 'calc(100% + 14px)',
-                    left: '-24px',
-                    width: '580px',
+                    left: '0',
+                    width: '200px',
                     background: '#fff',
                     border: '1px solid var(--line)',
                     borderRadius: '12px',
                     boxShadow: 'var(--shadow-lg)',
-                    padding: '24px',
+                    padding: '10px 6px',
                     display: 'flex',
-                    gap: '16px',
+                    flexDirection: 'column',
+                    gap: '4px',
                     zIndex: 50,
                     animation: 'fadeIn 0.2s ease-out'
                   }}
                 >
-                  <div className="st-col">
-                    <h4>Use Case</h4>
-                    <Link to="/solutions/use-case/esignatures" onClick={closeMenus}>eSignatures</Link>
-                    <Link to="/solutions/use-case/approval-workflows" onClick={closeMenus}>Approval Workflows</Link>
-                    <Link to="/solutions/use-case/templates" onClick={closeMenus}>Templates</Link>
-                    <Link to="/solutions/use-case/bulk-sending" onClick={closeMenus}>Bulk Sending</Link>
-                    <Link to="/solutions/use-case" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>All use cases ›</Link>
-                  </div>
-                  <div className="st-col">
-                    <h4>Industry</h4>
-                    <Link to="/solutions/industry/real-estate-relocation" onClick={closeMenus}>Real Estate & Relocation</Link>
-                    <Link to="/solutions/industry/education" onClick={closeMenus}>Education</Link>
-                    <Link to="/solutions/industry/professional-services" onClick={closeMenus}>Professional Services</Link>
-                    <Link to="/solutions/industry/healthcare" onClick={closeMenus}>Healthcare</Link>
-                    <Link to="/solutions/industry" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>All industries ›</Link>
-                  </div>
-                  <div className="st-col">
-                    <h4>Team</h4>
-                    <Link to="/solutions/team/sales" onClick={closeMenus}>Sales</Link>
-                    <Link to="/solutions/team/hr" onClick={closeMenus}>HR</Link>
-                    <Link to="/solutions/team/legal" onClick={closeMenus}>Legal</Link>
-                    <Link to="/solutions/team/operations" onClick={closeMenus}>Operations</Link>
-                    <Link to="/solutions/team" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>All teams ›</Link>
-                  </div>
+                  <Link to="/solutions/use-case" onClick={closeMenus} className="st-nav-item">Use Cases</Link>
+                  <Link to="/solutions/industry" onClick={closeMenus} className="st-nav-item">Industries</Link>
                 </div>
               )}
             </div>
@@ -257,35 +202,23 @@ export default function Navbar() {
                   style={{
                     position: 'absolute',
                     top: 'calc(100% + 14px)',
-                    left: '-24px',
-                    width: '540px',
+                    left: '0',
+                    width: '220px',
                     background: '#fff',
                     border: '1px solid var(--line)',
                     borderRadius: '12px',
                     boxShadow: 'var(--shadow-lg)',
-                    padding: '24px',
+                    padding: '10px 6px',
                     display: 'flex',
-                    gap: '16px',
+                    flexDirection: 'column',
+                    gap: '4px',
                     zIndex: 50,
                     animation: 'fadeIn 0.2s ease-out'
                   }}
                 >
-                  <div className="st-col">
-                    <h4>Learn</h4>
-                    <Link to="/resources" onClick={closeMenus}>Tips & Best Practices</Link>
-                    <Link to="/resources" onClick={closeMenus}>Compliance & Security Guides</Link>
-                    <Link to="/customers" onClick={closeMenus}>Customer Success Stories</Link>
-                  </div>
-                  <div className="st-col">
-                    <h4>News</h4>
-                    <Link to="/news" onClick={closeMenus}>Press Releases</Link>
-                    <Link to="/news" onClick={closeMenus}>Product Updates</Link>
-                  </div>
-                  <div className="st-col">
-                    <h4>Get Started</h4>
-                    <Link to="/contact" onClick={closeMenus}>Onboarding Services</Link>
-                    <Link to="/contact" onClick={closeMenus}>Contact Support</Link>
-                  </div>
+                  <Link to="/news" onClick={closeMenus} className="st-nav-item">News</Link>
+                  <Link to="/resources/manuals-support" onClick={closeMenus} className="st-nav-item">Manuals &amp; Support</Link>
+                  <Link to="/resources" onClick={closeMenus} className="st-nav-item">Learn</Link>
                 </div>
               )}
             </div>
@@ -360,16 +293,21 @@ export default function Navbar() {
             zIndex: 99,
             display: 'flex',
             flexDirection: 'column',
-            gap: '1.2rem',
+            gap: '1rem',
             overflowY: 'auto'
           }}
         >
-          <Link to="/features" className="mobile-link" onClick={closeMenus}>Features</Link>
           <Link to="/pricing" className="mobile-link" onClick={closeMenus}>Pricing</Link>
-          <Link to="/security" className="mobile-link" onClick={closeMenus}>Security & Compliance</Link>
-          <Link to="/customers" className="mobile-link" onClick={closeMenus}>Customer Stories</Link>
+          <Link to="/features" className="mobile-link" onClick={closeMenus}>Features</Link>
+          <Link to="/security" className="mobile-link" onClick={closeMenus}>Security</Link>
+          <Link to="/integrations" className="mobile-link" onClick={closeMenus}>Integrations</Link>
+          <Link to="/solutions/use-case" className="mobile-link" onClick={closeMenus}>Use Cases</Link>
+          <Link to="/solutions/industry" className="mobile-link" onClick={closeMenus}>Industries</Link>
+          <Link to="/news" className="mobile-link" onClick={closeMenus}>News</Link>
+          <Link to="/resources/manuals-support" className="mobile-link" onClick={closeMenus}>Manuals &amp; Support</Link>
+          <Link to="/resources" className="mobile-link" onClick={closeMenus}>Learn</Link>
           <Link to="/contact" className="mobile-link" onClick={closeMenus}>Contact Us</Link>
-          <Link to="/login" className="mobile-link" onClick={closeMenus}>Login to Account</Link>
+          <Link to="/login" className="mobile-link" onClick={closeMenus}>Log In</Link>
           <button
             onClick={() => { setMobileMenuOpen(false); open(); }}
             className="btn btn-coral"
@@ -382,6 +320,8 @@ export default function Navbar() {
 
       {/* Styles */}
       <style>{`
+        .st-nav-item { display: block; font-size: 13.5px; font-weight: 600; color: var(--ink); text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 0.15s ease; }
+        .st-nav-item:hover { background: var(--sky); color: var(--coral); }
         .st-col { flex: 1; padding: 0 12px; border-right: 1px solid var(--line); }
         .st-col:last-child { border-right: none; }
         .st-col h4 { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--coral); margin: 0 0 12px; font-weight: 700; }

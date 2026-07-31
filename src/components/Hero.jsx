@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Download, FileText, Lock, Users, Shield, ChevronDown } from 'lucide-react';
 import PageHero from './ui/PageHero';
+import SignTimeLogo from './SignTimeLogo';
 
 export default function Hero({ onOpenDemo }) {
   const [activeStep, setActiveStep] = useState(1);
@@ -188,14 +189,8 @@ export default function Hero({ onOpenDemo }) {
               background: '#FAFBFD'
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 800, color: 'var(--navy)', fontSize: '16px' }}>
-              <svg width="22" height="22" viewBox="0 0 34 34" fill="none">
-                <circle cx="17" cy="17" r="11.5" fill="var(--sky)" stroke="var(--navy)" strokeWidth="2.2" />
-                <path d="M17 6.5v3M17 24.5v3M27.5 17h-3M9.5 17h-3" stroke="var(--navy)" strokeWidth="2" strokeLinecap="round" />
-                <path d="M17.3 16.7 Q20.5 13 25.5 7.5 Q21.8 14.3 17.9 17.4 Z" fill="var(--navy)" />
-                <circle cx="17" cy="17" r="1.9" fill="var(--navy)" />
-              </svg>
-              SignTime App
+            <div>
+              <SignTimeLogo textColor="var(--navy)" iconColor="var(--coral)" />
             </div>
 
             <div style={{ display: 'flex', gap: '22px', fontSize: '13px', color: 'var(--slate)', fontWeight: 600 }}>
