@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Download, FileText, Lock, Users, Shield, ChevronDown } from 'lucide-react';
 import PageHero from './ui/PageHero';
 
@@ -111,9 +112,9 @@ export default function Hero({ onOpenDemo }) {
           <button onClick={onOpenDemo} className="btn hero-cta-primary hero-btn-primary" style={{ padding: '16px 32px', fontSize: '15px' }}>
             Start Free Today <ArrowRight size={18} className="hero-cta-arrow" />
           </button>
-          <button onClick={onOpenDemo} className="btn hero-cta-secondary hero-btn-secondary" style={{ padding: '16px 32px', fontSize: '15px' }}>
+          <Link to="/contact" className="btn hero-cta-secondary hero-btn-secondary" style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
             Contact Us
-          </button>
+          </Link>
         </div>
 
         <div className="hero-cta-secondary" style={{ fontSize: '13px', color: 'var(--text-inverse-muted)', marginBottom: '3rem' }}>

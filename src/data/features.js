@@ -268,7 +268,7 @@ export const featureContent = {
     bullets: [
       {
         title: 'Share With One Click',
-        desc: 'Send a secure link to a completed document or a file imported through ScanTime — no need to download and re-attach anything to an email.'
+        desc: 'Send a secure link to a completed document or a file imported through SignTime with ST — no need to download and re-attach anything to an email.'
       },
       {
         title: 'Keep Everyone in the Loop',

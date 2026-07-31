@@ -23,7 +23,7 @@ export default function EnterpriseFeatures({ onOpenDemo }) {
     {
       icon: <Scan size={22} color="var(--navy)" />,
       color: 'var(--navy)',
-      title: 'ScanTime Integration',
+      title: 'SignTime with ST Integration',
       desc: 'Seamlessly integrate physical documents into your digital workflow. Scan, digitize, and manage contracts in one centralized ecosystem.'
     },
     {
