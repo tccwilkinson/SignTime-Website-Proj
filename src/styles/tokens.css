@@ -89,8 +89,8 @@
   --pagehero-fade-to: var(--surface-dark-deep);
   --pagehero-fade-height: 200px;
 
-  --pagehero-compact-bg-start: #DCEAFC;
-  --pagehero-compact-bg-end: var(--surface-light);
+  --pagehero-compact-bg-start: var(--sky, #D4EFF7);
+  --pagehero-compact-bg-end: var(--ghost-white, #F5F7FB);
   --pagehero-compact-top-pad: 4.5rem;
   --pagehero-compact-bottom-pad: 3.5rem;
 

@@ -1,58 +1,72 @@
 /* ==========================================================================
-   SignTime Design System - Polished Brand Identity
-   Palette: Navy (#16213E), Coral (#E8604C), Sky (#EAF2FC), Ink (#1E293B)
+   SignTime Design System - Brand Identity
+   Palette: Space Cadet (#143250), Red Salsa (#F54146), Ghost White (#F5F7FB),
+   Water (#D4EFF7), Medium Sky Blue (#82D7F1), Battery Charged Blue (#26BBE3),
+   Celadon Blue (#0282A9), Blue Sapphire (#055A78)
+   Fonts: Meiryo, Hiragino Sans, Plus Jakarta Sans, Inter
    ========================================================================== */
 
 :root {
-  /* Brand Palette */
-  --navy: #16213E;
-  --navy-dark: #0D1730;
-  --navy-light: #233055;
-  --ink: #1E293B;
+  /* Official Palette Definitions */
   --paper: #FFFFFF;
-  --sky: #EAF2FC;
-  --sky-hover: #D7E6F7;
-  --skyline: #D7E6F7;
-  --coral: #E8604C;
-  --coral-dark: #D14B38;
-  --coral-glow: rgba(232, 96, 76, 0.35);
-  --slate: #5B6472;
-  --line: #E6E9EF;
+  --ghost-white: #F5F7FB;
+  
+  /* Space Cadet - Primary Text & Deep Navy */
+  --navy: #143250;
+  --navy-dark: #0A1B2D;
+  --navy-light: #055A78; /* Blue Sapphire */
+  --ink: #143250;
+  
+  /* Red Salsa - Accent & Primary Action */
+  --coral: #F54146;
+  --coral-dark: #D62F34;
+  --coral-glow: rgba(245, 65, 70, 0.35);
+
+  /* Light Blues & Sky Tones */
+  --sky: #D4EFF7; /* Water */
+  --sky-hover: #BFE6F3;
+  --skyline: #82D7F1; /* Medium Sky Blue */
+  --battery-blue: #26BBE3; /* Battery Charged Blue */
+  --celadon-blue: #0282A9; /* Celadon Blue */
+  --blue-sapphire: #055A78; /* Blue Sapphire */
+
+  --slate: #4A657A;
+  --line: #E2E8F0;
   --emerald: #10B981;
 
-  /* Surfaces — one navy family, three steps only */
+  /* Surfaces */
   --surface-dark: var(--navy);
-  --surface-dark-deep: #090E1A;
-  --surface-dark-deep-rgb: 9, 14, 26;
-  --surface-light: #FDFBF8;
+  --surface-dark-deep: #0A1B2D;
+  --surface-dark-deep-rgb: 10, 27, 45;
+  --surface-light: #F5F7FB;
 
-  /* Accent — one hue */
+  /* Accent */
   --accent: var(--coral);
-  --accent-rgb: 232, 96, 76;
+  --accent-rgb: 245, 65, 70;
   --accent-hover: var(--coral-dark);
   --accent-muted: rgba(var(--accent-rgb), 0.14);
 
-  /* Text neutrals — derived from navy, never pure gray */
+  /* Text neutrals */
   --text-primary: var(--ink);
   --text-muted: var(--slate);
-  --text-inverse: #EDF1F7;
-  --text-inverse-muted: rgba(237, 241, 247, 0.68);
+  --text-inverse: #F5F7FB;
+  --text-inverse-muted: rgba(245, 247, 251, 0.72);
 
-  /* Hero backdrop — coral + slate bloom, one light source, no amber/brown */
-  --hero-bloom-accent: rgba(var(--accent-rgb), 0.40);
-  --hero-bloom-slate: rgba(91, 100, 114, 0.32);
+  /* Hero backdrop */
+  --hero-bloom-accent: rgba(var(--accent-rgb), 0.45);
+  --hero-bloom-slate: rgba(130, 215, 241, 0.28);
   --hero-vignette: rgba(var(--surface-dark-deep-rgb), 0.46);
 
-  /* Typography */
-  --font-heading: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
-  --font-display: 'Newsreader', 'Plus Jakarta Sans', serif;
+  /* Typography - Featuring Meiryo font for clean Roman & Japanese rendering */
+  --font-heading: 'Meiryo', 'Hiragino Sans', 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-body: 'Meiryo', 'Hiragino Kaku Gothic ProN', 'Inter', system-ui, sans-serif;
+  --font-display: 'Newsreader', 'Meiryo', 'Plus Jakarta Sans', serif;
 
   /* Elevation & Shadows */
-  --shadow-subtle: 0 4px 20px rgba(20, 33, 62, 0.06);
-  --shadow-md: 0 12px 36px rgba(20, 33, 62, 0.12);
-  --shadow-lg: 0 24px 60px rgba(20, 33, 62, 0.18);
-  --shadow-coral: 0 8px 25px rgba(232, 96, 76, 0.3);
+  --shadow-subtle: 0 4px 20px rgba(20, 50, 80, 0.06);
+  --shadow-md: 0 12px 36px rgba(20, 50, 80, 0.12);
+  --shadow-lg: 0 24px 60px rgba(20, 50, 80, 0.18);
+  --shadow-coral: 0 8px 25px rgba(245, 65, 70, 0.3);
 
   --radius-sm: 6px;
   --radius-md: 12px;
@@ -193,44 +207,33 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
-/* Infinite Marquee Mask & Track */
-.marquee-mask {
-  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-  overflow: hidden;
+/* Animated Hero Scroll-Down Button & Bouncing Arrow */
+@keyframes heroBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(8px);
+  }
+  60% {
+    transform: translateY(4px);
+  }
 }
 
-.marquee-track {
-  display: flex;
-  align-items: center;
-  gap: 64px;
-  width: max-content;
-  animation: marqueeScroll 48s linear infinite;
-  will-change: transform;
+.hero-bounce-arrow {
+  animation: heroBounce 2.2s ease-in-out infinite;
 }
 
-.marquee-track:hover {
-  animation-play-state: paused;
+.hero-scroll-down-btn {
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), background-color 250ms ease, border-color 250ms ease, box-shadow 250ms ease !important;
 }
 
-@keyframes marqueeScroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.marquee-logo {
-  font-family: 'Plus Jakarta Sans', serif;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--text-inverse-muted);
-  white-space: nowrap;
-  opacity: 0.65;
-  transition: opacity 0.2s ease, color 0.2s ease;
-}
-
-.marquee-logo:hover {
-  opacity: 1;
-  color: var(--text-inverse);
+.hero-scroll-down-btn:hover {
+  background: var(--coral) !important;
+  border-color: var(--coral) !important;
+  color: #fff !important;
+  transform: translateY(3px) scale(1.08);
+  box-shadow: 0 8px 24px rgba(245, 65, 70, 0.45) !important;
 }
 
 /* Card Hover Elevation */

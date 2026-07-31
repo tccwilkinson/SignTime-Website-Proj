@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowRight, CheckCircle2, Download, FileText, Lock, Users, Shield } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Download, FileText, Lock, Users, Shield, ChevronDown } from 'lucide-react';
 import PageHero from './ui/PageHero';
 
 export default function Hero({ onOpenDemo }) {
@@ -26,35 +26,6 @@ export default function Hero({ onOpenDemo }) {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  const marqueeLogos = [
-    'Finesse Ventures',
-    'HCCR K.K.',
-    'H&R Group',
-    'INSPIRE Japan',
-    'Temple University Japan Campus',
-    'Krav Maga Japan',
-    'mihaku',
-    'Numata',
-    'OKESHO (沖創建設)',
-    'Asian Tigers Japan',
-    'Ohmura Paper Co., Ltd. (大村紙業株式会社)',
-    'BerryMobile Co., Ltd.',
-    'Global Brains Co., Ltd.',
-    'Greenvolt Power',
-    'Laurus International School of Science',
-    'Chudoukai Med. Corp.',
-    'Qsol Inc.',
-    'QTnet',
-    'Shizen Capital',
-    'TOKAI Group',
-    'AIC Corporation (AIC アイコーポレーション)',
-    'C.S.I. Group',
-    'Curvegrid'
-  ];
-
-  // Duplicate for seamless 50% loop
-  const logoTrack = [...marqueeLogos, ...marqueeLogos];
 
   return (
     <PageHero size="full">
@@ -149,28 +120,43 @@ export default function Hero({ onOpenDemo }) {
           No credit card required · Cancel anytime
         </div>
 
-        <div style={{ textTransform: 'uppercase', fontSize: '12px', letterSpacing: '0.08em', fontWeight: 700, color: 'var(--text-inverse-muted)', marginBottom: '1.2rem' }}>
-          Trusted by teams like yours
+        {/* Animated Scroll Down Indicator */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1.5rem', marginBottom: '2.5rem' }}>
+          <button
+            onClick={() => {
+              const target = document.getElementById('hero-mockup-showcase');
+              if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                window.scrollBy({ top: 500, behavior: 'smooth' });
+              }
+            }}
+            aria-label="Scroll down to explore product showcase"
+            className="hero-scroll-down-btn"
+            style={{
+              background: 'rgba(255, 255, 255, 0.08)',
+              border: '1px solid rgba(255, 255, 255, 0.18)',
+              borderRadius: '50%',
+              width: '46px',
+              height: '46px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--text-inverse)',
+              cursor: 'pointer',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
+            }}
+          >
+            <ChevronDown size={22} className="hero-bounce-arrow" />
+          </button>
+          <span style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-inverse-muted)', letterSpacing: '0.08em', textTransform: 'uppercase', marginTop: '8px' }}>
+            Scroll to explore
+          </span>
         </div>
-      </div>
-
-      {/* Infinite Logo Marquee */}
-      <div className="marquee-mask" style={{ marginBottom: '12px' }}>
-        <div className="marquee-track">
-          {logoTrack.map((name, idx) => (
-            <span key={idx} className="marquee-logo">
-              {name}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <div style={{ textAlign: 'center', fontSize: '12px', color: 'var(--text-inverse-muted)', marginBottom: '4rem' }}>
-        Proven legal compliance across enterprise U.S. customer teams
       </div>
 
       {/* Interactive App Mockup Showcase */}
-      <div className="hero-mockup-wrapper" style={{ maxWidth: '1180px', margin: '0 auto', padding: '28px 1.5rem 0', overflow: 'hidden', position: 'relative' }}>
+      <div id="hero-mockup-showcase" className="hero-mockup-wrapper" style={{ maxWidth: '1180px', margin: '0 auto', padding: '28px 1.5rem 0', overflow: 'hidden', position: 'relative' }}>
 
         <div className="hero-trust-pill">
           <Lock size={14} /> Secure &amp; Legally Binding · ESIGN &amp; UETA Compliant · AES-256 Encrypted
