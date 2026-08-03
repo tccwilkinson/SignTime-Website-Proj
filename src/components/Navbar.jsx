@@ -107,23 +107,57 @@ export default function Navbar() {
                   style={{
                     position: 'absolute',
                     top: 'calc(100% + 14px)',
-                    left: '0',
-                    width: '210px',
+                    left: '-24px',
+                    width: '780px',
                     background: '#fff',
                     border: '1px solid var(--line)',
                     borderRadius: '12px',
                     boxShadow: 'var(--shadow-lg)',
-                    padding: '10px 6px',
+                    padding: '24px',
                     display: 'flex',
-                    flexDirection: 'column',
-                    gap: '4px',
+                    gap: '16px',
                     zIndex: 50,
                     animation: 'fadeIn 0.2s ease-out'
                   }}
                 >
-                  <Link to="/features" onClick={closeMenus} className="st-nav-item">Features</Link>
-                  <Link to="/security" onClick={closeMenus} className="st-nav-item">Security</Link>
-                  <Link to="/integrations" onClick={closeMenus} className="st-nav-item">Integrations</Link>
+                  <div className="st-col">
+                    <h4>Signing &amp; Verification</h4>
+                    <Link to="/features/signer-sequencing" onClick={closeMenus}>Signer Sequencing</Link>
+                    <Link to="/features/guarantor-feature" onClick={closeMenus}>Guarantor Feature</Link>
+                    <Link to="/features/pades-long-term-signature" onClick={closeMenus}>Long-Term Signature (PAdES)</Link>
+                    <Link to="/features/signature-certificates" onClick={closeMenus}>Signature Certificates</Link>
+                    <Link to="/features/handwritten-signatures" onClick={closeMenus}>Handwritten Signatures</Link>
+                    <Link to="/features/sms-signature-requests" onClick={closeMenus}>SMS Signature Requests</Link>
+                  </div>
+                  <div className="st-col">
+                    <h4>Workflow Automation</h4>
+                    <Link to="/features/internal-approval-workflows" onClick={closeMenus}>Internal Approval Workflows</Link>
+                    <Link to="/features/templates-management" onClick={closeMenus}>Create &amp; Manage Templates</Link>
+                    <Link to="/features/bulk-sending-documents" onClick={closeMenus}>Bulk Sending Documents</Link>
+                    <Link to="/features/document-attachments" onClick={closeMenus}>Attachments</Link>
+                  </div>
+                  <div className="st-col">
+                    <h4>Document Management</h4>
+                    <Link to="/features/multiple-file-format-support" onClick={closeMenus}>Multiple File Format Support</Link>
+                    <Link to="/features/legal-timestamps" onClick={closeMenus}>Timestamps</Link>
+                    <Link to="/features/document-search-tagging" onClick={closeMenus}>Document Search &amp; Tagging</Link>
+                    <Link to="/features/share-documents-files" onClick={closeMenus}>Share Documents &amp; Files</Link>
+                  </div>
+                  <div className="st-col">
+                    <h4>Teams &amp; Security</h4>
+                    <Link to="/features/multiple-teams" onClick={closeMenus}>Multiple Teams</Link>
+                    <Link to="/features/member-role-management" onClick={closeMenus}>Member Role Management</Link>
+                    <Link to="/features/two-factor-authentication" onClick={closeMenus}>Two-Factor Authentication</Link>
+                    <Link to="/features/customized-branding" onClick={closeMenus}>Customized Branding</Link>
+                  </div>
+                  <div className="st-col">
+                    <h4>Integrations</h4>
+                    <Link to="/integrations/web-api" onClick={closeMenus}>Web API</Link>
+                    <Link to="/integrations/salesforce" onClick={closeMenus}>Salesforce Integration</Link>
+                    <Link to="/integrations/google-drive" onClick={closeMenus}>Google Drive Integration</Link>
+                    <Link to="/partners" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>Partner program ›</Link>
+                    <Link to="/features" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>View all features ›</Link>
+                  </div>
                 </div>
               )}
             </div>
@@ -155,23 +189,43 @@ export default function Navbar() {
                   style={{
                     position: 'absolute',
                     top: 'calc(100% + 14px)',
-                    left: '0',
-                    width: '200px',
+                    left: '-24px',
+                    width: '580px',
                     background: '#fff',
                     border: '1px solid var(--line)',
                     borderRadius: '12px',
                     boxShadow: 'var(--shadow-lg)',
-                    padding: '10px 6px',
+                    padding: '24px',
                     display: 'flex',
-                    flexDirection: 'column',
-                    gap: '4px',
+                    gap: '16px',
                     zIndex: 50,
                     animation: 'fadeIn 0.2s ease-out'
                   }}
                 >
-                  <Link to="/solutions/use-case" onClick={closeMenus} className="st-nav-item">Use Cases</Link>
-                  <Link to="/solutions/industry" onClick={closeMenus} className="st-nav-item">Industries</Link>
-                  <Link to="/solutions/team" onClick={closeMenus} className="st-nav-item">Teams</Link>
+                  <div className="st-col">
+                    <h4>Use Case</h4>
+                    <Link to="/solutions/use-case/esignatures" onClick={closeMenus}>eSignatures</Link>
+                    <Link to="/solutions/use-case/approval-workflows" onClick={closeMenus}>Approval Workflows</Link>
+                    <Link to="/solutions/use-case/templates" onClick={closeMenus}>Templates</Link>
+                    <Link to="/solutions/use-case/bulk-sending" onClick={closeMenus}>Bulk Sending</Link>
+                    <Link to="/solutions/use-case" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>All use cases ›</Link>
+                  </div>
+                  <div className="st-col">
+                    <h4>Industry</h4>
+                    <Link to="/solutions/industry/real-estate-relocation" onClick={closeMenus}>Real Estate &amp; Relocation</Link>
+                    <Link to="/solutions/industry/education" onClick={closeMenus}>Education</Link>
+                    <Link to="/solutions/industry/professional-services" onClick={closeMenus}>Professional Services</Link>
+                    <Link to="/solutions/industry/healthcare" onClick={closeMenus}>Healthcare</Link>
+                    <Link to="/solutions/industry" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>All industries ›</Link>
+                  </div>
+                  <div className="st-col">
+                    <h4>Team</h4>
+                    <Link to="/solutions/team/sales" onClick={closeMenus}>Sales</Link>
+                    <Link to="/solutions/team/hr" onClick={closeMenus}>HR</Link>
+                    <Link to="/solutions/team/legal" onClick={closeMenus}>Legal</Link>
+                    <Link to="/solutions/team/operations" onClick={closeMenus}>Operations</Link>
+                    <Link to="/solutions/team" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>All teams ›</Link>
+                  </div>
                 </div>
               )}
             </div>
@@ -203,23 +257,35 @@ export default function Navbar() {
                   style={{
                     position: 'absolute',
                     top: 'calc(100% + 14px)',
-                    left: '0',
-                    width: '220px',
+                    left: '-24px',
+                    width: '540px',
                     background: '#fff',
                     border: '1px solid var(--line)',
                     borderRadius: '12px',
                     boxShadow: 'var(--shadow-lg)',
-                    padding: '10px 6px',
+                    padding: '24px',
                     display: 'flex',
-                    flexDirection: 'column',
-                    gap: '4px',
+                    gap: '16px',
                     zIndex: 50,
                     animation: 'fadeIn 0.2s ease-out'
                   }}
                 >
-                  <Link to="/news" onClick={closeMenus} className="st-nav-item">News</Link>
-                  <Link to="/resources/manuals-support" onClick={closeMenus} className="st-nav-item">Manuals &amp; Support</Link>
-                  <Link to="/resources" onClick={closeMenus} className="st-nav-item">Learn</Link>
+                  <div className="st-col">
+                    <h4>Learn</h4>
+                    <Link to="/resources" onClick={closeMenus}>Tips &amp; Best Practices</Link>
+                    <Link to="/resources" onClick={closeMenus}>Compliance &amp; Security Guides</Link>
+                    <Link to="/customers" onClick={closeMenus}>Customer Success Stories</Link>
+                  </div>
+                  <div className="st-col">
+                    <h4>News</h4>
+                    <Link to="/news" onClick={closeMenus}>Press Releases</Link>
+                    <Link to="/news" onClick={closeMenus}>Product Updates</Link>
+                  </div>
+                  <div className="st-col">
+                    <h4>Get Started</h4>
+                    <Link to="/resources/manuals-support" onClick={closeMenus}>Manuals &amp; Support</Link>
+                    <Link to="/contact" onClick={closeMenus}>Contact Support</Link>
+                  </div>
                 </div>
               )}
             </div>
