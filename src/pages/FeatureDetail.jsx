@@ -99,7 +99,7 @@ export default function FeatureDetail() {
 
             <div className="st-subpage-card-3 cute-card-hover" style={{ background: '#FAFBFD', border: '1px solid var(--line)', borderRadius: '12px', padding: '24px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 800, color: 'var(--navy)', marginBottom: '8px' }}>
-                <Building2 size={20} color="#3B97D3" className="cute-icon-spin" /> Unlimited Team Access
+                <Building2 size={20} color="var(--celadon-blue, #0282A9)" className="cute-icon-spin" /> Unlimited Team Access
               </div>
               <p style={{ fontSize: '0.92rem', color: 'var(--slate)', lineHeight: 1.5, margin: 0 }}>
                 Included across all SignTime plans without per-seat licenses or user caps.

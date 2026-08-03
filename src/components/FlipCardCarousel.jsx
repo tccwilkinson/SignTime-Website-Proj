@@ -1,9 +1,28 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Plus, X } from 'lucide-react';
 
+const ENTER_DELAY = 120;
+
 export default function FlipCardCarousel({ items, cardWidth = 270, cardHeight = 380 }) {
+  // Latched via click/Enter/Space — persists after the mouse leaves.
   const [openCard, setOpenCard] = useState(null);
+  // Temporary preview via hover/focus — cleared as soon as the pointer/focus leaves.
+  const [hoverCard, setHoverCard] = useState(null);
   const trackRef = useRef(null);
+  const enterTimerRef = useRef(null);
+
+  const [canHover] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches
+  );
+  const [prefersReducedMotion] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
+
+  useEffect(() => {
+    return () => {
+      if (enterTimerRef.current) clearTimeout(enterTimerRef.current);
+    };
+  }, []);
 
   const scrollTrack = (direction) => {
     if (trackRef.current) {
@@ -11,6 +30,51 @@ export default function FlipCardCarousel({ items, cardWidth = 270, cardHeight = 
       trackRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
+
+  const clearEnterTimer = () => {
+    if (enterTimerRef.current) {
+      clearTimeout(enterTimerRef.current);
+      enterTimerRef.current = null;
+    }
+  };
+
+  const handleMouseEnter = (id) => {
+    if (!canHover) return;
+    clearEnterTimer();
+    enterTimerRef.current = setTimeout(() => {
+      setHoverCard(id);
+      enterTimerRef.current = null;
+    }, ENTER_DELAY);
+  };
+
+  const handleMouseLeave = (id) => {
+    if (!canHover) return;
+    clearEnterTimer();
+    setHoverCard((prev) => (prev === id ? null : prev));
+  };
+
+  const handleFocus = (id) => {
+    clearEnterTimer();
+    setHoverCard(id);
+  };
+
+  const handleBlur = (id) => {
+    setHoverCard((prev) => (prev === id ? null : prev));
+  };
+
+  const handleActivate = (id) => {
+    setOpenCard((prev) => (prev === id ? null : id));
+  };
+
+  const closeCard = () => {
+    clearEnterTimer();
+    setOpenCard(null);
+    setHoverCard(null);
+  };
+
+  const faceTransition = prefersReducedMotion ? 'none' : 'opacity 0.3s ease, transform 0.3s ease';
+  const containerTransition = prefersReducedMotion ? 'none' : 'transform 0.3s ease, box-shadow 0.3s ease';
+  const plusTransition = prefersReducedMotion ? 'none' : 'transform 0.3s ease';
 
   return (
     <div style={{ position: 'relative' }}>
@@ -75,7 +139,7 @@ export default function FlipCardCarousel({ items, cardWidth = 270, cardHeight = 
         }}
       >
         {items.map((card) => {
-          const isOpen = openCard === card.id;
+          const isOpen = (hoverCard ?? openCard) === card.id;
 
           return (
             <div
@@ -84,14 +148,18 @@ export default function FlipCardCarousel({ items, cardWidth = 270, cardHeight = 
               tabIndex={0}
               aria-expanded={isOpen}
               aria-label={card.title}
-              onClick={() => setOpenCard(isOpen ? null : card.id)}
+              onClick={() => handleActivate(card.id)}
+              onMouseEnter={() => handleMouseEnter(card.id)}
+              onMouseLeave={() => handleMouseLeave(card.id)}
+              onFocus={() => handleFocus(card.id)}
+              onBlur={() => handleBlur(card.id)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
-                  setOpenCard(isOpen ? null : card.id);
+                  handleActivate(card.id);
                 }
                 if (e.key === 'Escape' && isOpen) {
-                  setOpenCard(null);
+                  closeCard();
                 }
               }}
               style={{
@@ -101,7 +169,7 @@ export default function FlipCardCarousel({ items, cardWidth = 270, cardHeight = 
                 borderRadius: '16px',
                 overflow: 'hidden',
                 cursor: 'pointer',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                transition: containerTransition,
                 boxShadow: isOpen ? '0 20px 40px rgba(0,0,0,0.4)' : '0 6px 20px rgba(0,0,0,0.2)'
               }}
             >
@@ -119,7 +187,7 @@ export default function FlipCardCarousel({ items, cardWidth = 270, cardHeight = 
                   opacity: isOpen ? 0 : 1,
                   transform: isOpen ? 'scale(1.04)' : 'scale(1)',
                   pointerEvents: isOpen ? 'none' : 'auto',
-                  transition: 'opacity 0.3s ease, transform 0.3s ease',
+                  transition: faceTransition,
                   zIndex: isOpen ? 1 : 2
                 }}
               >
@@ -135,7 +203,17 @@ export default function FlipCardCarousel({ items, cardWidth = 270, cardHeight = 
                   }}
                 >
                   {card.title}
-                  <span style={{ fontSize: '20px', fontWeight: 700 }}><Plus size={18} /></span>
+                  <span
+                    style={{
+                      fontSize: '20px',
+                      fontWeight: 700,
+                      display: 'inline-flex',
+                      transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
+                      transition: plusTransition
+                    }}
+                  >
+                    <Plus size={18} />
+                  </span>
                 </div>
               </div>
 
@@ -153,7 +231,7 @@ export default function FlipCardCarousel({ items, cardWidth = 270, cardHeight = 
                   opacity: isOpen ? 1 : 0,
                   transform: isOpen ? 'scale(1)' : 'scale(0.96)',
                   pointerEvents: isOpen ? 'auto' : 'none',
-                  transition: 'opacity 0.3s ease, transform 0.3s ease',
+                  transition: faceTransition,
                   zIndex: isOpen ? 2 : 1
                 }}
               >
@@ -165,7 +243,7 @@ export default function FlipCardCarousel({ items, cardWidth = 270, cardHeight = 
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        setOpenCard(null);
+                        closeCard();
                       }}
                       aria-label="Close"
                       style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: 0 }}

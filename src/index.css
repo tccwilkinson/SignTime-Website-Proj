@@ -207,33 +207,115 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
-/* Animated Hero Scroll-Down Button & Bouncing Arrow */
-@keyframes heroBounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
+/* Interactive Hero Signature Pad */
+.hero-sigpad {
+  width: 100%;
+  max-width: 380px;
+  margin: 1.25rem auto 2rem;
+}
+
+.hero-sigpad-label-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 18px;
+  margin-bottom: 10px;
+}
+
+.hero-sigpad-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-inverse-muted);
+  transition: color 200ms ease;
+}
+
+.hero-sigpad-label-row.is-signed .hero-sigpad-label {
+  color: var(--coral);
+}
+
+@keyframes sigpadLabelBreathe {
+  0% {
+    color: var(--text-inverse-muted);
   }
-  40% {
-    transform: translateY(8px);
-  }
-  60% {
-    transform: translateY(4px);
+  100% {
+    color: var(--coral);
   }
 }
 
-.hero-bounce-arrow {
-  animation: heroBounce 2.2s ease-in-out infinite;
+.hero-sigpad-label-row:not(.is-signed) .hero-sigpad-label {
+  animation: sigpadLabelBreathe 2.5s ease-in-out infinite alternate;
 }
 
-.hero-scroll-down-btn {
-  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), background-color 250ms ease, border-color 250ms ease, box-shadow 250ms ease !important;
+@media (prefers-reduced-motion: reduce) {
+  .hero-sigpad-label-row:not(.is-signed) .hero-sigpad-label {
+    animation: none;
+  }
 }
 
-.hero-scroll-down-btn:hover {
-  background: var(--coral) !important;
-  border-color: var(--coral) !important;
-  color: #fff !important;
-  transform: translateY(3px) scale(1.08);
-  box-shadow: 0 8px 24px rgba(245, 65, 70, 0.45) !important;
+.hero-sigpad-clear {
+  position: absolute;
+  right: 0;
+  background: none;
+  border: none;
+  padding: 4px 2px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-inverse-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  transition: color 160ms ease;
+}
+
+.hero-sigpad-clear:hover,
+.hero-sigpad-clear:focus-visible {
+  color: var(--text-inverse);
+}
+
+.hero-sigpad-clear:focus-visible {
+  outline: 2px solid var(--surface-light);
+  outline-offset: 2px;
+}
+
+.hero-sigpad-field {
+  position: relative;
+  height: 84px;
+}
+
+.hero-sigpad-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.hero-sigpad-line {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 18px;
+  border-bottom: 2px dashed rgba(237, 241, 247, 0.35);
+  pointer-events: none;
+}
+
+@keyframes heroCtaPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.045);
+  }
+}
+
+.hero-btn-pulse {
+  animation: heroCtaPulse 1500ms cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 /* Infinite Marquee Mask & Track (Security & Compliance Wheel) */
@@ -313,6 +395,13 @@ h1, h2, h3, h4, h5, h6 {
 .hero-line-inner.line-1 { animation-delay: 100ms; }
 .hero-line-inner.line-2 { animation-delay: 200ms; }
 
+/* Drop off the compositing layer once heroLineReveal finishes — see onAnimationEnd in Hero.jsx */
+.hero-line-inner.is-settled {
+  animation: none;
+  transform: none;
+  will-change: auto;
+}
+
 @keyframes heroSignatureBackdropIn {
   from { opacity: 0; }
   to { opacity: 0.11; }
@@ -347,14 +436,15 @@ h1, h2, h3, h4, h5, h6 {
 
 /* CTA microinteractions */
 .hero-btn-primary {
-  background: var(--surface-light);
-  color: var(--navy);
+  background: var(--coral);
+  color: #fff;
   border-radius: var(--radius-full);
-  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1), background 180ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-btn-primary:hover,
 .hero-btn-primary:focus-visible {
+  background: var(--coral-dark);
   transform: translateY(-2px);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
 }
@@ -489,6 +579,10 @@ h1, h2, h3, h4, h5, h6 {
   .hero-btn-secondary,
   .hero-btn-primary .hero-cta-arrow {
     transition: none !important;
+  }
+
+  .hero-btn-pulse {
+    animation: none !important;
   }
 }
 

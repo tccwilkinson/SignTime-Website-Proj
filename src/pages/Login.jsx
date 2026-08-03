@@ -79,7 +79,7 @@ export default function Login() {
               marginBottom: '1.5rem',
             }}
           >
-            <ShieldCheck size={18} color="#3B97D3" style={{ flexShrink: 0 }} />
+            <ShieldCheck size={18} color="var(--celadon-blue, #0282A9)" style={{ flexShrink: 0 }} />
             <span>
               <strong>Demo Portal:</strong> Enter any work email to explore the interactive sandbox.
             </span>

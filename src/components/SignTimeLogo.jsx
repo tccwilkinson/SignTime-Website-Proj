@@ -19,10 +19,10 @@ export function SignTimeIcon({ size = 38, color = '#ffffff' }) {
       />
 
       {/* Breather hole in nib */}
-      <circle cx="28.5" cy="31.5" r="2" fill="var(--navy, #16213E)" />
+      <circle cx="28.5" cy="31.5" r="2" fill="var(--navy, #143250)" />
 
       {/* Nib slit line */}
-      <path d="M 28.5 31.5 L 21 39" stroke="var(--navy, #16213E)" strokeWidth="1.4" strokeLinecap="round" />
+      <path d="M 28.5 31.5 L 21 39" stroke="var(--navy, #143250)" strokeWidth="1.4" strokeLinecap="round" />
 
       {/* Signature underline stroke */}
       <path

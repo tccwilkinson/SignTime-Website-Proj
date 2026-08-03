@@ -31,8 +31,8 @@
   --eyebrow-letter-spacing: 0.08em;
   --eyebrow-fg: var(--text-muted);
 
-  --sh-heading-font: var(--font-display);
-  --sh-heading-weight: 500;
+  --sh-heading-font: var(--font-heading);
+  --sh-heading-weight: 700;
   --sh-heading-size: clamp(1.9rem, 3.4vw, 2.6rem);
   --sh-heading-line-height: 1.2;
   --sh-heading-tracking: -0.01em;

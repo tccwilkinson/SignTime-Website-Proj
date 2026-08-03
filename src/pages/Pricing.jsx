@@ -38,10 +38,10 @@ export default function Pricing() {
   // Section toggle state
   const [sectionsOpen, setSectionsOpen] = useState({
     forSigners: true,
-    security: true,
-    customBranding: true,
-    systemIntegration: true,
-    scannerStorage: true,
+    security: false,
+    customBranding: false,
+    systemIntegration: false,
+    scannerStorage: false,
   });
 
   const toggleSection = (key) => {

@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Download, FileText, Lock, Users, Shield, ChevronDown } from 'lucide-react';
 import PageHero from './ui/PageHero';
 import SignTimeLogo from './SignTimeLogo';
+import SignaturePad from './SignaturePad';
 
 export default function Hero({ onOpenDemo }) {
   const [activeStep, setActiveStep] = useState(1);
   const [fieldAdded, setFieldAdded] = useState(false);
+  const [heroSigned, setHeroSigned] = useState(false);
   const signatureRef = useRef(null);
 
   // Subtle depth parallax on the signature backdrop, tied directly to scroll — not decorative/looping.
@@ -28,6 +30,12 @@ export default function Hero({ onOpenDemo }) {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const handleHeroLineAnimationEnd = (e) => {
+    if (e.animationName === 'heroLineReveal') {
+      e.currentTarget.classList.add('is-settled');
+    }
+  };
 
   return (
     <PageHero size="full">
@@ -88,10 +96,10 @@ export default function Hero({ onOpenDemo }) {
           }}
         >
           <span className="hero-line-mask">
-            <span className="hero-line-inner line-1">E-Signatures and Workflow Automation for</span>
+            <span className="hero-line-inner line-1" onAnimationEnd={handleHeroLineAnimationEnd}>E-Signatures and Workflow Automation for</span>
           </span>
           <span className="hero-line-mask">
-            <span className="hero-line-inner line-2 hero-accent-italic">Digital Contracts</span>
+            <span className="hero-line-inner line-2 hero-accent-italic" onAnimationEnd={handleHeroLineAnimationEnd}>Digital Contracts</span>
           </span>
         </h1>
 
@@ -110,7 +118,7 @@ export default function Hero({ onOpenDemo }) {
 
         {/* Buttons */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '1rem', flexWrap: 'wrap' }}>
-          <button onClick={onOpenDemo} className="btn hero-cta-primary hero-btn-primary" style={{ padding: '16px 32px', fontSize: '15px' }}>
+          <button onClick={onOpenDemo} className={`btn hero-cta-primary hero-btn-primary${heroSigned ? ' hero-btn-pulse' : ''}`} style={{ padding: '16px 32px', fontSize: '15px' }}>
             Start Free Today <ArrowRight size={18} className="hero-cta-arrow" />
           </button>
           <Link to="/contact" className="btn hero-cta-secondary hero-btn-secondary" style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -122,39 +130,8 @@ export default function Hero({ onOpenDemo }) {
           No credit card required · Cancel anytime
         </div>
 
-        {/* Animated Scroll Down Indicator */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1.5rem', marginBottom: '2.5rem' }}>
-          <button
-            onClick={() => {
-              const target = document.getElementById('hero-mockup-showcase');
-              if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-              } else {
-                window.scrollBy({ top: 500, behavior: 'smooth' });
-              }
-            }}
-            aria-label="Scroll down to explore product showcase"
-            className="hero-scroll-down-btn"
-            style={{
-              background: 'rgba(255, 255, 255, 0.08)',
-              border: '1px solid rgba(255, 255, 255, 0.18)',
-              borderRadius: '50%',
-              width: '46px',
-              height: '46px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'var(--text-inverse)',
-              cursor: 'pointer',
-              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
-            }}
-          >
-            <ChevronDown size={22} className="hero-bounce-arrow" />
-          </button>
-          <span style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-inverse-muted)', letterSpacing: '0.08em', textTransform: 'uppercase', marginTop: '8px' }}>
-            Scroll to explore
-          </span>
-        </div>
+        {/* Interactive Signature Pad */}
+        <SignaturePad onSignChange={setHeroSigned} />
       </div>
 
       {/* Interactive App Mockup Showcase */}

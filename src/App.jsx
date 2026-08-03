@@ -33,6 +33,8 @@ import SolutionCategoryHub from './pages/solutions/SolutionCategoryHub';
 import SolutionDetail from './pages/solutions/SolutionDetail';
 import { useCaseItems, industryItems, teamItems } from './data/solutions';
 import PageStub from './pages/PageStub';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 
 import FeatureDetail from './pages/FeatureDetail';
 import Login from './pages/Login';
@@ -109,8 +111,8 @@ function PageRouteWrapper() {
               element={<SolutionDetail category="Teams" basePath="/solutions/team" />}
             />
 
-            <Route path="/privacy" element={<PageStub title="Privacy Policy" category="Legal & Privacy" />} />
-            <Route path="/terms" element={<PageStub title="Terms of Service" category="Legal & Compliance" />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
             <Route path="/legal" element={<PageStub title="Legal & Regulatory Notices" category="Legal & Compliance" />} />
             <Route path="/status" element={<PageStub title="System Operational Status" category="Infrastructure & Reliability" />} />
 

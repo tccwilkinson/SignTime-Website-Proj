@@ -1,4 +1,4 @@
-export default function ComplianceGrid({ items, marquee = true }) {
+export default function ComplianceGrid({ items, marquee = true, textColor = 'var(--text-inverse)' }) {
   const displayItems = marquee ? [...items, ...items] : items;
 
   return (
@@ -38,7 +38,7 @@ export default function ComplianceGrid({ items, marquee = true }) {
             >
               {item.icon}
             </div>
-            <div style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--ink)', textAlign: 'center', lineHeight: 1.3 }}>
+            <div style={{ fontSize: '12.5px', fontWeight: 700, color: textColor, textAlign: 'center', lineHeight: 1.3 }}>
               {item.title}
             </div>
           </div>

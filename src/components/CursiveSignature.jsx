@@ -63,7 +63,7 @@ export default function CursiveSignature({ width = 360 }) {
               fontFamily: '"Caveat", "Dancing Script", "Great Vibes", cursive',
               fontSize: '4rem',
               fontWeight: 700,
-              background: 'linear-gradient(90deg, #E8604C, #FF7A65, #E8604C)',
+              background: 'linear-gradient(90deg, #F54146, #FF6B70, #F54146)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               letterSpacing: '0.02em',

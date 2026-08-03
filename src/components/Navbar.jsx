@@ -328,8 +328,8 @@ export default function Navbar() {
         .st-col a { display: block; font-size: 13px; color: var(--ink); text-decoration: none; margin-bottom: 8px; line-height: 1.4; transition: color 0.15s ease; }
         .st-col a:hover { color: var(--coral); }
         .mobile-link { color: #fff; font-size: 1.1rem; font-weight: 600; text-decoration: none; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .nav-cta-cream { background: var(--surface-light); color: var(--navy); box-shadow: none; }
-        .nav-cta-cream:hover { background: #fff; color: var(--navy); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .nav-cta-cream { background: var(--coral); color: #fff; box-shadow: none; }
+        .nav-cta-cream:hover { background: var(--coral-dark); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
         @media (min-width: 860px) {
           .desktop-menu { display: flex !important; }
         }

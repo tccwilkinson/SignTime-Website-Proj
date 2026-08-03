@@ -88,7 +88,7 @@ export default function Security() {
       </section>
 
       {/* Core protections marquee */}
-      <section style={{ background: 'var(--sky)', padding: '3.5rem 0' }}>
+      <section style={{ background: 'var(--navy)', padding: '3.5rem 0' }}>
         <div className="container">
           <ComplianceGrid items={coreProtections} />
         </div>
