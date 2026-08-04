@@ -78,10 +78,6 @@ export default function Hero({ onOpenDemo }) {
       {/* Hero Copy */}
       <div style={{ maxWidth: 'var(--pagehero-copy-max-width)', margin: '0 auto', padding: '2rem 1.5rem 0', textAlign: 'center', position: 'relative', zIndex: 1 }}>
 
-        <div className="hero-eyebrow-plain hero-pill" style={{ marginBottom: '1.5rem', display: 'inline-block' }}>
-          Now serving U.S. teams
-        </div>
-
         <h1
           style={{
             fontFamily: 'var(--pagehero-h1-font)',
@@ -118,12 +114,22 @@ export default function Hero({ onOpenDemo }) {
 
         {/* Buttons */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '1rem', flexWrap: 'wrap' }}>
-          <button onClick={onOpenDemo} className={`btn hero-cta-primary hero-btn-primary${heroSigned ? ' hero-btn-pulse' : ''}`} style={{ padding: '16px 32px', fontSize: '15px' }}>
+          <a
+            href="https://app.signtime.com/register"
+            className={`btn hero-cta-primary hero-btn-primary${heroSigned ? ' hero-btn-pulse' : ''}`}
+            style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+          >
             Start Free Today <ArrowRight size={18} className="hero-cta-arrow" />
-          </button>
-          <Link to="/contact" className="btn hero-cta-secondary hero-btn-secondary" style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+          </a>
+          <a
+            href="https://support.signtime.com/hc/en-us/requests/new"
+            target="_blank"
+            rel="noreferrer"
+            className="btn hero-cta-secondary hero-btn-secondary"
+            style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+          >
             Contact Us
-          </Link>
+          </a>
         </div>
 
         <div className="hero-cta-secondary" style={{ fontSize: '13px', color: 'var(--text-inverse-muted)', marginBottom: '3rem' }}>

@@ -284,7 +284,7 @@ export default function Navbar() {
                   <div className="st-col">
                     <h4>Get Started</h4>
                     <Link to="/resources/manuals-support" onClick={closeMenus}>Manuals &amp; Support</Link>
-                    <Link to="/contact" onClick={closeMenus}>Contact Support</Link>
+                    <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" onClick={closeMenus}>Contact Support</a>
                   </div>
                 </div>
               )}
@@ -298,11 +298,17 @@ export default function Navbar() {
 
         {/* Right CTA Actions */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '22px', fontSize: '14px' }}>
-          <Link to="/contact" onClick={closeMenus} style={{ color: isHome ? navTextColor : 'var(--coral)', fontWeight: 600, textDecoration: 'none', transition: 'color 200ms ease' }}>
+          <a
+            href="https://support.signtime.com/hc/en-us/requests/new"
+            target="_blank"
+            rel="noreferrer"
+            onClick={closeMenus}
+            style={{ color: isHome ? navTextColor : 'var(--coral)', fontWeight: 600, textDecoration: 'none', transition: 'color 200ms ease' }}
+          >
             Contact Us
-          </Link>
-          <Link
-            to="/login"
+          </a>
+          <a
+            href="https://app.signtime.com/login"
             onClick={closeMenus}
             style={{
               color: navMutedColor,
@@ -313,14 +319,14 @@ export default function Navbar() {
             }}
           >
             Login
-          </Link>
-          <button
-            onClick={open}
+          </a>
+          <a
+            href="https://app.signtime.com/register"
             className={isHome ? 'btn nav-cta-cream' : 'btn btn-coral'}
-            style={{ padding: '10px 20px', fontSize: '14px' }}
+            style={{ padding: '10px 20px', fontSize: '14px', textDecoration: 'none', display: 'inline-block' }}
           >
             Start Free Today
-          </button>
+          </a>
 
           {/* Mobile drawer toggle */}
           <button
@@ -372,15 +378,15 @@ export default function Navbar() {
           <Link to="/news" className="mobile-link" onClick={closeMenus}>News</Link>
           <Link to="/resources/manuals-support" className="mobile-link" onClick={closeMenus}>Manuals &amp; Support</Link>
           <Link to="/resources" className="mobile-link" onClick={closeMenus}>Learn</Link>
-          <Link to="/contact" className="mobile-link" onClick={closeMenus}>Contact Us</Link>
-          <Link to="/login" className="mobile-link" onClick={closeMenus}>Log In</Link>
-          <button
-            onClick={() => { setMobileMenuOpen(false); open(); }}
+          <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" className="mobile-link" onClick={closeMenus}>Contact Us</a>
+          <a href="https://app.signtime.com/login" className="mobile-link" onClick={closeMenus}>Log In</a>
+          <a
+            href="https://app.signtime.com/register"
             className="btn btn-coral"
-            style={{ width: '100%', marginTop: '1rem' }}
+            style={{ width: '100%', marginTop: '1rem', textAlign: 'center', textDecoration: 'none' }}
           >
             Start Free Today
-          </button>
+          </a>
         </div>
       )}
 
