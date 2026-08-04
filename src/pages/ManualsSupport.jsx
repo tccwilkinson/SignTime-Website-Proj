@@ -8,28 +8,6 @@ export default function ManualsSupport() {
 
   return (
     <div style={{ background: '#fff', color: 'var(--ink)' }}>
-      {/* Top External Link Notice Banner */}
-      <div
-        style={{
-          background: 'linear-gradient(90deg, #E0F2FE, #BAE6FD)',
-          borderBottom: '1px solid #7DD3FC',
-          padding: '12px 20px',
-          fontSize: '14px',
-          color: '#0369A1',
-          fontWeight: 700,
-          textAlign: 'center',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '10px',
-        }}
-      >
-        <ExternalLink size={18} />
-        <span>
-          <strong>Help Center Notice:</strong> In production, clicking "Manuals &amp; Support" will link directly to <em>support.signtime.com</em>
-        </span>
-      </div>
-
       {/* Hero Header */}
       <section style={{ background: 'radial-gradient(circle at 50% -10%, #D4EFF7 0%, #fff 65%)', padding: '4rem 0 3rem', borderBottom: '1px solid var(--line)' }}>
         <div className="container" style={{ maxWidth: '820px', textAlign: 'center' }}>
@@ -40,22 +18,19 @@ export default function ManualsSupport() {
             Manuals &amp; Support
           </h1>
           <p className="st-subpage-subhead" style={{ fontSize: '1.15rem', color: 'var(--slate)', lineHeight: 1.6, marginBottom: '2rem' }}>
-            Access comprehensive product manuals, administrator guides, API references, and 24/7 technical support services.
+            Access comprehensive product manuals, administrator guides, API references, and technical support services.
           </p>
 
-          <div className="st-subpage-subhead" style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <a
               href="https://support.signtime.com"
               target="_blank"
               rel="noreferrer"
               className="btn btn-coral hero-btn-primary"
-              style={{ padding: '14px 28px', fontSize: '15px' }}
+              style={{ padding: '14px 32px', fontSize: '15px' }}
             >
               Go to support.signtime.com <ExternalLink size={16} className="hero-cta-arrow" />
             </a>
-            <button onClick={open} className="btn btn-outline-navy hero-btn-secondary" style={{ padding: '14px 28px', fontSize: '15px' }}>
-              Schedule Live Support Demo
-            </button>
           </div>
         </div>
       </section>
@@ -85,7 +60,7 @@ export default function ManualsSupport() {
               <p style={{ fontSize: '0.95rem', color: 'var(--slate)', lineHeight: 1.5, marginBottom: '1.2rem' }}>
                 Step-by-step walkthroughs for document creation, signer sequencing, template management, and mobile signing.
               </p>
-              <a href="https://support.signtime.com" target="_blank" rel="noreferrer" style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--coral)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              <a href="https://support.signtime.com/hc/en-us/categories/18610289550105-How-To-Use" target="_blank" rel="noreferrer" style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--coral)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
                 Browse User Manuals <ArrowRight size={15} />
               </a>
             </div>
@@ -93,16 +68,16 @@ export default function ManualsSupport() {
             {/* Category 2 */}
             <div className="hover-card cute-card-hover st-subpage-card-2" style={{ background: '#fff', border: '1px solid var(--line)', borderRadius: '16px', padding: '2rem' }}>
               <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'var(--sky)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--navy)', marginBottom: '1.2rem' }}>
-                <FileText size={24} className="cute-icon-spin" />
+                <HelpCircle size={24} className="cute-icon-spin" />
               </div>
               <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--navy)', marginBottom: '0.6rem' }}>
-                Developer API Docs
+                Frequently Asked Questions
               </h3>
               <p style={{ fontSize: '0.95rem', color: 'var(--slate)', lineHeight: 1.5, marginBottom: '1.2rem' }}>
-                RESTful API endpoints, webhook setup guides, SDK downloads, and authentication tokens for developers.
+                Common questions regarding e-signatures, account administration, security, and feature workflows.
               </p>
-              <a href="https://support.signtime.com" target="_blank" rel="noreferrer" style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--coral)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                View API Reference <ArrowRight size={15} />
+              <a href="https://support.signtime.com/hc/en-us/categories/18611835270809-FAQ" target="_blank" rel="noreferrer" style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--coral)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                Browse FAQ <ArrowRight size={15} />
               </a>
             </div>
 
@@ -115,11 +90,11 @@ export default function ManualsSupport() {
                 Customer Support Ticket
               </h3>
               <p style={{ fontSize: '0.95rem', color: 'var(--slate)', lineHeight: 1.5, marginBottom: '1.2rem' }}>
-                Need technical assistance? Submit a ticket to our U.S. and Japan customer support teams.
+                Need technical assistance? Submit a ticket directly to our customer support team.
               </p>
-              <Link to="/contact" style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--coral)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--coral)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
                 Contact Support <ArrowRight size={15} />
-              </Link>
+              </a>
             </div>
 
           </div>

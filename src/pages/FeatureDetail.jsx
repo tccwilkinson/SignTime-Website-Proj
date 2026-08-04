@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, ShieldCheck, CheckCircle2, FileText, Zap, Lock, Sparkles, Building2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, FileText, Lock, Sparkles } from 'lucide-react';
 import { useDemoModal } from '../context/DemoModalContext';
 import { getFeatureContent } from '../data/features';
 import TodoFlag from '../components/TodoFlag';
@@ -67,9 +67,9 @@ export default function FeatureDetail() {
           </p>
 
           <div className="st-subpage-subhead" style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
-            <button onClick={open} className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px' }}>
-              Try {featureTitle} Free <ArrowRight size={16} />
-            </button>
+            <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none' }}>
+              Try for Free Today <ArrowRight size={16} />
+            </a>
             <Link to="/pricing" className="btn btn-outline-navy" style={{ padding: '14px 28px', fontSize: '15px' }}>
               View Pricing Tiers
             </Link>
@@ -145,54 +145,22 @@ export default function FeatureDetail() {
               {content.closingLine && <p className="fd-rich-closing">{content.closingLine}</p>}
             </div>
           ) : (
-            <>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px', marginBottom: '3.5rem' }}>
-                <div className="st-subpage-card-1 cute-card-hover" style={{ background: '#FAFBFD', border: '1px solid var(--line)', borderRadius: '12px', padding: '24px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 800, color: 'var(--navy)', marginBottom: '8px' }}>
-                    <Zap size={20} color="var(--coral)" className="cute-icon-spin" /> Automated Speed
-                  </div>
-                  <p style={{ fontSize: '0.92rem', color: 'var(--slate)', lineHeight: 1.5, margin: 0 }}>
-                    Cuts contract turnaround time down to minutes with zero manual intervention required.
-                  </p>
-                </div>
+            <div style={{ background: '#fff', border: '1px solid var(--line)', borderRadius: '16px', padding: '2.5rem', boxShadow: 'var(--shadow-subtle)', marginBottom: '3.5rem' }}>
+              <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--navy)', marginBottom: '1.5rem' }}>
+                Key Capabilities of {featureTitle}
+              </h2>
 
-                <div className="st-subpage-card-2 cute-card-hover" style={{ background: '#FAFBFD', border: '1px solid var(--line)', borderRadius: '12px', padding: '24px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 800, color: 'var(--navy)', marginBottom: '8px' }}>
-                    <ShieldCheck size={20} color="var(--emerald)" className="cute-icon-spin" /> Legal Compliance
-                  </div>
-                  <p style={{ fontSize: '0.92rem', color: 'var(--slate)', lineHeight: 1.5, margin: 0 }}>
-                    Backed by 100% court-admissible PAdES &amp; ESIGN Act legal audit trails.
-                  </p>
-                </div>
-
-                <div className="st-subpage-card-3 cute-card-hover" style={{ background: '#FAFBFD', border: '1px solid var(--line)', borderRadius: '12px', padding: '24px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 800, color: 'var(--navy)', marginBottom: '8px' }}>
-                    <Building2 size={20} color="var(--celadon-blue, #0282A9)" className="cute-icon-spin" /> Unlimited Team Access
-                  </div>
-                  <p style={{ fontSize: '0.92rem', color: 'var(--slate)', lineHeight: 1.5, margin: 0 }}>
-                    Included across all SignTime plans without per-seat licenses or user caps.
-                  </p>
-                </div>
-              </div>
-
-              {/* Capabilities List */}
-              <div style={{ background: '#fff', border: '1px solid var(--line)', borderRadius: '16px', padding: '2.5rem', boxShadow: 'var(--shadow-subtle)', marginBottom: '3.5rem' }}>
-                <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--navy)', marginBottom: '1.5rem' }}>
-                  Key Capabilities of {featureTitle}
-                </h2>
-
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.98rem', color: 'var(--ink)' }}>
-                  {bullets.map((bullet) => (
-                    <li key={bullet.title} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 size={18} color="var(--emerald)" style={{ flexShrink: 0, marginTop: '3px' }} />
-                      <div>
-                        <strong>{bullet.title}:</strong> {bullet.desc}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.98rem', color: 'var(--ink)' }}>
+                {bullets.map((bullet) => (
+                  <li key={bullet.title} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                    <CheckCircle2 size={18} color="var(--emerald)" style={{ flexShrink: 0, marginTop: '3px' }} />
+                    <div>
+                      <strong>{bullet.title}:</strong> {bullet.desc}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
 
           {/* CTA Banner */}
@@ -204,12 +172,12 @@ export default function FeatureDetail() {
               Get started with SignTime today. No credit card required to start your free trial.
             </p>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
-              <button onClick={open} className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px' }}>
+              <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none' }}>
                 Start Free Trial <ArrowRight size={16} />
-              </button>
-              <Link to="/contact" className="btn btn-outline-navy" style={{ padding: '14px 28px', fontSize: '15px', color: '#fff', borderColor: 'rgba(255,255,255,0.3)' }}>
-                Book Demo
-              </Link>
+              </a>
+              <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" className="btn btn-outline-navy" style={{ padding: '14px 28px', fontSize: '15px', color: '#fff', borderColor: 'rgba(255,255,255,0.3)', textDecoration: 'none' }}>
+                Contact Us
+              </a>
             </div>
           </div>
 

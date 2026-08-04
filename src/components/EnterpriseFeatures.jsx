@@ -98,8 +98,8 @@ export default function EnterpriseFeatures({ onOpenDemo }) {
       </div>
 
       <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-        <Button variant="primary" onClick={onOpenDemo}>
-          See All Plans & Specs <ArrowRight size={16} />
+        <Button variant="primary" to="/pricing">
+          See All Plans &amp; Specs <ArrowRight size={16} />
         </Button>
       </div>
     </Section>

@@ -276,12 +276,12 @@ export default function Login() {
           {/* Footer Card Switcher */}
           <div style={{ textAlign: 'center', marginTop: '1.8rem', paddingTop: '1.2rem', borderTop: '1px solid var(--line)', fontSize: '0.88rem', color: 'var(--slate)' }}>
             Don't have a SignTime account?{' '}
-            <button
-              onClick={open}
-              style={{ background: 'none', border: 'none', color: 'var(--coral)', fontWeight: 700, cursor: 'pointer', padding: 0 }}
+            <a
+              href="https://app.signtime.com/register"
+              style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none' }}
             >
               Start Free Trial
-            </button>
+            </a>
           </div>
         </div>
 

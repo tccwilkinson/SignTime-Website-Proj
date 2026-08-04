@@ -347,21 +347,23 @@ export default function Pricing() {
                   </div>
 
                   {tier.cta.kind === 'demo' ? (
-                    <button
-                      onClick={open}
+                    <a
+                      href="https://app.signtime.com/register"
                       className={tier.highlight ? 'btn btn-coral' : 'btn btn-navy'}
-                      style={{ width: '100%', padding: '10px', marginBottom: '1.2rem', fontSize: '0.88rem' }}
+                      style={{ width: '100%', padding: '10px', marginBottom: '1.2rem', fontSize: '0.88rem', textDecoration: 'none', textAlign: 'center', display: 'block' }}
                     >
                       {tier.cta.label}
-                    </button>
+                    </a>
                   ) : (
-                    <Link
-                      to="/contact"
+                    <a
+                      href="https://app.spirinc.com/t/HPmpyrOr23Q6FzsvpKMzl/as/xzemB6rMWXD2Ig4tbNUM4/confirm-guest?utm_source=price&utm_medium=spir&utm_campaign=salesforce"
+                      target="_blank"
+                      rel="noreferrer"
                       className="btn btn-outline-navy"
-                      style={{ width: '100%', padding: '10px', marginBottom: '1.2rem', textAlign: 'center', fontSize: '0.88rem' }}
+                      style={{ width: '100%', padding: '10px', marginBottom: '1.2rem', textAlign: 'center', fontSize: '0.88rem', textDecoration: 'none', display: 'block' }}
                     >
                       {tier.cta.label}
-                    </Link>
+                    </a>
                   )}
 
                   <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', padding: 0, margin: 0 }}>
@@ -664,9 +666,9 @@ export default function Pricing() {
 
                     <tr style={{ borderBottom: '1px solid var(--line)' }}>
                       <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>SignTime for Salesforce</td>
-                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><Link to="/contact" style={{ color: '#3B97D3', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</Link></td>
-                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><Link to="/contact" style={{ color: '#3B97D3', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</Link></td>
-                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><Link to="/contact" style={{ color: '#3B97D3', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</Link></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><a href="https://app.spirinc.com/t/HPmpyrOr23Q6FzsvpKMzl/as/xzemB6rMWXD2Ig4tbNUM4/confirm-guest?utm_source=price&utm_medium=spir&utm_campaign=salesforce" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</a></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><a href="https://app.spirinc.com/t/HPmpyrOr23Q6FzsvpKMzl/as/xzemB6rMWXD2Ig4tbNUM4/confirm-guest?utm_source=price&utm_medium=spir&utm_campaign=salesforce" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</a></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><a href="https://app.spirinc.com/t/HPmpyrOr23Q6FzsvpKMzl/as/xzemB6rMWXD2Ig4tbNUM4/confirm-guest?utm_source=price&utm_medium=spir&utm_campaign=salesforce" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</a></td>
                     </tr>
                   </>
                 )}
@@ -752,12 +754,12 @@ export default function Pricing() {
             No credit card required to start. Cancel anytime.
           </p>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
-            <button onClick={open} className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '14px' }}>
+            <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '14px', textDecoration: 'none' }}>
               Start Free Trial — No Credit Card Required <ArrowRight size={16} />
-            </button>
-            <Link to="/contact" className="btn btn-outline-navy" style={{ padding: '14px 28px', fontSize: '14px' }}>
+            </a>
+            <a href="https://app.spirinc.com/t/HPmpyrOr23Q6FzsvpKMzl/as/xzemB6rMWXD2Ig4tbNUM4/confirm-guest?utm_source=price&utm_medium=spir&utm_campaign=salesforce" target="_blank" rel="noreferrer" className="btn btn-outline-navy" style={{ padding: '14px 28px', fontSize: '14px', textDecoration: 'none' }}>
               Book a 15-Minute Demo
-            </Link>
+            </a>
           </div>
         </div>
       </section>

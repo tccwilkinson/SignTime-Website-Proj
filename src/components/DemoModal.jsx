@@ -138,9 +138,9 @@ export default function DemoModal() {
                 />
               </div>
 
-              <button type="submit" className="btn btn-coral" style={{ width: '100%', marginTop: '0.8rem', padding: '0.85rem', fontSize: '1rem' }}>
+              <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ width: '100%', marginTop: '0.8rem', padding: '0.85rem', fontSize: '1rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
                 Start Free Today <ArrowRight size={18} />
-              </button>
+              </a>
 
               <div style={{ textAlign: 'center', fontSize: '0.8rem', color: '#9BAAC7', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', marginTop: '0.4rem' }}>
                 <Lock size={12} /> No credit card required. Cancel anytime.

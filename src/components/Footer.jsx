@@ -77,8 +77,8 @@ export default function Footer() {
           <div>
             <h4 style={{ color: '#fff', fontSize: '0.95rem', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Company</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.9rem' }}>
-              <li><Link to="/contact" className="f-link">Contact Us</Link></li>
-              <li><Link to="/security" className="f-link">ESIGN & UETA Compliance</Link></li>
+              <li><a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" className="f-link">Contact Us</a></li>
+              <li><Link to="/security" className="f-link">ESIGN &amp; UETA Compliance</Link></li>
               <li><Link to="/privacy" className="f-link">Privacy Policy</Link></li>
               <li><Link to="/terms" className="f-link">Terms of Service</Link></li>
             </ul>
@@ -99,12 +99,12 @@ export default function Footer() {
           }}
         >
           <div>
-            © {new Date().getFullYear()} SignTime Inc. All rights reserved. Built for modern U.S. enterprises.
+            © {new Date().getFullYear()} SignTime Inc. All rights reserved.
           </div>
           <div style={{ display: 'flex', gap: '1.2rem' }}>
             <Link to="/privacy" style={{ color: 'var(--coral)', fontWeight: 600, textDecoration: 'none' }}>Privacy</Link>
             <Link to="/security" style={{ color: 'var(--coral)', fontWeight: 600, textDecoration: 'none' }}>Security</Link>
-            <Link to="/contact" style={{ color: 'var(--coral)', fontWeight: 600, textDecoration: 'none' }}>Contact Us</Link>
+            <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 600, textDecoration: 'none' }}>Contact Us</a>
           </div>
         </div>
 
