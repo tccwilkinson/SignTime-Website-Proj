@@ -1,11 +1,11 @@
 /* ==========================================================================
-   WorkflowDiagram — animated swim-lane / stepper diagram, data-driven.
-   Coordinate system: node x is a 0–100 unit representing % of track width,
-   node y is a real px value. The SVG viewBox matches these units 1:1
-   (viewBox height === track height in px) so lines drawn in the same
-   coordinate space always line up with the CSS-positioned nodes, with no
-   DOM measurement required. vector-effect="non-scaling-stroke" keeps
-   stroke width constant despite the non-uniform x/y scaling this implies.
+   WorkflowDiagram — animated swimlane / stepper diagram, data-driven.
+   Horizontal mode: steps sit in a CSS Grid (equal-width columns × lane
+   rows) so a card can never overflow the track — containment comes from
+   the grid itself, not manual point math. Connector "elbows" are plain
+   CSS bars layered behind the grid: horizontal runs use % (left/width),
+   vertical runs use real px (top/height) — each bar stays in ONE axis's
+   unit, never mixed, which is what keeps the fill/draw state correct.
    ========================================================================== */
 
 .wd-root {
@@ -20,7 +20,7 @@
   padding: 0.3rem;
   background: var(--surface-light);
   border-radius: var(--radius-full);
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
 }
 
 .wd-tab {
@@ -51,7 +51,7 @@
 
 .wd-tab.is-active {
   background: var(--navy);
-  color: #fff;
+  color: var(--paper);
 }
 
 /* Diagram shell */
@@ -63,36 +63,42 @@
 .wd-lanes-row.horizontal {
   display: flex;
   align-items: stretch;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .wd-lanes-row.vertical {
   display: flex;
   align-items: stretch;
-  gap: 0.5rem;
 }
 
-/* Lane labels (desktop, only when steps carry lane data) */
+/* Lane labels (desktop gutter, only when steps carry lane data) */
 
 .wd-lane-labels {
   display: flex;
   flex-direction: column;
-  width: 152px;
+  width: 158px;
   flex-shrink: 0;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  overflow: hidden;
 }
 
 .wd-lane-label {
   display: flex;
   align-items: center;
-  padding-right: 1rem;
+  padding: 0 1rem;
+  background: var(--paper);
   border-right: 2px solid var(--line);
   font-family: var(--font-heading);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--navy);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   line-height: 1.3;
+}
+
+.wd-lane-label.is-alt {
+  background: var(--surface-light);
 }
 
 /* Horizontal track (desktop) */
@@ -101,211 +107,269 @@
   position: relative;
   flex: 1;
   min-width: 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  overflow: hidden;
 }
 
-.wd-lines {
+.wd-lane-labels + .wd-track {
+  border-radius: var(--radius-md);
+}
+
+/* Lane bands — full-width alternating background regions */
+
+.wd-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: var(--paper);
+}
+
+.wd-band.is-alt {
+  background: var(--surface-light);
+}
+
+.wd-band.is-vertical {
+  left: 0;
+  right: 0;
+}
+
+/* Connector elbows */
+
+.wd-conn-layer {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
   pointer-events: none;
-  overflow: visible;
 }
 
-.wd-line-track {
-  stroke: var(--line);
-  stroke-width: 2.5;
+.wd-conn {
+  position: absolute;
 }
 
-.wd-line-draw {
-  stroke: var(--coral);
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  transition: stroke-dashoffset 700ms cubic-bezier(0.65, 0, 0.35, 1);
+.wd-conn-h {
+  height: 2.5px;
+  transform: translateY(-50%);
 }
 
-.wd-tablist {
+.wd-conn-v {
+  width: 2.5px;
+  transform: translateX(-50%);
+}
+
+.wd-conn-track,
+.wd-conn-fill {
   position: absolute;
   inset: 0;
+  border-radius: 2px;
 }
 
-.wd-node-pos {
-  position: absolute;
-  transform: translate(-50%, -50%);
+.wd-conn-track {
+  background: var(--line);
 }
 
-.wd-node {
+.wd-conn-fill {
+  background: var(--coral);
+  transform: scale(0);
+  transition: transform 550ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.wd-conn-h .wd-conn-fill {
+  transform: scaleX(0);
+}
+
+.wd-conn-h .wd-conn-fill.is-drawn {
+  transform: scaleX(1);
+}
+
+.wd-conn-v .wd-conn-fill {
+  transform: scaleY(0);
+}
+
+.wd-conn-v .wd-conn-fill.is-drawn {
+  transform: scaleY(1);
+}
+
+/* Step grid (desktop) */
+
+.wd-grid {
+  position: relative;
+  display: grid;
+  width: 100%;
+}
+
+.wd-card-cell {
+  position: relative;
   display: flex;
   align-items: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.25rem;
+  justify-content: center;
+  min-width: 0;
+  padding: 0 0.4rem;
+}
+
+/* Step card — shared by horizontal grid cells and the vertical stack */
+
+.wd-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  min-width: 0;
+  max-width: 168px;
+  padding: 0.5rem 0.7rem;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
   border-radius: var(--radius-md);
+  box-shadow: var(--shadow-subtle);
+  cursor: pointer;
+  text-align: left;
   opacity: 1;
   transform: scale(1);
-  transition: transform var(--transition-fast), opacity var(--transition-fast);
+  transition: transform var(--transition-fast), opacity var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.wd-lanes-row.horizontal .wd-node {
-  flex-direction: column;
-  gap: 0.5rem;
+.wd-card:hover {
+  border-color: var(--coral);
 }
 
-.wd-lanes-row.horizontal .wd-node-title {
-  max-width: 122px;
-}
-
-.wd-node.is-active {
-  transform: scale(1.06);
-}
-
-.wd-node.is-complete {
-  opacity: 0.72;
-}
-
-.wd-node.is-future {
-  opacity: 0.42;
-  transform: scale(0.94);
-}
-
-.wd-lanes-row.vertical .wd-node.is-future {
-  transform: none;
-}
-
-.wd-node:focus-visible {
-  outline: none;
-}
-
-.wd-node:focus-visible .wd-node-dot {
+.wd-card:focus-visible {
   outline: 2px solid var(--coral);
-  outline-offset: 3px;
+  outline-offset: 2px;
 }
 
-.wd-node-dot {
+.wd-card.is-active {
+  border-color: var(--coral);
+  box-shadow: var(--shadow-coral);
+  transform: scale(1.05);
+}
+
+.wd-card.is-complete {
+  opacity: 0.85;
+}
+
+.wd-card.is-future {
+  opacity: 0.6;
+}
+
+.wd-card-num-wrap {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.wd-card-num {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: var(--surface-light);
   border: 2px solid var(--line);
   color: var(--slate);
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.72rem;
+  flex-shrink: 0;
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
 }
 
-.wd-node:hover .wd-node-dot {
-  border-color: var(--coral);
-}
-
-.wd-node.is-active .wd-node-dot {
+.wd-card.is-active .wd-card-num {
   background: var(--coral);
   border-color: var(--coral);
-  color: #fff;
-  box-shadow: var(--shadow-coral);
+  color: var(--paper);
 }
 
-.wd-node.is-complete .wd-node-dot {
+.wd-card.is-complete .wd-card-num {
   border-color: var(--navy-light);
   color: var(--navy);
 }
 
-.wd-node-title {
+.wd-actor-badge {
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--surface-light);
+  border: 1.5px solid var(--line);
+  color: var(--navy-light);
+}
+
+.wd-card-icon {
+  flex-shrink: 0;
+  color: var(--slate);
+  transition: color var(--transition-fast);
+}
+
+.wd-card.is-active .wd-card-icon {
+  color: var(--coral);
+}
+
+.wd-card.is-complete .wd-card-icon {
+  color: var(--navy);
+}
+
+.wd-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.wd-card-label {
   font-family: var(--font-heading);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 600;
   color: var(--slate);
-  text-align: center;
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
-.wd-node.is-active .wd-node-title {
+.wd-card.is-active .wd-card-label {
   color: var(--navy);
   font-weight: 700;
 }
 
-/* Vertical track (mobile, <900px) */
-
-.wd-vertical-rail {
-  position: relative;
-  width: 40px;
-  flex-shrink: 0;
-}
-
-.wd-rail-dot {
-  position: absolute;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--surface-light);
-  border: 2px solid var(--line);
-  color: var(--slate);
+.wd-card-lane {
   font-family: var(--font-heading);
+  font-size: 0.62rem;
   font-weight: 700;
-  font-size: 0.82rem;
-  transition: transform var(--transition-fast), opacity var(--transition-fast);
-}
-
-.wd-rail-dot.is-active {
-  background: var(--coral);
-  border-color: var(--coral);
-  color: #fff;
-  box-shadow: var(--shadow-coral);
-  transform: translate(-50%, -50%) scale(1.08);
-}
-
-.wd-rail-dot.is-complete {
-  border-color: var(--navy-light);
-  color: var(--navy);
-  opacity: 0.72;
-}
-
-.wd-rail-dot.is-future {
-  opacity: 0.42;
-}
-
-.wd-vertical-steps {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.wd-lanes-row.vertical .wd-node {
-  justify-content: flex-start;
-  gap: 0.6rem;
-  width: 100%;
-  text-align: left;
-  padding: 0 0.5rem;
-}
-
-.wd-node-lane-tag {
-  flex-shrink: 0;
-  padding: 0.2rem 0.55rem;
-  border-radius: var(--radius-full);
-  background: var(--surface-light);
-  border: 1px solid var(--line);
-  color: var(--slate);
-  font-family: var(--font-heading);
-  font-size: 0.66rem;
-  font-weight: 700;
+  color: var(--coral);
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
 
-.wd-lanes-row.vertical .wd-node-title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+/* Vertical track (mobile, <900px) */
+
+.wd-vertical-track {
+  position: relative;
+  width: 100%;
+}
+
+.wd-vconn {
+  position: absolute;
+  left: 20px;
+  width: 2.5px;
+}
+
+.wd-vertical-steps {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.wd-vertical-step {
+  display: flex;
+  align-items: center;
+  padding: 0.35rem 0;
+}
+
+.wd-card.is-vertical {
+  max-width: none;
 }
 
 /* Controls */
@@ -315,7 +379,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
 }
 
 .wd-nav-btn {
@@ -326,7 +390,7 @@
   height: 40px;
   border-radius: var(--radius-full);
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--paper);
   color: var(--navy);
   cursor: pointer;
   transition: transform var(--transition-fast), opacity var(--transition-fast);
@@ -360,11 +424,16 @@
   color: var(--slate);
 }
 
-/* Active-step detail panel */
+/* Active-step detail panel — sits close to the diagram with a coral
+   top-accent so it reads as part of it, not a separate block. */
 
 .wd-detail {
-  margin-top: 2rem;
-  min-height: 108px;
+  margin-top: 1rem;
+  min-height: 100px;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface-light);
+  border-top: 3px solid var(--coral);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
 }
 
 .wd-detail-inner {
@@ -402,99 +471,81 @@
   margin-bottom: 0.75rem;
 }
 
+.wd-detail-actor {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-full);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--slate);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-left: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
 .wd-detail-title {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--navy);
   letter-spacing: -0.01em;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
 .wd-detail-body {
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 0.98rem;
+  line-height: 1.65;
   color: var(--slate);
   max-width: 62ch;
 }
 
-/* Static list — prefers-reduced-motion fallback for steps/variants */
+/* Reduced-motion mode: same interactive markup as the normal diagram, but no
+   auto-advance timer, no dimming between steps, and instant state changes
+   instead of animated ones — see StepFlow's `reduceMotion` prop. */
 
-.wd-static-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-left: 2px solid var(--line);
+.wd-diagram.reduce-motion .wd-card.is-future,
+.wd-diagram.reduce-motion .wd-card.is-complete {
+  opacity: 1;
 }
 
-.wd-static-item {
-  position: relative;
-  display: flex;
-  gap: 1.1rem;
-  padding: 0 0 2rem 1.5rem;
+.wd-diagram.reduce-motion .wd-card,
+.wd-diagram.reduce-motion .wd-card-num,
+.wd-diagram.reduce-motion .wd-card-icon,
+.wd-diagram.reduce-motion .wd-conn-fill {
+  transition: none;
 }
 
-.wd-static-item:last-child {
-  padding-bottom: 0;
-}
-
-.wd-static-dot {
-  position: absolute;
-  left: -17px;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--coral);
-  color: #fff;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.82rem;
-}
-
-.wd-static-body {
-  padding-top: 0.4rem;
-}
-
-.wd-static-lane {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-full);
-  background: var(--surface-light);
-  border: 1px solid var(--line);
-  color: var(--slate);
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  margin-bottom: 0.6rem;
-}
-
-.wd-static-title {
-  font-family: var(--font-heading);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 0.4rem;
-}
-
-.wd-static-text {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--slate);
-  max-width: 62ch;
-}
-
-/* Comparison mode (before / after) */
+/* Comparison mode (before / after) — unchanged, separate data shape */
 
 .wd-comparison {
   display: flex;
   flex-direction: column;
   gap: 2.75rem;
+}
+
+.wd-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.wd-line-track {
+  stroke: var(--line);
+  stroke-width: 2.5;
+}
+
+.wd-line-draw {
+  stroke: var(--coral);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 700ms cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .wd-ctrack-head {
@@ -594,7 +645,7 @@
 .wd-ctrack-after .wd-cnode-dot {
   background: var(--coral);
   border: 2px solid var(--coral);
-  color: #fff;
+  color: var(--paper);
   box-shadow: var(--shadow-coral);
 }
 

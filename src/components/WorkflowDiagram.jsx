@@ -1,15 +1,76 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import {
+  ChevronLeft, ChevronRight, RotateCcw, Building2, User, Zap,
+  Send, CheckCircle2, PenTool, Upload, Archive, Bell, Smartphone,
+  Printer, Package, Stamp, Share2, Route, FileText,
+} from 'lucide-react';
 import './WorkflowDiagram.css';
 
-const ROW_H_DESKTOP = 116;
-const ROW_H_MOBILE = 60;
-const VERTICAL_X = 50;
+const ROW_H_DESKTOP = 96;
+const ROW_H_MOBILE = 84;
 const AUTO_ADVANCE_MS = 2500;
 const DESKTOP_BREAKPOINT = 900;
 
+const ACTOR_META = {
+  internal: { Icon: Building2, label: 'Internal approval step' },
+  external: { Icon: User, label: 'External signer step' },
+  system: { Icon: Zap, label: 'Automated step' },
+};
+
+// Ordered title/body keyword rules, checked first (most specific to a step's
+// own action), then a lane-based fallback, then a generic default. Icons are
+// monochrome and inherit the card's current state color (currentColor) — no
+// separate color system, no field added to workflows.js.
+const TITLE_ICON_RULES = [
+  [/sign-off/i, CheckCircle2],
+  [/sign\b|signed|signing|countersign|co-signer/i, PenTool],
+  [/approv|review|reject/i, CheckCircle2],
+  [/route|routing/i, Route],
+  [/deleg/i, Share2],
+  [/upload|import|csv|roster/i, Upload],
+  [/bulk|merge/i, Archive],
+  [/store|archiv|retain|file and store/i, Archive],
+  [/track|remind|notify|status/i, Bell],
+  [/sms|secure link|phone/i, Smartphone],
+  [/print/i, Printer],
+  [/mail|courier|package|assemble/i, Package],
+  [/notar/i, Stamp],
+  [/distribute|forward|network/i, Share2],
+  [/send|sent\b/i, Send],
+];
+
+const LANE_ICON_RULES = [
+  [/signtime|salesforce/i, Zap],
+  [/qa department|university|your company|^hr$/i, Building2],
+];
+
+function getStepIcon(step) {
+  const haystack = `${step.title || ''} ${step.body || ''}`;
+  for (const [pattern, Icon] of TITLE_ICON_RULES) {
+    if (pattern.test(haystack)) return Icon;
+  }
+  if (step.lane) {
+    for (const [pattern, Icon] of LANE_ICON_RULES) {
+      if (pattern.test(step.lane)) return Icon;
+    }
+    return User;
+  }
+  return FileText;
+}
+
 function cx(...parts) {
   return parts.filter(Boolean).join(' ');
+}
+
+function ActorBadge({ actor }) {
+  const meta = ACTOR_META[actor];
+  if (!meta) return null;
+  const { Icon, label } = meta;
+  return (
+    <span className="wd-actor-badge" aria-label={label} title={label}>
+      <Icon size={11} />
+    </span>
+  );
 }
 
 function useIsDesktop(breakpoint = DESKTOP_BREAKPOINT) {
@@ -43,9 +104,12 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
-// Layout is computed analytically (no DOM measurement): x lives in a 0–100
-// unit (% of track width), y in real px. The SVG viewBox is set to match
-// these units 1:1 per orientation, so lines always meet the nodes exactly.
+// Layout is computed analytically (no DOM measurement). Horizontal mode:
+// each step gets an equal-width column (x expressed as a column-center
+// percentage, never a track-edge point) and a lane row (y in real px, rows
+// are a fixed height). Connector segments are derived from the same two
+// values, kept in ONE axis's unit each (never mixed), which is what makes
+// the fill-state math correct — see WorkflowDiagram.css / ConnectorLayer.
 function computeLayout(steps, lanes, isDesktop) {
   const N = steps.length;
   const hasLanes = Array.isArray(lanes) && lanes.length > 0 && steps.every((s) => s.lane);
@@ -54,16 +118,53 @@ function computeLayout(steps, lanes, isDesktop) {
   const rowHeight = orientation === 'horizontal' ? ROW_H_DESKTOP : ROW_H_MOBILE;
   const trackHeight = orientation === 'horizontal' ? laneCount * rowHeight : N * rowHeight;
 
+  const rowOf = (step) => (hasLanes ? Math.max(lanes.indexOf(step.lane), 0) : 0);
+
   const nodes = steps.map((step, i) => {
     if (orientation === 'horizontal') {
-      const x = N > 1 ? (i / (N - 1)) * 100 : 50;
-      const row = hasLanes ? Math.max(lanes.indexOf(step.lane), 0) : 0;
-      return { x, y: row * rowHeight + rowHeight / 2 };
+      const colCenter = ((i + 0.5) / N) * 100;
+      const row = rowOf(step);
+      return { x: colCenter, y: row * rowHeight + rowHeight / 2, row, col: i };
     }
-    return { x: VERTICAL_X, y: i * rowHeight + rowHeight / 2 };
+    return { x: 50, y: i * rowHeight + rowHeight / 2, row: i, col: 0 };
   });
 
-  return { orientation, hasLanes, laneCount, rowHeight, trackHeight, nodes };
+  // One "elbow" per step-to-step transition. Same lane => one horizontal
+  // bar. Lane change => horizontal run to the column boundary, a vertical
+  // drop/rise, then horizontal run into the next card. Every bar lives in a
+  // single axis's unit (% for horizontal runs, px for vertical runs).
+  const segments =
+    orientation === 'horizontal'
+      ? nodes.slice(0, -1).map((p, i) => {
+          const p2 = nodes[i + 1];
+          const boundaryX = ((i + 1) / N) * 100;
+          if (p.row === p2.row) {
+            return { from: i, bars: [{ kind: 'h', y: p.y, x1: p.x, x2: p2.x }] };
+          }
+          return {
+            from: i,
+            bars: [
+              { kind: 'h', y: p.y, x1: p.x, x2: boundaryX },
+              { kind: 'v', x: boundaryX, y1: p.y, y2: p2.y },
+              { kind: 'h', y: p2.y, x1: boundaryX, x2: p2.x },
+            ],
+          };
+        })
+      : [];
+
+  // Contiguous same-lane runs, for the vertical mode's stacked bands.
+  const laneRuns = [];
+  if (orientation === 'vertical' && hasLanes) {
+    let runStart = 0;
+    for (let i = 1; i <= N; i += 1) {
+      if (i === N || steps[i].lane !== steps[runStart].lane) {
+        laneRuns.push({ lane: steps[runStart].lane, startIndex: runStart, count: i - runStart });
+        runStart = i;
+      }
+    }
+  }
+
+  return { orientation, hasLanes, laneCount, rowHeight, trackHeight, nodes, segments, laneRuns };
 }
 
 function stepState(i, activeIndex) {
@@ -72,33 +173,82 @@ function stepState(i, activeIndex) {
   return 'future';
 }
 
-function DiagramLines({ nodes, activeIndex, trackHeight }) {
+function ConnectorLayer({ layout, activeIndex }) {
   return (
-    <svg className="wd-lines" viewBox={`0 0 100 ${trackHeight}`} preserveAspectRatio="none" aria-hidden="true">
-      {nodes.slice(0, -1).map((p, i) => {
-        const p2 = nodes[i + 1];
-        const len = Math.hypot(p2.x - p.x, p2.y - p.y) || 1;
-        const drawn = activeIndex > i;
-        return (
-          <g key={i}>
-            <line x1={p.x} y1={p.y} x2={p2.x} y2={p2.y} className="wd-line-track" vectorEffect="non-scaling-stroke" />
-            <line
-              x1={p.x}
-              y1={p.y}
-              x2={p2.x}
-              y2={p2.y}
-              className={cx('wd-line-draw', drawn && 'is-drawn')}
-              vectorEffect="non-scaling-stroke"
-              style={{ strokeDasharray: len, strokeDashoffset: drawn ? 0 : len }}
-            />
-          </g>
-        );
+    <div className="wd-conn-layer" aria-hidden="true">
+      {layout.segments.map((seg) => {
+        const drawn = activeIndex > seg.from;
+        return seg.bars.map((bar, bi) => {
+          const delay = `${bi * 110}ms`;
+          if (bar.kind === 'h') {
+            const left = Math.min(bar.x1, bar.x2);
+            const width = Math.abs(bar.x2 - bar.x1);
+            const origin = bar.x2 >= bar.x1 ? 'left' : 'right';
+            return (
+              <div
+                key={`${seg.from}-${bi}`}
+                className="wd-conn wd-conn-h"
+                style={{ top: bar.y, left: `${left}%`, width: `${width}%` }}
+              >
+                <div className="wd-conn-track" />
+                <div
+                  className={cx('wd-conn-fill', drawn && 'is-drawn')}
+                  style={{ transformOrigin: origin, transitionDelay: delay }}
+                />
+              </div>
+            );
+          }
+          const top = Math.min(bar.y1, bar.y2);
+          const height = Math.abs(bar.y2 - bar.y1);
+          const origin = bar.y2 >= bar.y1 ? 'top' : 'bottom';
+          return (
+            <div
+              key={`${seg.from}-${bi}`}
+              className="wd-conn wd-conn-v"
+              style={{ top, left: `${bar.x}%`, height }}
+            >
+              <div className="wd-conn-track" />
+              <div
+                className={cx('wd-conn-fill', drawn && 'is-drawn')}
+                style={{ transformOrigin: origin, transitionDelay: delay }}
+              />
+            </div>
+          );
+        });
       })}
-    </svg>
+    </div>
   );
 }
 
-function StepFlow({ steps, lanes }) {
+function StepCard({ step, i, state, uid, nodeRef, onClick, onKeyDown, orientation }) {
+  const Icon = getStepIcon(step);
+  return (
+    <button
+      ref={nodeRef}
+      type="button"
+      role="tab"
+      id={`wd-tab-${uid}-${i}`}
+      aria-selected={state === 'active'}
+      aria-controls={`wd-panel-${uid}`}
+      tabIndex={state === 'active' ? 0 : -1}
+      className={cx('wd-card', `is-${state}`, orientation === 'vertical' && 'is-vertical')}
+      onClick={onClick}
+      onKeyDown={onKeyDown}
+    >
+      <span className="wd-card-num-wrap">
+        <span className="wd-card-num">{step.n ?? i + 1}</span>
+        <ActorBadge actor={step.actor} />
+      </span>
+      <Icon className="wd-card-icon" size={16} aria-hidden="true" />
+      <span className="wd-card-body">
+        {orientation === 'vertical' && step.lane && <span className="wd-card-lane">{step.lane}</span>}
+        <span className="wd-card-label">{step.title}</span>
+      </span>
+    </button>
+  );
+}
+
+function StepFlow({ steps, lanes, reduceMotion }) {
   const uid = useId();
   const rootRef = useRef(null);
   const nodeRefs = useRef([]);
@@ -124,18 +274,22 @@ function StepFlow({ steps, lanes }) {
   }, []);
 
   useEffect(() => {
-    if (!hasEntered || isPaused) return undefined;
-    if (activeIndex >= steps.length - 1) return undefined;
+    if (reduceMotion || !hasEntered || isPaused) return undefined;
     const timer = setTimeout(() => {
-      setActiveIndex((i) => Math.min(i + 1, steps.length - 1));
+      setActiveIndex((i) => (i + 1) % steps.length);
     }, AUTO_ADVANCE_MS);
     return () => clearTimeout(timer);
-  }, [hasEntered, isPaused, activeIndex, steps.length]);
+  }, [reduceMotion, hasEntered, isPaused, activeIndex, steps.length]);
 
   const jumpTo = (index) => {
     const clamped = Math.max(0, Math.min(steps.length - 1, index));
     setIsPaused(true);
     setActiveIndex(clamped);
+  };
+
+  const replay = () => {
+    setActiveIndex(0);
+    setIsPaused(false);
   };
 
   const handleNodeKeyDown = (e, i) => {
@@ -154,84 +308,98 @@ function StepFlow({ steps, lanes }) {
   const activeStep = steps[activeIndex];
 
   return (
-    <div className="wd-diagram" ref={rootRef}>
+    <div className={cx('wd-diagram', reduceMotion && 'reduce-motion')} ref={rootRef}>
       {layout.orientation === 'horizontal' ? (
         <div className="wd-lanes-row horizontal">
           {layout.hasLanes && (
             <div className="wd-lane-labels">
-              {lanes.map((l) => (
-                <div key={l} className="wd-lane-label" style={{ height: layout.rowHeight }}>
+              {lanes.map((l, li) => (
+                <div
+                  key={l}
+                  className={cx('wd-lane-label', li % 2 === 1 && 'is-alt')}
+                  style={{ height: layout.rowHeight }}
+                >
                   {l}
                 </div>
               ))}
             </div>
           )}
           <div className="wd-track" style={{ height: layout.trackHeight }}>
-            <DiagramLines nodes={layout.nodes} activeIndex={activeIndex} trackHeight={layout.trackHeight} />
-            <div className="wd-tablist" role="tablist" aria-label="Workflow steps">
-              {steps.map((step, i) => {
-                const p = layout.nodes[i];
-                const state = stepState(i, activeIndex);
-                return (
-                  <div key={i} className="wd-node-pos" style={{ left: `${p.x}%`, top: `${p.y}px` }}>
-                    <button
-                      ref={(el) => (nodeRefs.current[i] = el)}
-                      type="button"
-                      role="tab"
-                      id={`wd-tab-${uid}-${i}`}
-                      aria-selected={i === activeIndex}
-                      aria-controls={`wd-panel-${uid}`}
-                      tabIndex={i === activeIndex ? 0 : -1}
-                      className={`wd-node is-${state}`}
-                      onClick={() => jumpTo(i)}
-                      onKeyDown={(e) => handleNodeKeyDown(e, i)}
-                    >
-                      <span className="wd-node-dot">{step.n ?? i + 1}</span>
-                      <span className="wd-node-title">{step.title}</span>
-                    </button>
-                  </div>
-                );
-              })}
+            {layout.hasLanes &&
+              Array.from({ length: layout.laneCount }).map((_, li) => (
+                <div
+                  key={li}
+                  className={cx('wd-band', li % 2 === 1 && 'is-alt')}
+                  style={{ top: li * layout.rowHeight, height: layout.rowHeight }}
+                />
+              ))}
+            <ConnectorLayer layout={layout} activeIndex={activeIndex} />
+            <div
+              className="wd-grid"
+              role="tablist"
+              aria-label="Workflow steps"
+              style={{
+                gridTemplateColumns: `repeat(${steps.length}, 1fr)`,
+                gridTemplateRows: `repeat(${layout.laneCount}, ${layout.rowHeight}px)`,
+              }}
+            >
+              {steps.map((step, i) => (
+                <div
+                  key={i}
+                  className="wd-card-cell"
+                  style={{ gridColumn: i + 1, gridRow: layout.nodes[i].row + 1 }}
+                >
+                  <StepCard
+                    step={step}
+                    i={i}
+                    state={stepState(i, activeIndex)}
+                    uid={uid}
+                    orientation="horizontal"
+                    nodeRef={(el) => (nodeRefs.current[i] = el)}
+                    onClick={() => jumpTo(i)}
+                    onKeyDown={(e) => handleNodeKeyDown(e, i)}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
       ) : (
-        <div className="wd-lanes-row vertical" style={{ height: layout.trackHeight }}>
-          <div className="wd-vertical-rail">
-            <DiagramLines nodes={layout.nodes} activeIndex={activeIndex} trackHeight={layout.trackHeight} />
-            {steps.map((step, i) => {
-              const p = layout.nodes[i];
-              const state = stepState(i, activeIndex);
-              return (
-                <span key={i} aria-hidden="true" className={`wd-rail-dot is-${state}`} style={{ top: `${p.y}px` }}>
-                  {step.n ?? i + 1}
-                </span>
-              );
-            })}
-          </div>
-          <div className="wd-vertical-steps" role="tablist" aria-label="Workflow steps">
-            {steps.map((step, i) => {
-              const state = stepState(i, activeIndex);
-              return (
-                <button
-                  key={i}
-                  ref={(el) => (nodeRefs.current[i] = el)}
-                  type="button"
-                  role="tab"
-                  id={`wd-tab-${uid}-${i}`}
-                  aria-selected={i === activeIndex}
-                  aria-controls={`wd-panel-${uid}`}
-                  tabIndex={i === activeIndex ? 0 : -1}
-                  className={`wd-node is-${state}`}
-                  style={{ height: layout.rowHeight }}
-                  onClick={() => jumpTo(i)}
-                  onKeyDown={(e) => handleNodeKeyDown(e, i)}
-                >
-                  {step.lane && <span className="wd-node-lane-tag">{step.lane}</span>}
-                  <span className="wd-node-title">{step.title}</span>
-                </button>
-              );
-            })}
+        <div className="wd-lanes-row vertical">
+          <div className="wd-vertical-track" style={{ height: layout.trackHeight }}>
+            {layout.laneRuns.map((run, ri) => (
+              <div
+                key={run.lane + run.startIndex}
+                className={cx('wd-band', 'is-vertical', ri % 2 === 1 && 'is-alt')}
+                style={{ top: run.startIndex * layout.rowHeight, height: run.count * layout.rowHeight }}
+              />
+            ))}
+            <div className="wd-vconn" style={{ top: layout.rowHeight / 2, height: layout.trackHeight - layout.rowHeight }}>
+              <div className="wd-conn-track" />
+              <div
+                className={cx('wd-conn-fill', 'is-drawn')}
+                style={{
+                  transformOrigin: 'top',
+                  transform: `scaleY(${steps.length > 1 ? activeIndex / (steps.length - 1) : 0})`,
+                }}
+              />
+            </div>
+            <div className="wd-vertical-steps" role="tablist" aria-label="Workflow steps">
+              {steps.map((step, i) => (
+                <div key={i} className="wd-vertical-step" style={{ height: layout.rowHeight }}>
+                  <StepCard
+                    step={step}
+                    i={i}
+                    state={stepState(i, activeIndex)}
+                    uid={uid}
+                    orientation="vertical"
+                    nodeRef={(el) => (nodeRefs.current[i] = el)}
+                    onClick={() => jumpTo(i)}
+                    onKeyDown={(e) => handleNodeKeyDown(e, i)}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -258,33 +426,22 @@ function StepFlow({ steps, lanes }) {
         >
           <ChevronRight size={18} />
         </button>
+        <button type="button" className="wd-nav-btn" onClick={replay} aria-label="Replay">
+          <RotateCcw size={16} />
+        </button>
       </div>
 
       <div className="wd-detail" role="tabpanel" id={`wd-panel-${uid}`} aria-labelledby={`wd-tab-${uid}-${activeIndex}`}>
         <div className="wd-detail-inner" key={activeIndex}>
           {activeStep.lane && <span className="wd-detail-lane">{activeStep.lane}</span>}
+          {ACTOR_META[activeStep.actor] && (
+            <span className="wd-detail-actor">{ACTOR_META[activeStep.actor].label}</span>
+          )}
           <h4 className="wd-detail-title">{activeStep.title}</h4>
           <p className="wd-detail-body">{activeStep.body}</p>
         </div>
       </div>
     </div>
-  );
-}
-
-function StaticStepList({ steps }) {
-  return (
-    <ol className="wd-static-list">
-      {steps.map((step, i) => (
-        <li key={i} className="wd-static-item">
-          <span className="wd-static-dot">{step.n ?? i + 1}</span>
-          <div className="wd-static-body">
-            {step.lane && <span className="wd-static-lane">{step.lane}</span>}
-            <h4 className="wd-static-title">{step.title}</h4>
-            <p className="wd-static-text">{step.body}</p>
-          </div>
-        </li>
-      ))}
-    </ol>
   );
 }
 
@@ -307,11 +464,7 @@ function VariantWorkflow({ lanes, variants, reduceMotion }) {
           </button>
         ))}
       </div>
-      {reduceMotion ? (
-        <StaticStepList steps={variants[active].steps} key={active} />
-      ) : (
-        <StepFlow steps={variants[active].steps} lanes={lanes} key={active} />
-      )}
+      <StepFlow steps={variants[active].steps} lanes={lanes} reduceMotion={reduceMotion} key={active} />
     </div>
   );
 }
@@ -418,11 +571,7 @@ export default function WorkflowDiagram({ workflow }) {
 
   return (
     <div className="wd-root">
-      {reduceMotion ? (
-        <StaticStepList steps={workflow.steps} />
-      ) : (
-        <StepFlow steps={workflow.steps} lanes={workflow.lanes} />
-      )}
+      <StepFlow steps={workflow.steps} lanes={workflow.lanes} reduceMotion={reduceMotion} />
     </div>
   );
 }

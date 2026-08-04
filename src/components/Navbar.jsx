@@ -191,7 +191,7 @@ export default function Navbar() {
                     position: 'absolute',
                     top: 'calc(100% + 14px)',
                     left: '-24px',
-                    width: '580px',
+                    width: '420px',
                     background: '#fff',
                     border: '1px solid var(--line)',
                     borderRadius: '12px',
@@ -204,28 +204,25 @@ export default function Navbar() {
                   }}
                 >
                   <div className="st-col">
-                    <h4>Use Case</h4>
-                    <Link to="/solutions/use-case/esignatures" onClick={closeMenus}>eSignatures</Link>
-                    <Link to="/solutions/use-case/approval-workflows" onClick={closeMenus}>Approval Workflows</Link>
-                    <Link to="/solutions/use-case/templates" onClick={closeMenus}>Templates</Link>
-                    <Link to="/solutions/use-case/bulk-sending" onClick={closeMenus}>Bulk Sending</Link>
-                    <Link to="/solutions/use-case" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>All use cases ›</Link>
+                    <h4>By Industry</h4>
+                    <Link to="/use-cases#construction" onClick={closeMenus}>Construction</Link>
+                    <Link to="/use-cases#real-estate" onClick={closeMenus}>Real Estate</Link>
+                    <Link to="/use-cases#property-management" onClick={closeMenus}>Property Management</Link>
+                    <Link to="/use-cases#corporate-governance" onClick={closeMenus}>Corporate Governance</Link>
+                    <Link to="/use-cases#sales-accounting" onClick={closeMenus}>Sales &amp; Accounting</Link>
+                    <Link to="/use-cases#manufacturing-qa" onClick={closeMenus}>Manufacturing &amp; QA</Link>
+                    <Link to="/use-cases#education" onClick={closeMenus}>Education</Link>
+                    <Link to="/use-cases#salesforce" onClick={closeMenus}>Salesforce</Link>
+                    <Link to="/use-cases" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>All industries ›</Link>
                   </div>
                   <div className="st-col">
-                    <h4>Industry</h4>
-                    <Link to="/solutions/industry/real-estate-relocation" onClick={closeMenus}>Real Estate &amp; Relocation</Link>
-                    <Link to="/solutions/industry/education" onClick={closeMenus}>Education</Link>
-                    <Link to="/solutions/industry/professional-services" onClick={closeMenus}>Professional Services</Link>
-                    <Link to="/solutions/industry/healthcare" onClick={closeMenus}>Healthcare</Link>
-                    <Link to="/solutions/industry" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>All industries ›</Link>
-                  </div>
-                  <div className="st-col">
-                    <h4>Team</h4>
-                    <Link to="/solutions/team/sales" onClick={closeMenus}>Sales</Link>
-                    <Link to="/solutions/team/hr" onClick={closeMenus}>HR</Link>
-                    <Link to="/solutions/team/legal" onClick={closeMenus}>Legal</Link>
-                    <Link to="/solutions/team/operations" onClick={closeMenus}>Operations</Link>
-                    <Link to="/solutions/team" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>All teams ›</Link>
+                    <h4>By Workflow</h4>
+                    <Link to="/use-cases#internal-approval" onClick={closeMenus}>Internal Approval</Link>
+                    <Link to="/use-cases#delegation" onClick={closeMenus}>Delegation</Link>
+                    <Link to="/use-cases#bulk-send" onClick={closeMenus}>Bulk Send</Link>
+                    <Link to="/use-cases#sms-signing" onClick={closeMenus}>SMS Signing</Link>
+                    <Link to="/use-cases#human-resources" onClick={closeMenus}>Human Resources</Link>
+                    <Link to="/use-cases" onClick={closeMenus} style={{ color: 'var(--coral)', fontWeight: 600 }}>All workflows ›</Link>
                   </div>
                 </div>
               )}
