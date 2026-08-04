@@ -1,0 +1,14 @@
+/* White cards sit on the deep surface here — var(--shadow-md/lg) are tuned
+   for light backgrounds and are nearly invisible against --surface-dark-deep,
+   so cards need a stronger dose of the same navy tint to read as lifted. */
+#features.ui-section .ui-card {
+  box-shadow:
+    0 4px 14px rgba(20, 50, 80, 0.45),
+    0 20px 48px rgba(20, 50, 80, 0.55);
+}
+
+#features.ui-section .ui-card--hover:hover {
+  box-shadow:
+    0 6px 18px rgba(20, 50, 80, 0.5),
+    0 28px 64px rgba(20, 50, 80, 0.65);
+}

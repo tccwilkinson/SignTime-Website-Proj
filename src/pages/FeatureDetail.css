@@ -1,0 +1,134 @@
+/* Rich content layout for approved-copy feature pages (intro / how it works /
+   who uses it / page-specific closing block). Falls back to the existing
+   inline-styled capabilities-list layout for feature pages without an intro. */
+
+.fd-rich {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.fd-rich-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.fd-rich-intro p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--slate);
+  margin: 0;
+}
+
+.fd-rich-heading {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  margin: 0 0 1.25rem;
+}
+
+.fd-rich-steps {
+  list-style: none;
+  counter-reset: fd-step;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.fd-rich-steps li {
+  counter-increment: fd-step;
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.fd-rich-steps li::before {
+  content: counter(fd-step);
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  background: var(--sky);
+  color: var(--navy);
+  font-size: 0.82rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fd-rich-callout {
+  background: #FAFBFD;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+}
+
+.fd-rich-callout-heading {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 0 0 0.75rem;
+}
+
+.fd-rich-callout-heading a {
+  color: var(--coral);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--accent-rgb), 0.35);
+  transition: border-color var(--transition-fast);
+}
+
+.fd-rich-callout-heading a:hover,
+.fd-rich-callout-heading a:focus-visible {
+  border-color: var(--coral);
+}
+
+.fd-rich-callout p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--slate);
+  margin: 0 0 0.75rem;
+}
+
+.fd-rich-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.fd-rich-audience {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 0;
+  margin: 0;
+}
+
+.fd-rich-audience li {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--slate);
+}
+
+.fd-rich-audience li strong {
+  color: var(--ink);
+}
+
+.fd-rich-closing {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+  margin: 0;
+}

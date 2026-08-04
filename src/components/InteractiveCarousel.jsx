@@ -77,7 +77,7 @@ export default function InteractiveCarousel({ onOpenDemo }) {
   ];
 
   return (
-    <Section id="carousel" variant="deep">
+    <Section id="carousel" variant="panel">
       <Reveal style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '24px', marginBottom: '36px', flexWrap: 'wrap' }}>
         <SectionHeader
           align="left"

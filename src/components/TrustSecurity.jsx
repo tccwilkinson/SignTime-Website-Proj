@@ -5,19 +5,20 @@ import Reveal from './Reveal';
 import Section from './ui/Section';
 import SectionHeader from './ui/SectionHeader';
 import Button from './ui/Button';
+import './TrustSecurity.css';
 
 const securityItems = [
-  { icon: <ShieldCheck size={32} color="#fff" />, bg: 'var(--navy)', title: 'ESIGN & UETA Compliant' },
+  { icon: <ShieldCheck size={32} color="#fff" />, bg: 'var(--navy-light)', title: 'ESIGN & UETA Compliant' },
   { icon: <Lock size={32} color="#fff" />, bg: 'var(--navy-light)', title: 'Multi-Factor Authentication' },
-  { icon: <FileText size={32} color="#fff" />, bg: 'var(--navy)', title: 'Full Audit Trail' },
+  { icon: <FileText size={32} color="#fff" />, bg: 'var(--navy-light)', title: 'Full Audit Trail' },
   { icon: <KeyRound size={32} color="#fff" />, bg: 'var(--navy-light)', title: 'Encrypted In Transit & At Rest' },
-  { icon: <UserCheck size={32} color="#fff" />, bg: 'var(--navy)', title: 'Role-Based Access Controls' },
+  { icon: <UserCheck size={32} color="#fff" />, bg: 'var(--navy-light)', title: 'Role-Based Access Controls' },
   { icon: <MailCheck size={32} color="#fff" />, bg: 'var(--navy-light)', title: 'Anti-Phishing Mail Routing' },
 ];
 
 export default function TrustSecurity() {
   return (
-    <Section id="security" variant="deep">
+    <Section id="security" variant="panel">
       <Reveal as="div" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '40px', marginBottom: '3.5rem', flexWrap: 'wrap' }}>
         <SectionHeader
           align="left"

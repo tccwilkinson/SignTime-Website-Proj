@@ -1,4 +1,5 @@
 import Hero from '../components/Hero';
+import WhyUnlimitedUsers from '../components/WhyUnlimitedUsers';
 import TrustSecurity from '../components/TrustSecurity';
 import EnterpriseFeatures from '../components/EnterpriseFeatures';
 import InteractiveCarousel from '../components/InteractiveCarousel';
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <>
       <Hero onOpenDemo={open} />
+      <WhyUnlimitedUsers />
       <ScrollReveal delay={100}>
         <TrustSecurity onOpenDemo={open} />
       </ScrollReveal>

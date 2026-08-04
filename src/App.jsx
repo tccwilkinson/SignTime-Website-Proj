@@ -39,6 +39,7 @@ import Terms from './pages/Terms';
 import FeatureDetail from './pages/FeatureDetail';
 import Login from './pages/Login';
 import ManualsSupport from './pages/ManualsSupport';
+import WorkflowPreview from './pages/_WorkflowPreview'; // TEMPORARY — Step 1 review only
 
 function PageRouteWrapper() {
   const location = useLocation();
@@ -115,6 +116,8 @@ function PageRouteWrapper() {
             <Route path="/terms" element={<Terms />} />
             <Route path="/legal" element={<PageStub title="Legal & Regulatory Notices" category="Legal & Compliance" />} />
             <Route path="/status" element={<PageStub title="System Operational Status" category="Infrastructure & Reliability" />} />
+
+            <Route path="/_workflow-preview" element={<WorkflowPreview />} /> {/* TEMPORARY — Step 1 review only */}
 
             <Route path="*" element={<PageStub title="Page Not Found" category="Navigation" />} />
           </Routes>

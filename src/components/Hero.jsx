@@ -113,7 +113,7 @@ export default function Hero({ onOpenDemo }) {
             maxWidth: 'var(--pagehero-subhead-max-width)'
           }}
         >
-          SignTime combines <strong>unlimited users</strong> with workflow automation — so your whole team can send, sign, and close agreements in minutes, without paying per seat.
+          <strong>Unlimited users, no per-seat pricing.</strong> Your whole team can send, sign, and close agreements in minutes — without paying for another seat.
         </p>
 
         {/* Buttons */}
@@ -135,7 +135,7 @@ export default function Hero({ onOpenDemo }) {
       </div>
 
       {/* Interactive App Mockup Showcase */}
-      <div id="hero-mockup-showcase" className="hero-mockup-wrapper" style={{ maxWidth: '1180px', margin: '0 auto', padding: '28px 1.5rem 0', overflow: 'hidden', position: 'relative' }}>
+      <div id="hero-mockup-showcase" className="hero-mockup-wrapper" style={{ maxWidth: '1180px', margin: '0 auto', padding: '28px 1.5rem 0', position: 'relative' }}>
 
         <div className="hero-trust-pill">
           <Lock size={14} /> Secure &amp; Legally Binding · ESIGN &amp; UETA Compliant · AES-256 Encrypted

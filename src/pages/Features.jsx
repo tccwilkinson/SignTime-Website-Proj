@@ -1,23 +1,25 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Send, ShieldCheck, ListOrdered, Stamp, PenTool, FileText, Type, FileSignature, GitBranch, Clock, FileLock2, Layers, Search, Tag, Share2, KeyRound, Users, Building2, Code2, Cloud, HardDrive } from 'lucide-react';
+import { ArrowRight, Send, ShieldCheck, ListOrdered, Stamp, PenTool, FileText, Type, FileSignature, GitBranch, Clock, FileLock2, Layers, Search, Tag, Share2, KeyRound, Users, Building2, Code2, Cloud, HardDrive, ArrowRightLeft } from 'lucide-react';
 import { useDemoModal } from '../context/DemoModalContext';
+import NotaryBlock from '../components/NotaryBlock';
 
 const sendAndSign = [
-  { id: 'sms', title: 'SMS Signature Requests', icon: <Send size={36} color="#fff" />, bgCollapsed: '#0D1730', textColor: '#fff', border: '1px solid rgba(255,255,255,0.15)', desc: "Send a signing link straight to a signer's phone — no email required, no app to install." },
-  { id: 'guarantor', title: 'Guarantor & Co-Signer Collection', icon: <ShieldCheck size={36} color="#fff" />, bgCollapsed: 'var(--coral)', textColor: '#fff', border: 'none', desc: "Signers enter their guarantor's contact info during signing, and the document is automatically routed to them — no chasing down co-signer details. Built for enrollment forms, leases, and HR onboarding." },
-  { id: 'sequencing', title: 'Signer Sequencing', icon: <ListOrdered size={36} color="var(--navy)" />, bgCollapsed: 'var(--sky)', textColor: 'var(--navy)', border: 'none', desc: 'Set the exact order signers complete a document, so approvals and countersignatures always happen in the right sequence.' },
-  { id: 'stamps', title: 'Stamps & Seals', icon: <Stamp size={36} color="#fff" />, bgCollapsed: '#0D1730', textColor: '#fff', border: '1px solid rgba(255,255,255,0.15)', desc: 'Create, upload, and apply digital stamps or corporate seals to any document — useful for notarized workflows and branded approvals.' },
-  { id: 'handwritten', title: 'Handwritten Signatures', icon: <PenTool size={36} color="#fff" />, bgCollapsed: 'var(--coral)', textColor: '#fff', border: 'none', desc: 'Sign with a finger, stylus, or mouse for a natural, handwritten look on any device.' },
-  { id: 'attachments', title: 'Secure Signer Attachments', icon: <FileText size={36} color="var(--navy)" />, bgCollapsed: 'var(--sky)', textColor: 'var(--navy)', border: 'none', desc: 'Collect supporting documents — photo IDs, POs, certificates — encrypted and attached directly in the signing flow.' },
-  { id: 'fonts', title: 'Custom Fonts', icon: <Type size={36} color="#fff" />, bgCollapsed: '#0D1730', textColor: '#fff', border: '1px solid rgba(255,255,255,0.15)', desc: "Specify font types and font sizes for text, date, and initial fields to match your document's format." },
-  { id: 'branding', title: 'Custom Branding', icon: <Building2 size={36} color="#fff" />, bgCollapsed: 'var(--coral)', textColor: '#fff', border: 'none', desc: 'Put your logo, domain, and sender name on every signature request, so signers see your brand, not ours.' },
+  { id: 'sms', slug: 'sms-signature-requests', title: 'SMS Signature Requests', icon: <Send size={36} color="#fff" />, bgCollapsed: '#0D1730', textColor: '#fff', border: '1px solid rgba(255,255,255,0.15)', desc: "For the signers who don't check email." },
+  { id: 'guarantor', slug: 'guarantor', title: 'Guarantor', icon: <ShieldCheck size={36} color="#fff" />, bgCollapsed: 'var(--coral)', textColor: '#fff', border: 'none', desc: "Get a signature from someone who wasn't in the original send." },
+  { id: 'delegation', slug: 'delegation', title: 'Delegation', icon: <ArrowRightLeft size={36} color="var(--navy)" />, bgCollapsed: 'var(--sky)', textColor: 'var(--navy)', border: 'none', desc: "You shouldn't need your client's org chart to close a deal." },
+  { id: 'sequencing', title: 'Signer Sequencing', icon: <ListOrdered size={36} color="#fff" />, bgCollapsed: '#0D1730', textColor: '#fff', border: '1px solid rgba(255,255,255,0.15)', desc: 'Set the exact order signers complete a document, so approvals and countersignatures always happen in the right sequence.' },
+  { id: 'stamps', title: 'Stamps & Seals', icon: <Stamp size={36} color="#fff" />, bgCollapsed: 'var(--coral)', textColor: '#fff', border: 'none', desc: 'Create, upload, and apply digital stamps or corporate seals to any document — useful for notarized workflows and branded approvals.' },
+  { id: 'handwritten', title: 'Handwritten Signatures', icon: <PenTool size={36} color="var(--navy)" />, bgCollapsed: 'var(--sky)', textColor: 'var(--navy)', border: 'none', desc: 'Sign with a finger, stylus, or mouse for a natural, handwritten look on any device.' },
+  { id: 'attachments', title: 'Secure Signer Attachments', icon: <FileText size={36} color="#fff" />, bgCollapsed: '#0D1730', textColor: '#fff', border: '1px solid rgba(255,255,255,0.15)', desc: 'Collect supporting documents — photo IDs, POs, certificates — encrypted and attached directly in the signing flow.' },
+  { id: 'fonts', title: 'Custom Fonts', icon: <Type size={36} color="#fff" />, bgCollapsed: 'var(--coral)', textColor: '#fff', border: 'none', desc: "Specify font types and font sizes for text, date, and initial fields to match your document's format." },
+  { id: 'branding', title: 'Custom Branding', icon: <Building2 size={36} color="var(--navy)" />, bgCollapsed: 'var(--sky)', textColor: 'var(--navy)', border: 'none', desc: 'Put your logo, domain, and sender name on every signature request, so signers see your brand, not ours.' },
 ];
 
 const automateWorkflows = [
-  { id: 'approval-routing', title: 'Internal Approval Routing', icon: <GitBranch size={36} color="#fff" />, bgCollapsed: '#0D1730', textColor: '#fff', border: '1px solid rgba(255,255,255,0.15)', desc: 'Route contracts to the right stakeholders for sign-off — automatically — before anything goes out for signature.' },
+  { id: 'approval-routing', slug: 'internal-approval-workflow', title: 'Internal Approval Workflow', icon: <GitBranch size={36} color="#fff" />, bgCollapsed: '#0D1730', textColor: '#fff', border: '1px solid rgba(255,255,255,0.15)', desc: 'Four eyes on every document before it leaves your company.' },
   { id: 'expiration', title: 'Signature Expiration Dates', icon: <Clock size={36} color="#fff" />, bgCollapsed: 'var(--coral)', textColor: '#fff', border: 'none', desc: 'Set a deadline for signing, so stale requests expire automatically instead of sitting open indefinitely.' },
   { id: 'templates', title: 'Reusable Templates', icon: <FileSignature size={36} color="var(--navy)" />, bgCollapsed: 'var(--sky)', textColor: 'var(--navy)', border: 'none', desc: "Turn your most-used documents into templates and send a signature request in under a minute." },
-  { id: 'bulk-send', title: 'Bulk Sending', icon: <Send size={36} color="#fff" />, bgCollapsed: '#0D1730', textColor: '#fff', border: '1px solid rgba(255,255,255,0.15)', desc: 'Send a document to hundreds of signers at once with a single CSV upload — no manual entry required.' },
+  { id: 'bulk-send', slug: 'bulk-send', title: 'Bulk Send', icon: <Send size={36} color="#fff" />, bgCollapsed: '#0D1730', textColor: '#fff', border: '1px solid rgba(255,255,255,0.15)', desc: 'One CSV. Hundreds of personalized agreements. One click.' },
 ];
 
 const stayCompliant = [
@@ -52,39 +54,46 @@ function CategorySection({ id, eyebrow, heading, description, items, background 
           <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: 'var(--slate)' }}>{description}</p>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
-          {items.map((item, idx) => (
-            <div
-              key={item.id}
-              className={`hover-card cute-card-hover st-subpage-card-${(idx % 4) + 1}`}
-              style={{
-                background: '#fff',
-                border: '1px solid var(--line)',
-                borderRadius: 'var(--radius-lg)',
-                padding: '28px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '14px',
-              }}
-            >
-              <div
-                className="cute-icon-spin"
+          {items.map((item, idx) => {
+            const CardTag = item.slug ? Link : 'div';
+            const cardProps = item.slug ? { to: `/features/${item.slug}` } : {};
+
+            return (
+              <CardTag
+                key={item.id}
+                {...cardProps}
+                className={`hover-card cute-card-hover st-subpage-card-${(idx % 4) + 1}`}
                 style={{
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: 'var(--radius-md)',
-                  background: item.bgCollapsed,
+                  background: '#fff',
+                  border: '1px solid var(--line)',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: '28px',
                   display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
+                  flexDirection: 'column',
+                  gap: '14px',
+                  textDecoration: 'none',
                 }}
               >
-                {item.icon}
-              </div>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--navy)', margin: 0 }}>{item.title}</h3>
-              <p style={{ fontSize: '0.92rem', lineHeight: 1.6, color: 'var(--slate)', margin: 0 }}>{item.desc}</p>
-            </div>
-          ))}
+                <div
+                  className="cute-icon-spin"
+                  style={{
+                    width: '56px',
+                    height: '56px',
+                    borderRadius: 'var(--radius-md)',
+                    background: item.bgCollapsed,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}
+                >
+                  {item.icon}
+                </div>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--navy)', margin: 0 }}>{item.title}</h3>
+                <p style={{ fontSize: '0.92rem', lineHeight: 1.6, color: 'var(--slate)', margin: 0 }}>{item.desc}</p>
+              </CardTag>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -163,6 +172,8 @@ export default function Features() {
         items={connectYourTools}
         background="var(--sky)"
       />
+
+      <NotaryBlock />
 
       {/* Closing CTA */}
       <section style={{ background: 'var(--navy)', padding: '4.5rem 0' }}>

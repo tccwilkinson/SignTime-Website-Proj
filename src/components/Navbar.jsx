@@ -123,7 +123,8 @@ export default function Navbar() {
                   <div className="st-col">
                     <h4>Signing &amp; Verification</h4>
                     <Link to="/features/signer-sequencing" onClick={closeMenus}>Signer Sequencing</Link>
-                    <Link to="/features/guarantor-feature" onClick={closeMenus}>Guarantor Feature</Link>
+                    <Link to="/features/guarantor" onClick={closeMenus}>Guarantor</Link>
+                    <Link to="/features/delegation" onClick={closeMenus}>Delegation</Link>
                     <Link to="/features/pades-long-term-signature" onClick={closeMenus}>Long-Term Signature (PAdES)</Link>
                     <Link to="/features/signature-certificates" onClick={closeMenus}>Signature Certificates</Link>
                     <Link to="/features/handwritten-signatures" onClick={closeMenus}>Handwritten Signatures</Link>
@@ -131,9 +132,9 @@ export default function Navbar() {
                   </div>
                   <div className="st-col">
                     <h4>Workflow Automation</h4>
-                    <Link to="/features/internal-approval-workflows" onClick={closeMenus}>Internal Approval Workflows</Link>
+                    <Link to="/features/internal-approval-workflow" onClick={closeMenus}>Internal Approval Workflow</Link>
                     <Link to="/features/templates-management" onClick={closeMenus}>Create &amp; Manage Templates</Link>
-                    <Link to="/features/bulk-sending-documents" onClick={closeMenus}>Bulk Sending Documents</Link>
+                    <Link to="/features/bulk-send" onClick={closeMenus}>Bulk Send</Link>
                     <Link to="/features/document-attachments" onClick={closeMenus}>Attachments</Link>
                   </div>
                   <div className="st-col">

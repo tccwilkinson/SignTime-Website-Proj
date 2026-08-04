@@ -512,13 +512,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-mockup-wrapper {
-  max-height: clamp(380px, 45vw, 460px);
-}
-
-@media (max-width: 640px) {
-  .hero-mockup-wrapper {
-    max-height: 720px;
-  }
+  max-height: none;
 }
 
 .hero-trust-pill {

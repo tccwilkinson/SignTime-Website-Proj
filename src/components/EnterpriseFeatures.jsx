@@ -5,6 +5,7 @@ import Section from './ui/Section';
 import SectionHeader from './ui/SectionHeader';
 import Card from './ui/Card';
 import Button from './ui/Button';
+import './EnterpriseFeatures.css';
 
 export default function EnterpriseFeatures({ onOpenDemo }) {
   const cards = [
@@ -47,7 +48,7 @@ export default function EnterpriseFeatures({ onOpenDemo }) {
   ];
 
   return (
-    <Section id="features" variant="panel">
+    <Section id="features" variant="deep">
       <Reveal>
         <SectionHeader
           eyebrow="Enterprise Platform"

@@ -5,11 +5,11 @@ import ComplianceGrid from '../components/ComplianceGrid';
 import TodoFlag from '../components/TodoFlag';
 
 const coreProtections = [
-  { icon: <ShieldCheck size={32} color="#fff" />, bg: 'var(--navy)', title: 'ESIGN & UETA Compliant' },
+  { icon: <ShieldCheck size={32} color="#fff" />, bg: 'var(--coral)', title: 'ESIGN & UETA Compliant' },
   { icon: <Lock size={32} color="#fff" />, bg: 'var(--coral)', title: 'Multi-Factor Authentication' },
-  { icon: <FileText size={32} color="#fff" />, bg: 'var(--navy)', title: 'Full Audit Trail' },
+  { icon: <FileText size={32} color="#fff" />, bg: 'var(--coral)', title: 'Full Audit Trail' },
   { icon: <KeyRound size={32} color="#fff" />, bg: 'var(--coral)', title: 'Encrypted In Transit & At Rest' },
-  { icon: <UserCheck size={32} color="#fff" />, bg: 'var(--navy)', title: 'Role-Based Access Controls' },
+  { icon: <UserCheck size={32} color="#fff" />, bg: 'var(--coral)', title: 'Role-Based Access Controls' },
   { icon: <MailCheck size={32} color="#fff" />, bg: 'var(--coral)', title: 'Anti-Phishing Mail Routing' },
 ];
 

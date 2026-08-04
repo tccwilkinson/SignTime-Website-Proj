@@ -1,0 +1,3 @@
+#security.ui-section {
+  padding-top: calc(var(--section-y) / 2);
+}

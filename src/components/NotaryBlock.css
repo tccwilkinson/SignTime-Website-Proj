@@ -1,0 +1,21 @@
+.notary-body {
+  max-width: var(--sh-max-width);
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.notary-body p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--sec-fg-muted);
+  margin: 0;
+}
+
+.notary-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}

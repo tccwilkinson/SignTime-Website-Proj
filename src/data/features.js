@@ -103,21 +103,26 @@ export const featureContent = {
 
   'sms-signature-requests': {
     title: 'SMS Signature Requests',
-    subhead:
-      'Deliver signature requests by text message instead of email, so signers get them instantly — no inbox clutter, no missed notifications.',
-    bullets: [
-      {
-        title: 'Instant Delivery',
-        desc: "Send a signing link straight to a signer's phone with a single click — no email required, no app to install."
-      },
-      {
-        title: 'Faster Completion',
-        desc: 'Text messages get opened far faster than email, which means signature requests get completed faster too.'
-      },
-      {
-        title: 'International-Ready',
-        desc: "Supports delivery to international phone numbers, so you can reach signers wherever they're located."
-      }
+    tagline: "For the signers who don't check email.",
+    intro: [
+      "Some of the people you need a signature from don't have a work email address. Some have one and never open it. Some are on a job site, in a truck, or on a shop floor — nowhere near a desk.",
+      'Send the signature request to their phone instead.'
+    ],
+    howItWorks: [
+      'Choose SMS instead of email when you send. No email address required.',
+      'The signer receives a secure document link as a text message.',
+      'They review and sign on the phone. No app, no account, no download.'
+    ],
+    calloutBeforeWhoUsesIt: {
+      heading: 'Why it closes faster',
+      body: 'People see texts. Email waits for the next time someone sits down at a computer; a text is read within minutes of arriving.',
+      flaggedBody: 'In practice, SMS requests close dramatically faster than email requests.'
+    },
+    whoUsesIt: [
+      { label: 'Construction and field services', desc: '— crews and subcontractors who are never at a desk' },
+      { label: 'Hospitality and events', desc: '— reservation and cancellation agreements signed on the spot' },
+      { label: 'Property management', desc: '— residents signing applications and renewals' },
+      { label: 'Retail and franchise', desc: '— staff agreements across distributed locations' }
     ]
   },
 
@@ -397,6 +402,107 @@ export const featureContent = {
         title: 'Built for Sales Teams',
         desc: "Ideal for teams that already run their entire pipeline through Salesforce and don't want to manage a second system."
       }
+    ]
+  },
+
+  guarantor: {
+    title: 'Guarantor',
+    tagline: "Get a signature from someone who wasn't in the original send.",
+    intro: [
+      "Some agreements need a signature you didn't plan for. A co-signer. A guarantor. A spouse who has to sign alongside the applicant. Traditionally that means cancelling the send, rebuilding the document, and starting over.",
+      'SignTime routes to them directly — without restarting anything.'
+    ],
+    howItWorks: [
+      'Send the agreement to your primary signer as usual.',
+      'If a guarantor or co-signer is required, the signer routes it to them from within the same document.',
+      'The guarantor signs. The agreement completes with every party recorded in one audit trail.'
+    ],
+    whoUsesIt: [
+      { label: 'Residential leasing', desc: '— co-signers and guarantors on rental applications' },
+      { label: 'Higher education', desc: '— parent or sponsor signatures on student agreements' },
+      { label: 'Senior and healthcare services', desc: '— family member signatures on care agreements' },
+      { label: 'Any consumer agreement', desc: "where a second party's signature is conditional" }
+    ],
+    scenario: {
+      heading: 'The scenario',
+      body: "A couple relocating to a new city both need to sign the lease. They're not in the same place, and coordinating a day when both can be in the leasing office is the single biggest delay in the process. With guarantor routing, the applicant signs, routes to their partner, and the lease closes the same afternoon."
+    },
+    closingLine: 'Built for an agreement that needed a signature nobody planned for. Now standard on every SignTime plan.'
+  },
+
+  delegation: {
+    title: 'Delegation',
+    tagline: "You shouldn't need your client's org chart to close a deal.",
+    intro: [
+      "You send the agreement to the person you actually know at the account. Half the time, they're not the person who can sign for the company.",
+      'What normally happens next is an email chain: "Sorry, I can\'t sign this — send it to my director." Now you\'re rebuilding the send, guessing at an email address, and starting the clock over.',
+      'Delegation removes that entirely. Your contact passes the document to whoever has signing authority, in one click, without you ever needing to know who that is.'
+    ],
+    howItWorks: [
+      'Send to your contact at the account.',
+      'They review the document and confirm the details are correct.',
+      "If they can't sign for the company, they delegate it internally to the person who can.",
+      'The authorized signer signs. The full chain — who received it, who delegated, who signed — is recorded in the audit trail.'
+    ],
+    whoUsesIt: [
+      { label: 'Sales teams', desc: "closing agreements at accounts where the contact isn't the signer" },
+      { label: 'Construction and trades', desc: 'routing subcontract agreements to an owner or officer' },
+      { label: 'Professional services', desc: 'where approval sits above the day-to-day relationship' },
+      { label: 'Any B2B agreement', desc: 'crossing an unfamiliar org structure' }
+    ],
+    combinedWith: {
+      linkTo: '/features/guarantor',
+      linkLabel: 'guarantor',
+      body: 'Delegation and guarantor together handle agreement routing that no other e-signature platform can complete in a single flow — internal handoffs and external additions, in the same document, with one audit trail.'
+    }
+  },
+
+  'internal-approval-workflow': {
+    title: 'Internal Approval Workflow',
+    tagline: 'Four eyes on every document before it leaves your company.',
+    intro: [
+      "It's hard to catch a mistake in your own work. You've read the quote four times; you'll read the typo right past it a fifth.",
+      'Internal approval puts a second reader in front of every document before a client ever sees it — so they read $117, not $17.'
+    ],
+    howItWorks: [
+      'Prepare the document and name your approvers.',
+      'Approvers review — simultaneously or in sequence, however your team works. Any of them can reject and return it.',
+      'Only once approved does the signature request go out to the client.'
+    ],
+    calloutBeforeWhoUsesIt: {
+      heading: 'Worth knowing',
+      body: "Documents waiting on internal approval don't count toward your monthly send volume. Review costs you nothing."
+    },
+    whoUsesIt: [
+      { label: 'Sales operations', desc: 'reviewing pricing and terms before they reach a prospect' },
+      { label: 'Finance', desc: 'approving purchase orders and vendor agreements' },
+      { label: 'Legal', desc: 'reviewing contract language before external release' },
+      { label: 'Any team', desc: 'where a mistake in an outbound document is expensive to walk back' }
+    ]
+  },
+
+  'bulk-send': {
+    title: 'Bulk Send',
+    tagline: 'One CSV. Hundreds of personalized agreements. One click.',
+    intro: [
+      "When the same agreement goes to a hundred people with different details on each one, sending them individually isn't a workflow — it's a week.",
+      'Import a CSV against your template and send every one of them at once, each personalized.'
+    ],
+    howItWorks: [
+      'Build the agreement once as a template, with custom fields for the details that change.',
+      'Import your recipient list as a CSV. Fields populate automatically for every recipient.',
+      'Send. Every person receives their own personalized document.',
+      'Track who has signed from one view, and remind by email or SMS.'
+    ],
+    calloutBeforeWhoUsesIt: {
+      heading: 'A detail that saves real time',
+      body: 'If a field appears four times in your document, sending from the interface means entering it four times. Sending from a CSV means entering it once — SignTime populates every instance.'
+    },
+    whoUsesIt: [
+      { label: 'Higher education', desc: '— instructor and adjunct agreements each term' },
+      { label: 'HR', desc: '— onboarding packets and annual policy acknowledgements' },
+      { label: 'Property management', desc: '— renewals across a portfolio' },
+      { label: 'Franchise operations', desc: '— agreements across locations' }
     ]
   },
 

@@ -226,6 +226,7 @@ export default function FlipCardCarousel({ items, cardWidth = 270, cardHeight = 
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
+                  borderRadius: 'inherit',
                   background: '#0D1730',
                   border: '1px solid var(--coral)',
                   opacity: isOpen ? 1 : 0,
