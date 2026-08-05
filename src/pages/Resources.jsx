@@ -55,9 +55,9 @@ export default function Resources() {
             Guides on workflow automation, e-signature best practices, compliance, and industry-specific playbooks.
           </p>
           <div className="st-subpage-subhead">
-            <button onClick={open} className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px' }}>
+            <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
               Start Free Trial — No Credit Card Required <ArrowRight size={16} className="hero-cta-arrow" />
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -98,9 +98,9 @@ export default function Resources() {
           <h2 style={{ color: '#fff', fontSize: 'clamp(1.6rem, 3vw, 2rem)', fontWeight: 800, marginBottom: '1rem' }}>
             Unlimited users. One flat price.
           </h2>
-          <button onClick={open} className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px' }}>
+          <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
             Start Free Trial — No Credit Card Required <ArrowRight size={16} />
-          </button>
+          </a>
         </div>
       </section>
     </>

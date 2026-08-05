@@ -46,7 +46,7 @@ export default function Footer() {
               <li><Link to="/features" className="f-link">All Features</Link></li>
               <li><Link to="/pricing" className="f-link">Pricing</Link></li>
               <li><Link to="/integrations" className="f-link">Integrations</Link></li>
-              <li><Link to="/security" className="f-link">Security & Compliance</Link></li>
+              <li><Link to="/security" className="f-link">Security &amp; Compliance</Link></li>
               <li><Link to="/partners" className="f-link">Partner Program</Link></li>
             </ul>
           </div>
@@ -55,10 +55,10 @@ export default function Footer() {
           <div>
             <h4 style={{ color: '#fff', fontSize: '0.95rem', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Solutions</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.9rem' }}>
-              <li><Link to="/solutions/industry/real-estate-relocation" className="f-link">Real Estate & Relocation</Link></li>
-              <li><Link to="/solutions/industry/education" className="f-link">Education & Schools</Link></li>
-              <li><Link to="/solutions/industry/healthcare" className="f-link">Healthcare</Link></li>
-              <li><Link to="/solutions/team/sales" className="f-link">Sales & Legal Teams</Link></li>
+              <li><Link to="/solutions/use-case" className="f-link">By Workflow</Link></li>
+              <li><Link to="/solutions/industry/real-estate-relocation" className="f-link">Real Estate</Link></li>
+              <li><Link to="/solutions/team/sales" className="f-link">Sales &amp; Accounting</Link></li>
+              <li><Link to="/solutions/industry/education" className="f-link">Education</Link></li>
             </ul>
           </div>
 
@@ -66,10 +66,10 @@ export default function Footer() {
           <div>
             <h4 style={{ color: '#fff', fontSize: '0.95rem', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Resources</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.9rem' }}>
+              <li><Link to="/resources" className="f-link">Learn</Link></li>
+              <li><Link to="/news" className="f-link">News &amp; Updates</Link></li>
+              <li><Link to="/resources" className="f-link">Blog</Link></li>
               <li><Link to="/customers" className="f-link">Customer Success Stories</Link></li>
-              <li><Link to="/resources" className="f-link">Blog & Guides</Link></li>
-              <li><Link to="/news" className="f-link">News & Updates</Link></li>
-              <li><Link to="/features" className="f-link">SignTime vs. DocuSign vs. PandaDoc</Link></li>
             </ul>
           </div>
 
@@ -78,7 +78,6 @@ export default function Footer() {
             <h4 style={{ color: '#fff', fontSize: '0.95rem', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Company</h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.9rem' }}>
               <li><a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" className="f-link">Contact Us</a></li>
-              <li><Link to="/security" className="f-link">ESIGN &amp; UETA Compliance</Link></li>
               <li><Link to="/privacy" className="f-link">Privacy Policy</Link></li>
               <li><Link to="/terms" className="f-link">Terms of Service</Link></li>
             </ul>

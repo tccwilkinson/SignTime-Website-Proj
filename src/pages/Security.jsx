@@ -77,12 +77,12 @@ export default function Security() {
             SignTime signatures comply with the U.S. ESIGN Act and state UETA statutes. Every signature is protected by multi-factor authentication, encrypted in transit and at rest, and backed by a complete, timestamped audit trail — for unlimited users, at one flat price.
           </p>
           <div className="st-subpage-subhead" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-            <button onClick={open} className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px' }}>
+            <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
               Start Free Trial — No Credit Card Required <ArrowRight size={18} className="hero-cta-arrow" />
-            </button>
-            <Link to="/contact" className="btn btn-outline-navy" style={{ padding: '16px 32px', fontSize: '15px' }}>
-              Book a 15-Minute Demo
-            </Link>
+            </a>
+            <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" className="btn btn-outline-navy" style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none' }}>
+              Contact Us Today
+            </a>
           </div>
         </div>
       </section>
@@ -196,12 +196,12 @@ export default function Security() {
             Every SignTime plan — unlimited users, one flat price — includes the full security foundation above.
           </p>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-            <button onClick={open} className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px' }}>
+            <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
               Start Free Trial — No Credit Card Required <ArrowRight size={18} />
-            </button>
-            <Link to="/contact" className="btn btn-outline-navy" style={{ padding: '16px 32px', fontSize: '15px', color: '#fff', borderColor: 'rgba(255,255,255,0.3)' }}>
-              Book a 15-Minute Demo
-            </Link>
+            </a>
+            <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" className="btn btn-outline-navy" style={{ padding: '16px 32px', fontSize: '15px', color: '#fff', borderColor: 'rgba(255,255,255,0.3)', textDecoration: 'none' }}>
+              Contact Us Today
+            </a>
           </div>
         </div>
       </section>

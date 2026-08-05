@@ -51,9 +51,9 @@ export default function News() {
             Press releases, company news, and product updates — all in one place.
           </p>
           <div className="st-subpage-subhead">
-            <button onClick={open} className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px' }}>
+            <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
               Start Free Trial — No Credit Card Required <ArrowRight size={16} className="hero-cta-arrow" />
-            </button>
+            </a>
           </div>
         </div>
       </section>

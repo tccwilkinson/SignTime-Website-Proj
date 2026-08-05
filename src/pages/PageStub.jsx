@@ -101,7 +101,7 @@ export default function PageStub({ title = 'Draft Page', category = 'Information
               <Link to="/features" className="btn btn-outline-navy" style={{ padding: '8px 18px', fontSize: '13px' }}>Explore Features</Link>
               <Link to="/pricing" className="btn btn-outline-navy" style={{ padding: '8px 18px', fontSize: '13px' }}>View Pricing</Link>
               <Link to="/security" className="btn btn-outline-navy" style={{ padding: '8px 18px', fontSize: '13px' }}>Security &amp; Compliance</Link>
-              <Link to="/contact" className="btn btn-outline-navy" style={{ padding: '8px 18px', fontSize: '13px' }}>Contact Support</Link>
+              <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" className="btn btn-outline-navy" style={{ padding: '8px 18px', fontSize: '13px', textDecoration: 'none' }}>Contact Support</a>
             </div>
           </div>
 

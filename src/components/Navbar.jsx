@@ -24,9 +24,9 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isHome]);
 
-  const navTextColor = isHome ? 'var(--text-inverse)' : '#fff';
-  const navMutedColor = isHome ? 'var(--text-inverse-muted)' : '#9BAAC7';
-  const navActiveColor = isHome ? '#fff' : 'var(--coral)';
+  const navTextColor = '#fff';
+  const navMutedColor = '#9BAAC7';
+  const navActiveColor = 'var(--coral)';
 
   // Click outside to close dropdown
   useEffect(() => {
@@ -49,22 +49,16 @@ export default function Navbar() {
   };
 
   return (
-    <div ref={navRef} style={isHome ? { position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100 } : { position: 'sticky', top: 0, zIndex: 100 }}>
+    <div ref={navRef} style={{ position: 'sticky', top: 0, zIndex: 100 }}>
       <nav
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '16px 40px',
-          background: isHome
-            ? (scrolled ? 'rgba(var(--surface-dark-deep-rgb), 0.82)' : 'transparent')
-            : 'var(--navy)',
-          backdropFilter: isHome && scrolled ? 'blur(12px)' : 'none',
-          WebkitBackdropFilter: isHome && scrolled ? 'blur(12px)' : 'none',
-          boxShadow: isHome
-            ? 'none'
-            : (scrolled ? '0 10px 30px rgba(20, 33, 62, 0.35)' : '0 2px 24px rgba(20, 33, 62, 0.25)'),
-          transition: 'background 200ms ease, backdrop-filter 200ms ease, box-shadow 0.3s ease'
+          background: 'var(--navy)',
+          boxShadow: scrolled ? '0 10px 30px rgba(20, 33, 62, 0.35)' : '0 2px 24px rgba(20, 33, 62, 0.25)',
+          transition: 'box-shadow 0.3s ease'
         }}
       >
         {/* Left Brand & Menu Links */}

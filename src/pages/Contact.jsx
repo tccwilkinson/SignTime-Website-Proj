@@ -1,27 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowRight, ArrowLeft, CheckCircle, Phone } from 'lucide-react';
 
 const steps = ['Your Info', 'A Few Details', 'Schedule'];
 
-const inputStyle = {
-  width: '100%',
-  padding: '0.75rem 1rem',
-  border: '1px solid var(--line)',
-  borderRadius: 'var(--radius-sm)',
-  fontSize: '0.95rem',
-  color: 'var(--ink)',
-  outline: 'none',
-};
-
-const labelStyle = {
-  fontSize: '0.85rem',
-  fontWeight: 600,
-  color: 'var(--navy)',
-  display: 'block',
-  marginBottom: '0.4rem',
-};
-
 export default function Contact() {
+  useEffect(() => {
+    window.location.href = 'https://support.signtime.com/hc/en-us/requests/new';
+  }, []);
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
@@ -53,7 +38,7 @@ export default function Contact() {
             <span className="badge-sky cute-badge-pulse">Onboarding &amp; Sales</span>
           </div>
           <h1 className="st-subpage-title" style={{ fontSize: 'clamp(2rem, 4vw, 2.6rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.8rem', letterSpacing: '-0.02em' }}>
-            Book a 15-Minute Demo
+            Contact Us Today
           </h1>
           <p className="st-subpage-subhead" style={{ fontSize: '1.05rem', color: 'var(--slate)' }}>
             See how unlimited users at one flat price works for your team — no pressure, no commitment.

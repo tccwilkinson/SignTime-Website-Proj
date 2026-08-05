@@ -20,9 +20,15 @@ export default function NotaryBlock() {
         </div>
 
         <div className="notary-cta">
-          <Button variant="secondary" to="/contact">
+          <a
+            href="https://support.signtime.com/hc/en-us/requests/new"
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-navy"
+            style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none', display: 'inline-block' }}
+          >
             Talk to us about notary
-          </Button>
+          </a>
         </div>
       </Reveal>
     </Section>

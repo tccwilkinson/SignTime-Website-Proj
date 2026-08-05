@@ -41,12 +41,12 @@ export default function Partners() {
             White-label and OEM partners use SignTime's signing, workflow, and API infrastructure to power products they sell under their own brand.
           </p>
           <div className="st-subpage-subhead" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-            <button onClick={open} className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px' }}>
+            <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
               Start Free Trial — No Credit Card Required <ArrowRight size={18} className="hero-cta-arrow" />
-            </button>
-            <Link to="/contact" className="btn btn-outline-navy" style={{ padding: '16px 32px', fontSize: '15px' }}>
+            </a>
+            <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" className="btn btn-outline-navy" style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none' }}>
               Talk to Our Partnerships Team
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -108,9 +108,9 @@ export default function Partners() {
           <p style={{ color: '#9BAAC7', fontSize: '1.05rem', marginBottom: '2rem' }}>
             Let's talk about what a white-label or OEM partnership with SignTime could look like.
           </p>
-          <Link to="/contact" className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px', display: 'inline-flex' }}>
+          <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px', display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
             Talk to Our Partnerships Team <ArrowRight size={18} />
-          </Link>
+          </a>
         </div>
       </section>
     </>

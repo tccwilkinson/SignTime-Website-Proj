@@ -38,10 +38,11 @@ export default function Pricing() {
   // Section toggle state
   const [sectionsOpen, setSectionsOpen] = useState({
     forSigners: true,
+    documentManagement: false,
+    accessControl: false,
     security: false,
     customBranding: false,
     systemIntegration: false,
-    scannerStorage: false,
   });
 
   const toggleSection = (key) => {
@@ -51,10 +52,11 @@ export default function Pricing() {
   const setAllSections = (isOpen) => {
     setSectionsOpen({
       forSigners: isOpen,
+      documentManagement: isOpen,
+      accessControl: isOpen,
       security: isOpen,
       customBranding: isOpen,
       systemIntegration: isOpen,
-      scannerStorage: isOpen,
     });
   };
 
@@ -378,7 +380,7 @@ export default function Pricing() {
                   </div>
 
                   <a
-                    href={tier.cta.kind === 'demo' ? 'https://app.signtime.com/register' : 'https://app.spirinc.com/t/HPmpyrOr23Q6FzsvpKMzl/as/xzemB6rMWXD2Ig4tbNUM4/confirm-guest?utm_source=price&utm_medium=spir&utm_campaign=salesforce'}
+                    href={tier.cta.kind === 'demo' ? 'https://app.signtime.com/register' : 'https://support.signtime.com/hc/en-us/requests/new'}
                     {...(tier.cta.kind === 'contact' ? { target: '_blank', rel: 'noreferrer' } : {})}
                     className="btn btn-coral"
                     style={{ width: '100%', padding: '10px', marginBottom: '1.2rem', fontSize: '0.88rem', textDecoration: 'none', textAlign: 'center', display: 'block' }}
@@ -437,6 +439,20 @@ export default function Pricing() {
                 </tr>
               </thead>
               <tbody>
+
+                {/* Top Summary Rows */}
+                <tr style={{ borderBottom: '1px solid var(--line)', background: '#FAFBFD' }}>
+                  <td style={{ padding: '10px 16px', fontWeight: 700, fontSize: '0.88rem', color: 'var(--navy)' }}>Users</td>
+                  <td style={{ padding: '10px 16px', textAlign: 'center', fontWeight: 700, fontSize: '0.88rem', color: 'var(--navy)' }}>Unlimited</td>
+                  <td style={{ padding: '10px 16px', textAlign: 'center', fontWeight: 700, fontSize: '0.88rem', color: 'var(--navy)' }}>Unlimited</td>
+                  <td style={{ padding: '10px 16px', textAlign: 'center', fontWeight: 700, fontSize: '0.88rem', color: 'var(--navy)' }}>Unlimited</td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid var(--line)', background: '#FAFBFD' }}>
+                  <td style={{ padding: '10px 16px', fontWeight: 700, fontSize: '0.88rem', color: 'var(--navy)' }}>Signature Sends</td>
+                  <td style={{ padding: '10px 16px', textAlign: 'center', fontWeight: 700, fontSize: '0.88rem', color: 'var(--navy)' }}>Unlimited</td>
+                  <td style={{ padding: '10px 16px', textAlign: 'center', fontWeight: 700, fontSize: '0.88rem', color: 'var(--navy)' }}>Unlimited</td>
+                  <td style={{ padding: '10px 16px', textAlign: 'center', fontWeight: 700, fontSize: '0.88rem', color: 'var(--navy)' }}>Unlimited</td>
+                </tr>
 
                 {/* Section 1: For Signers */}
                 <tr style={{ background: '#EAF2FC', cursor: 'pointer' }} onClick={() => toggleSection('forSigners')}>
@@ -517,10 +533,136 @@ export default function Pricing() {
                     </tr>
 
                     <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>User Friendly Interface (no manual required)</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Multiple Format Upload (PDF, docx, xlsx, pptx, jpeg)</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Any-Order Signing</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Sequential Sending</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Multi-party Signing</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Send for Signature via SMS</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge footnote="**" /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
                       <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>In-Person Signing</td>
                       <td style={{ padding: '10px 16px', textAlign: 'center' }}><CrossBadge /></td>
                       <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge footnote="**" /></td>
                       <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge footnote="**" /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Bulk Sending via CSV</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Reusable Templates (creation and management)</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Sender Document Attachment</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Email Reminders</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>SMS Reminders</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Document Access Restrictions (password protection)</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Document Viewed Notifications</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Document Revocation</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Secure Electronic Signatures</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Electronic Signature with Third Party Timestamp</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge footnote="**" /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Handwritten Signatures</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>File Attachments</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
                     </tr>
 
                     <tr style={{ borderBottom: '1px solid var(--line)' }}>
@@ -540,6 +682,104 @@ export default function Pricing() {
                     <tr style={{ borderBottom: '1px solid var(--line)' }}>
                       <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Third Party Additional Signer</td>
                       <td style={{ padding: '10px 16px', textAlign: 'center' }}><CrossBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+                  </>
+                )}
+
+                {/* Section 2: Document Management */}
+                <tr style={{ background: '#EAF2FC', cursor: 'pointer' }} onClick={() => toggleSection('documentManagement')}>
+                  <td colSpan={4} style={{ padding: '10px 16px', fontWeight: 800, color: 'var(--navy)', fontSize: '0.9rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span>Document Management</span>
+                      <ChevronDown size={16} style={{ transform: sectionsOpen.documentManagement ? 'rotate(0deg)' : 'rotate(-90deg)', transition: 'transform 0.2s' }} />
+                    </div>
+                  </td>
+                </tr>
+
+                {sectionsOpen.documentManagement && (
+                  <>
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Action Center (task management)</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Document Tagging</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Certificate of Completion</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Post-Signature Document Sharing</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Advanced Search</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>AI-Powered Auto-Fill of Transaction Data</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Automatic Reminders for Transaction End Dates</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>CLM (contract lifecycle management) for Expiry, Renewal and Automatic Actions</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Automatic Termination and Renewal Letters</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
+                    </tr>
+                  </>
+                )}
+
+                {/* Section 3: Access Control */}
+                <tr style={{ background: '#EAF2FC', cursor: 'pointer' }} onClick={() => toggleSection('accessControl')}>
+                  <td colSpan={4} style={{ padding: '10px 16px', fontWeight: 800, color: 'var(--navy)', fontSize: '0.9rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span>Access Control</span>
+                      <ChevronDown size={16} style={{ transform: sectionsOpen.accessControl ? 'rotate(0deg)' : 'rotate(-90deg)', transition: 'transform 0.2s' }} />
+                    </div>
+                  </td>
+                </tr>
+
+                {sectionsOpen.accessControl && (
+                  <>
+                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Owner, Administrator, Member Permissioning</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
                       <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
                       <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
                     </tr>
@@ -567,7 +807,7 @@ export default function Pricing() {
                   </>
                 )}
 
-                {/* Section 2: Security */}
+                {/* Section 4: Security */}
                 <tr style={{ background: '#EAF2FC', cursor: 'pointer' }} onClick={() => toggleSection('security')}>
                   <td colSpan={4} style={{ padding: '10px 16px', fontWeight: 800, color: 'var(--navy)', fontSize: '0.9rem' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -615,13 +855,6 @@ export default function Pricing() {
                     </tr>
 
                     <tr style={{ borderBottom: '1px solid var(--line)' }}>
-                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Identity Verification / Card Support*</td>
-                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CrossBadge /></td>
-                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
-                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
-                    </tr>
-
-                    <tr style={{ borderBottom: '1px solid var(--line)' }}>
                       <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Blockchain integration</td>
                       <td style={{ padding: '10px 16px', textAlign: 'center' }}><CrossBadge /></td>
                       <td style={{ padding: '10px 16px', textAlign: 'center' }}><CrossBadge /></td>
@@ -630,7 +863,7 @@ export default function Pricing() {
                   </>
                 )}
 
-                {/* Section 3: Custom Branding */}
+                {/* Section 5: Custom Branding */}
                 <tr style={{ background: '#EAF2FC', cursor: 'pointer' }} onClick={() => toggleSection('customBranding')}>
                   <td colSpan={4} style={{ padding: '10px 16px', fontWeight: 800, color: 'var(--navy)', fontSize: '0.9rem' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -665,7 +898,7 @@ export default function Pricing() {
                   </>
                 )}
 
-                {/* Section 4: System Integration */}
+                {/* Section 6: System Integration */}
                 <tr style={{ background: '#EAF2FC', cursor: 'pointer' }} onClick={() => toggleSection('systemIntegration')}>
                   <td colSpan={4} style={{ padding: '10px 16px', fontWeight: 800, color: 'var(--navy)', fontSize: '0.9rem' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -693,30 +926,11 @@ export default function Pricing() {
 
                     <tr style={{ borderBottom: '1px solid var(--line)' }}>
                       <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>SignTime for Salesforce</td>
-                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><a href="https://app.spirinc.com/t/HPmpyrOr23Q6FzsvpKMzl/as/xzemB6rMWXD2Ig4tbNUM4/confirm-guest?utm_source=price&utm_medium=spir&utm_campaign=salesforce" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</a></td>
-                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><a href="https://app.spirinc.com/t/HPmpyrOr23Q6FzsvpKMzl/as/xzemB6rMWXD2Ig4tbNUM4/confirm-guest?utm_source=price&utm_medium=spir&utm_campaign=salesforce" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</a></td>
-                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><a href="https://app.spirinc.com/t/HPmpyrOr23Q6FzsvpKMzl/as/xzemB6rMWXD2Ig4tbNUM4/confirm-guest?utm_source=price&utm_medium=spir&utm_campaign=salesforce" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</a></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</a></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</a></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</a></td>
                     </tr>
                   </>
-                )}
-
-                {/* Section 5: Scanner Storage */}
-                <tr style={{ background: '#EAF2FC', cursor: 'pointer' }} onClick={() => toggleSection('scannerStorage')}>
-                  <td colSpan={4} style={{ padding: '10px 16px', fontWeight: 800, color: 'var(--navy)', fontSize: '0.9rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <span>Scanner Storage</span>
-                      <ChevronDown size={16} style={{ transform: sectionsOpen.scannerStorage ? 'rotate(0deg)' : 'rotate(-90deg)', transition: 'transform 0.2s' }} />
-                    </div>
-                  </td>
-                </tr>
-
-                {sectionsOpen.scannerStorage && (
-                  <tr style={{ borderBottom: '1px solid var(--line)' }}>
-                    <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>File Import (with Timestamp)</td>
-                    <td style={{ padding: '10px 16px', textAlign: 'center' }}><CrossBadge /></td>
-                    <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
-                    <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
-                  </tr>
                 )}
 
               </tbody>
@@ -724,7 +938,7 @@ export default function Pricing() {
 
             {/* Footnote matching user screenshot */}
             <div style={{ marginTop: '10px', fontSize: '0.82rem', color: 'var(--slate)', fontStyle: 'normal' }}>
-              *Coming soon **Additional fee applies
+              **Additional fee applies
             </div>
           </div>
 
@@ -784,8 +998,8 @@ export default function Pricing() {
             <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '14px', textDecoration: 'none' }}>
               Start Free Trial — No Credit Card Required <ArrowRight size={16} />
             </a>
-            <a href="https://app.spirinc.com/t/HPmpyrOr23Q6FzsvpKMzl/as/xzemB6rMWXD2Ig4tbNUM4/confirm-guest?utm_source=price&utm_medium=spir&utm_campaign=salesforce" target="_blank" rel="noreferrer" className="btn btn-outline-navy" style={{ padding: '14px 28px', fontSize: '14px', textDecoration: 'none' }}>
-              Book a 15-Minute Demo
+            <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" className="btn btn-outline-navy" style={{ padding: '14px 28px', fontSize: '14px', textDecoration: 'none' }}>
+              Contact Us Today
             </a>
           </div>
         </div>
