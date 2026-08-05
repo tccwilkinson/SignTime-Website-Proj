@@ -380,8 +380,8 @@ export const featureContent = {
         desc: 'Use the API to embed SignTime into your existing product or internal systems, instead of working around a separate tool.'
       },
       {
-        title: 'Included With Prime',
-        desc: 'Full API access is included with our Prime plan, along with hands-on support from our team as you build out your integration.'
+        title: 'Included With Enterprise',
+        desc: 'Full API access is included with our Enterprise plan, along with hands-on support from our team as you build out your integration.'
       }
     ]
   },

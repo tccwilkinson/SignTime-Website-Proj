@@ -62,7 +62,7 @@ export default function Pricing() {
   const [extraSteps, setExtraSteps] = useState({
     SignTime: 0,
     'Prime Start': 0,
-    Prime: 0,
+    Enterprise: 0,
   });
 
   const handleAddStep = (tierName) => {
@@ -87,7 +87,7 @@ export default function Pricing() {
       periodAnnual: '$588 / year (tax included)',
       periodMonthly: 'billed monthly',
       description: 'Cost-effective e-signature for small and mid-sized teams',
-      cta: { label: 'Start Free Trial', kind: 'demo' },
+      cta: { label: 'Buy Now', kind: 'demo' },
       highlight: true,
       badge: 'Most Popular',
       users: 'Unlimited',
@@ -106,7 +106,7 @@ export default function Pricing() {
       periodAnnual: 'per month, billed annually',
       periodMonthly: 'per month, billed monthly',
       description: 'Easy, cost-effective e-signature and document management for growing teams',
-      cta: { label: 'Contact Sales', kind: 'contact' },
+      cta: { label: 'Buy Now', kind: 'demo' },
       highlight: false,
       users: 'Unlimited',
       features: [
@@ -120,13 +120,13 @@ export default function Pricing() {
       ],
     },
     {
-      name: 'Prime',
-      basePriceAnnual: 369,
-      basePriceMonthly: 429,
-      periodAnnual: 'per month, billed annually',
-      periodMonthly: 'per month, billed monthly',
-      description: 'Everything in Prime Start, plus API access for system integration',
-      cta: { label: 'Contact Sales', kind: 'contact' },
+      name: 'Enterprise',
+      basePriceAnnual: null,
+      basePriceMonthly: null,
+      periodAnnual: 'Custom proposals & quotes upon request',
+      periodMonthly: 'Custom proposals & quotes upon request',
+      description: "Flexible combinations for large-scale sending, storage, or custom integration with your own systems. Ideal for companies where standard e-signature pricing or services didn't fit...custom proposals and quotes available upon request.",
+      cta: { label: 'Contact Us!', kind: 'contact' },
       highlight: false,
       users: 'Unlimited',
       features: [
@@ -260,18 +260,26 @@ export default function Pricing() {
                     {tier.description}
                   </p>
 
-                  <div style={{ textAlign: 'center', marginBottom: '0.2rem' }}>
-                    <span style={{ fontSize: '2.2rem', fontWeight: 800, color: tier.highlight ? '#fff' : 'var(--navy)' }}>
-                      {tier.name === 'SignTime' ? `$${currentPrice}` : `from $${currentPrice}`}
-                    </span>
-                    <span style={{ fontSize: '0.85rem', fontWeight: 600, color: tier.highlight ? '#9BAAC7' : 'var(--slate)' }}>
-                      /mo
-                    </span>
-                  </div>
+                  {tier.name === 'Enterprise' ? (
+                    <div style={{ textAlign: 'center', marginBottom: '0.2rem' }}>
+                      <span style={{ fontSize: '2.2rem', fontWeight: 800, color: tier.highlight ? '#fff' : 'var(--navy)' }}>
+                        Custom
+                      </span>
+                    </div>
+                  ) : (
+                    <div style={{ textAlign: 'center', marginBottom: '0.2rem' }}>
+                      <span style={{ fontSize: '2.2rem', fontWeight: 800, color: tier.highlight ? '#fff' : 'var(--navy)' }}>
+                        {tier.name === 'SignTime' ? `$${currentPrice}` : `from $${currentPrice}`}
+                      </span>
+                      <span style={{ fontSize: '0.85rem', fontWeight: 600, color: tier.highlight ? '#9BAAC7' : 'var(--slate)' }}>
+                        /mo
+                      </span>
+                    </div>
+                  )}
 
                   <div style={{ fontSize: '0.78rem', color: tier.highlight ? '#9BAAC7' : 'var(--slate)', marginBottom: '1rem', textAlign: 'center' }}>
-                    {billingCycle === 'annual' ? tier.periodAnnual : tier.periodMonthly}
-                    {extraSteps[tier.name] > 0 && (
+                    {tier.name === 'Enterprise' ? 'Custom proposals & quotes' : (billingCycle === 'annual' ? tier.periodAnnual : tier.periodMonthly)}
+                    {tier.name !== 'Enterprise' && extraSteps[tier.name] > 0 && (
                       <div style={{ color: tier.highlight ? '#34D399' : 'var(--emerald)', fontWeight: 700, marginTop: '2px' }}>
                         +{extraSteps[tier.name] * 50} sends (+${addonUSD}/mo)
                       </div>
@@ -295,55 +303,61 @@ export default function Pricing() {
                       Sends:
                     </span>
 
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                      <button
-                        onClick={() => handleSubStep(tier.name)}
-                        disabled={extraSteps[tier.name] === 0}
-                        aria-label={`Decrease sends for ${tier.name}`}
-                        style={{
-                          width: '24px',
-                          height: '24px',
-                          borderRadius: '5px',
-                          border: extraSteps[tier.name] === 0 ? '1px solid #D0E1F0' : '1px solid #3B97D3',
-                          background: extraSteps[tier.name] === 0 ? '#EAF2FC' : '#DCEAFC',
-                          color: extraSteps[tier.name] === 0 ? '#9BAAC7' : 'var(--navy)',
-                          fontWeight: 800,
-                          fontSize: '14px',
-                          cursor: extraSteps[tier.name] === 0 ? 'not-allowed' : 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                        }}
-                      >
-                        -
-                      </button>
-
-                      <span style={{ fontSize: '0.85rem', fontWeight: 800, color: tier.highlight ? '#fff' : 'var(--navy)', minWidth: '24px', textAlign: 'center' }}>
-                        {sendsCount}
+                    {tier.name === 'Enterprise' ? (
+                      <span style={{ fontSize: '0.85rem', fontWeight: 800, color: tier.highlight ? '#fff' : 'var(--navy)' }}>
+                        Custom Volume
                       </span>
+                    ) : (
+                      <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                        <button
+                          onClick={() => handleSubStep(tier.name)}
+                          disabled={extraSteps[tier.name] === 0}
+                          aria-label={`Decrease sends for ${tier.name}`}
+                          style={{
+                            width: '24px',
+                            height: '24px',
+                            borderRadius: '5px',
+                            border: extraSteps[tier.name] === 0 ? '1px solid #D0E1F0' : '1px solid #3B97D3',
+                            background: extraSteps[tier.name] === 0 ? '#EAF2FC' : '#DCEAFC',
+                            color: extraSteps[tier.name] === 0 ? '#9BAAC7' : 'var(--navy)',
+                            fontWeight: 800,
+                            fontSize: '14px',
+                            cursor: extraSteps[tier.name] === 0 ? 'not-allowed' : 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}
+                        >
+                          -
+                        </button>
 
-                      <button
-                        onClick={() => handleAddStep(tier.name)}
-                        aria-label={`Increase sends for ${tier.name}`}
-                        style={{
-                          width: '24px',
-                          height: '24px',
-                          borderRadius: '5px',
-                          border: 'none',
-                          background: '#3B97D3',
-                          color: '#fff',
-                          fontWeight: 800,
-                          fontSize: '14px',
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          boxShadow: '0 2px 4px rgba(59, 151, 211, 0.3)',
-                        }}
-                      >
-                        +
-                      </button>
-                    </div>
+                        <span style={{ fontSize: '0.85rem', fontWeight: 800, color: tier.highlight ? '#fff' : 'var(--navy)', minWidth: '24px', textAlign: 'center' }}>
+                          {sendsCount}
+                        </span>
+
+                        <button
+                          onClick={() => handleAddStep(tier.name)}
+                          aria-label={`Increase sends for ${tier.name}`}
+                          style={{
+                            width: '24px',
+                            height: '24px',
+                            borderRadius: '5px',
+                            border: 'none',
+                            background: '#3B97D3',
+                            color: '#fff',
+                            fontWeight: 800,
+                            fontSize: '14px',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            boxShadow: '0 2px 4px rgba(59, 151, 211, 0.3)',
+                          }}
+                        >
+                          +
+                        </button>
+                      </div>
+                    )}
                   </div>
 
                   {tier.cta.kind === 'demo' ? (
@@ -413,7 +427,7 @@ export default function Pricing() {
                   <th style={{ padding: '12px 16px', textAlign: 'left', fontSize: '0.88rem', color: 'var(--navy)', width: '38%' }}>Capabilities</th>
                   <th style={{ padding: '12px 16px', textAlign: 'center', fontSize: '1rem', fontWeight: 800, color: 'var(--navy)', width: '20%' }}>SignTime</th>
                   <th style={{ padding: '12px 16px', textAlign: 'center', fontSize: '1rem', fontWeight: 800, color: 'var(--navy)', width: '20%' }}>Prime Start</th>
-                  <th style={{ padding: '12px 16px', textAlign: 'center', fontSize: '1rem', fontWeight: 800, color: 'var(--navy)', width: '20%' }}>Prime</th>
+                  <th style={{ padding: '12px 16px', textAlign: 'center', fontSize: '1rem', fontWeight: 800, color: 'var(--navy)', width: '20%' }}>Enterprise</th>
                 </tr>
               </thead>
               <tbody>
@@ -435,6 +449,13 @@ export default function Pricing() {
                         Free Signature Sends
                       </td>
                       {tiers.map((tier) => {
+                        if (tier.name === 'Enterprise') {
+                          return (
+                            <td key={tier.name} style={{ padding: '10px 16px', textAlign: 'center', fontSize: '0.85rem', color: 'var(--navy)', fontWeight: 700 }}>
+                              Custom
+                            </td>
+                          );
+                        }
                         const sendsCount = 50 + extraSteps[tier.name] * 50;
                         return (
                           <td key={tier.name} style={{ padding: '10px 16px', textAlign: 'center' }}>
