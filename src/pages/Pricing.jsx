@@ -101,9 +101,9 @@ export default function Pricing() {
     },
     {
       name: 'Prime Start',
-      basePriceAnnual: 167,
+      basePriceAnnual: 199,
       basePriceMonthly: 199,
-      periodAnnual: 'per month, billed annually',
+      periodAnnual: '$1,999 / year',
       periodMonthly: 'per month, billed monthly',
       description: 'Easy, cost-effective e-signature and document management for growing teams',
       cta: { label: 'Buy Now', kind: 'demo' },
@@ -125,8 +125,8 @@ export default function Pricing() {
       basePriceMonthly: null,
       periodAnnual: 'Custom proposals & quotes upon request',
       periodMonthly: 'Custom proposals & quotes upon request',
-      description: "Flexible combinations for large-scale sending, storage, or custom integration with your own systems. Ideal for companies where standard e-signature pricing or services didn't fit...custom proposals and quotes available upon request.",
-      cta: { label: 'Contact Us!', kind: 'contact' },
+      description: 'Flexible plans for large-scale sending, storage, or custom system integration — quotes on request.',
+      cta: { label: 'Contact Us', kind: 'contact' },
       highlight: false,
       users: 'Unlimited',
       features: [
@@ -220,16 +220,18 @@ export default function Pricing() {
               return (
                 <div
                   key={tier.name}
-                  className="hover-card"
+                  className="pricing-tier-card"
                   style={{
-                    background: tier.highlight ? 'var(--navy)' : '#fff',
-                    border: tier.highlight ? '2px solid var(--navy)' : '1px solid var(--line)',
+                    background: tier.highlight ? 'var(--navy)' : 'var(--ghost-white)',
+                    border: 'none',
                     borderRadius: '16px',
                     padding: '24px 20px',
                     display: 'flex',
                     flexDirection: 'column',
                     position: 'relative',
-                    boxShadow: tier.highlight ? 'var(--shadow-lg)' : 'var(--shadow-subtle)',
+                    boxShadow: tier.highlight
+                      ? 'var(--shadow-lg), 0 10px 26px rgba(var(--accent-rgb), 0.18)'
+                      : 'var(--shadow-subtle), 0 1px 2px rgba(20, 50, 80, 0.06)',
                   }}
                 >
                   {tier.badge && (
@@ -256,28 +258,41 @@ export default function Pricing() {
                     {tier.name}
                   </h3>
 
-                  <p style={{ fontSize: '0.85rem', lineHeight: 1.4, color: tier.highlight ? '#B7C0D6' : 'var(--slate)', marginBottom: '1rem', textAlign: 'center', minHeight: '36px' }}>
+                  <p
+                    style={{
+                      fontSize: '0.85rem',
+                      lineHeight: 1.4,
+                      color: tier.highlight ? '#B7C0D6' : 'var(--slate)',
+                      marginBottom: '1rem',
+                      textAlign: 'center',
+                      minHeight: '2.4rem',
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                    }}
+                  >
                     {tier.description}
                   </p>
 
-                  {tier.name === 'Enterprise' ? (
-                    <div style={{ textAlign: 'center', marginBottom: '0.2rem' }}>
-                      <span style={{ fontSize: '2.2rem', fontWeight: 800, color: tier.highlight ? '#fff' : 'var(--navy)' }}>
-                        Custom
+                  <div style={{ height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem', marginBottom: '0.2rem' }}>
+                    {tier.name === 'Enterprise' ? (
+                      <span style={{ fontSize: '1.5rem', fontWeight: 800, fontStyle: 'italic', lineHeight: 1, color: 'var(--coral)', whiteSpace: 'nowrap' }}>
+                        Customizable
                       </span>
-                    </div>
-                  ) : (
-                    <div style={{ textAlign: 'center', marginBottom: '0.2rem' }}>
-                      <span style={{ fontSize: '2.2rem', fontWeight: 800, color: tier.highlight ? '#fff' : 'var(--navy)' }}>
-                        {tier.name === 'SignTime' ? `$${currentPrice}` : `from $${currentPrice}`}
-                      </span>
-                      <span style={{ fontSize: '0.85rem', fontWeight: 600, color: tier.highlight ? '#9BAAC7' : 'var(--slate)' }}>
-                        /mo
-                      </span>
-                    </div>
-                  )}
+                    ) : (
+                      <>
+                        <span style={{ fontSize: '2.2rem', fontWeight: 800, lineHeight: 1, color: tier.highlight ? '#fff' : 'var(--navy)' }}>
+                          ${currentPrice}
+                        </span>
+                        <span style={{ fontSize: '0.85rem', fontWeight: 600, lineHeight: 1, color: tier.highlight ? '#9BAAC7' : 'var(--slate)' }}>
+                          /mo
+                        </span>
+                      </>
+                    )}
+                  </div>
 
-                  <div style={{ fontSize: '0.78rem', color: tier.highlight ? '#9BAAC7' : 'var(--slate)', marginBottom: '1rem', textAlign: 'center' }}>
+                  <div style={{ minHeight: '2.6rem', fontSize: '0.78rem', color: tier.highlight ? '#9BAAC7' : 'var(--slate)', marginBottom: '1rem', textAlign: 'center' }}>
                     {tier.name === 'Enterprise' ? 'Custom proposals & quotes' : (billingCycle === 'annual' ? tier.periodAnnual : tier.periodMonthly)}
                     {tier.name !== 'Enterprise' && extraSteps[tier.name] > 0 && (
                       <div style={{ color: tier.highlight ? '#34D399' : 'var(--emerald)', fontWeight: 700, marginTop: '2px' }}>
@@ -289,26 +304,27 @@ export default function Pricing() {
                   {/* Pressable +/- Signature Sends Control */}
                   <div
                     style={{
-                      background: tier.highlight ? 'rgba(255,255,255,0.06)' : '#F8FAFC',
-                      border: tier.highlight ? '1px solid rgba(255,255,255,0.12)' : '1px solid var(--line)',
+                      background: tier.name === 'Enterprise' ? 'transparent' : (tier.highlight ? 'rgba(255,255,255,0.06)' : '#F8FAFC'),
+                      border: tier.name === 'Enterprise' ? 'none' : (tier.highlight ? '1px solid rgba(255,255,255,0.12)' : '1px solid var(--line)'),
                       borderRadius: '10px',
                       padding: '8px 12px',
                       marginBottom: '1.2rem',
+                      height: '40px',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'space-between',
+                      justifyContent: tier.name === 'Enterprise' ? 'center' : 'space-between',
                     }}
                   >
-                    <span style={{ fontSize: '0.78rem', fontWeight: 700, color: tier.highlight ? '#fff' : 'var(--navy)' }}>
-                      Sends:
-                    </span>
-
                     {tier.name === 'Enterprise' ? (
-                      <span style={{ fontSize: '0.85rem', fontWeight: 800, color: tier.highlight ? '#fff' : 'var(--navy)' }}>
-                        Custom Volume
+                      <span style={{ fontSize: '0.78rem', fontWeight: 600, color: tier.highlight ? '#B7C0D6' : 'var(--slate)' }}>
+                        Custom send volume
                       </span>
                     ) : (
-                      <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                      <>
+                        <span style={{ fontSize: '0.78rem', fontWeight: 700, color: tier.highlight ? '#fff' : 'var(--navy)' }}>
+                          Sends:
+                        </span>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
                         <button
                           onClick={() => handleSubStep(tier.name)}
                           disabled={extraSteps[tier.name] === 0}
@@ -356,34 +372,24 @@ export default function Pricing() {
                         >
                           +
                         </button>
-                      </div>
+                        </div>
+                      </>
                     )}
                   </div>
 
-                  {tier.cta.kind === 'demo' ? (
-                    <a
-                      href="https://app.signtime.com/register"
-                      className={tier.highlight ? 'btn btn-coral' : 'btn btn-navy'}
-                      style={{ width: '100%', padding: '10px', marginBottom: '1.2rem', fontSize: '0.88rem', textDecoration: 'none', textAlign: 'center', display: 'block' }}
-                    >
-                      {tier.cta.label}
-                    </a>
-                  ) : (
-                    <a
-                      href="https://app.spirinc.com/t/HPmpyrOr23Q6FzsvpKMzl/as/xzemB6rMWXD2Ig4tbNUM4/confirm-guest?utm_source=price&utm_medium=spir&utm_campaign=salesforce"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn btn-outline-navy"
-                      style={{ width: '100%', padding: '10px', marginBottom: '1.2rem', textAlign: 'center', fontSize: '0.88rem', textDecoration: 'none', display: 'block' }}
-                    >
-                      {tier.cta.label}
-                    </a>
-                  )}
+                  <a
+                    href={tier.cta.kind === 'demo' ? 'https://app.signtime.com/register' : 'https://app.spirinc.com/t/HPmpyrOr23Q6FzsvpKMzl/as/xzemB6rMWXD2Ig4tbNUM4/confirm-guest?utm_source=price&utm_medium=spir&utm_campaign=salesforce'}
+                    {...(tier.cta.kind === 'contact' ? { target: '_blank', rel: 'noreferrer' } : {})}
+                    className="btn btn-coral"
+                    style={{ width: '100%', padding: '10px', marginBottom: '1.2rem', fontSize: '0.88rem', textDecoration: 'none', textAlign: 'center', display: 'block' }}
+                  >
+                    {tier.cta.label}
+                  </a>
 
                   <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', padding: 0, margin: 0 }}>
                     {tier.features.map((f) => (
                       <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.82rem', color: tier.highlight ? '#fff' : 'var(--ink)' }}>
-                        <Check size={16} color={tier.highlight ? 'var(--coral)' : 'var(--emerald)'} style={{ flexShrink: 0, marginTop: '1px' }} />
+                        <Check size={16} color={tier.highlight ? 'var(--coral)' : 'var(--battery-blue)'} style={{ flexShrink: 0, marginTop: '1px' }} />
                         {f}
                       </li>
                     ))}

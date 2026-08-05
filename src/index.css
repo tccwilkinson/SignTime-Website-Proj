@@ -343,6 +343,15 @@ h1, h2, h3, h4, h5, h6 {
   to { transform: translateX(-50%); }
 }
 
+/* Pricing Tier Card Hover — transform-only lift */
+.pricing-tier-card {
+  transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pricing-tier-card:hover {
+  transform: translateY(-6px);
+}
+
 /* Card Hover Elevation */
 .hover-card {
   transition: all var(--transition-normal);
