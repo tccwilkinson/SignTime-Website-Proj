@@ -82,9 +82,9 @@ export default function Pricing() {
   const tiers = [
     {
       name: 'SignTime',
-      basePriceAnnual: 49,
+      basePriceAnnual: 86,
       basePriceMonthly: 59,
-      periodAnnual: '$588 / year (tax included)',
+      periodAnnual: '$936 / year',
       periodMonthly: 'billed monthly',
       description: 'Cost-effective e-signature for small and mid-sized teams',
       cta: { label: 'Start Free Trial', kind: 'demo' },
@@ -101,7 +101,7 @@ export default function Pricing() {
     },
     {
       name: 'Prime Start',
-      basePriceAnnual: 169,
+      basePriceAnnual: 167,
       basePriceMonthly: 199,
       periodAnnual: 'per month, billed annually',
       periodMonthly: 'per month, billed monthly',

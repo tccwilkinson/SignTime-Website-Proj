@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { TrendingDown } from 'lucide-react';
 
-const SIGNTIME_FLAT_RATE = 49;
+const SIGNTIME_FLAT_RATE = 86;
 const COMPETITOR_PER_SEAT_RATE = 40;
 
 export default function CostComparisonSlider() {
-  const [users, setUsers] = useState(10);
+  const [users, setUsers] = useState(20);
 
   const signTimeCost = SIGNTIME_FLAT_RATE;
   const competitorCost = users * COMPETITOR_PER_SEAT_RATE;
-  const savings = Math.max(competitorCost - signTimeCost, 0);
+  const savings = competitorCost - signTimeCost;
 
   return (
     <div
@@ -42,7 +42,7 @@ export default function CostComparisonSlider() {
         <input
           id="team-size"
           type="range"
-          min={1}
+          min={5}
           max={100}
           step={1}
           value={users}
@@ -51,7 +51,7 @@ export default function CostComparisonSlider() {
           aria-valuetext={`${users} signers`}
         />
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--slate)', marginTop: '0.4rem' }}>
-          <span>1</span>
+          <span>5</span>
           <span>100+</span>
         </div>
       </div>
