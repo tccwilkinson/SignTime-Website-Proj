@@ -79,15 +79,13 @@ export default function Pricing() {
       ...prev,
       [tierName]: Math.max(0, prev[tierName] - 1),
     }));
-  };
-
-  const tiers = [
+  };  const tiers = [
     {
       name: 'SignTime',
-      basePriceAnnual: 86,
-      basePriceMonthly: 59,
-      periodAnnual: '$936 / year',
-      periodMonthly: 'billed monthly',
+      basePriceAnnual: 78,
+      basePriceMonthly: 86,
+      periodAnnual: '$936 / year ($78/mo)',
+      periodMonthly: 'billed monthly ($86/mo)',
       description: 'Cost-effective e-signature for small and mid-sized teams',
       cta: { label: 'Buy Now', kind: 'demo' },
       highlight: true,
@@ -103,10 +101,10 @@ export default function Pricing() {
     },
     {
       name: 'Prime Start',
-      basePriceAnnual: 199,
+      basePriceAnnual: 167,
       basePriceMonthly: 199,
-      periodAnnual: '$1,999 / year',
-      periodMonthly: 'per month, billed monthly',
+      periodAnnual: '$1,999 / year ($167/mo)',
+      periodMonthly: 'billed monthly ($199/mo)',
       description: 'Easy, cost-effective e-signature and document management for growing teams',
       cta: { label: 'Buy Now', kind: 'demo' },
       highlight: false,
@@ -146,7 +144,7 @@ export default function Pricing() {
   return (
     <>
       {/* Hero Header (Compact & High Impact) */}
-      <section style={{ background: 'radial-gradient(circle at 50% -10%, #DCEAFC 0%, #fff 60%)', padding: '3rem 0 2rem' }}>
+      <section style={{ background: 'radial-gradient(circle at 50% -10%, #DCEAFC 0%, #fff 60%)', padding: '3.5rem 0 2rem' }}>
         <div className="container" style={{ maxWidth: '760px', textAlign: 'center' }}>
           <h1 className="st-subpage-title" style={{ fontSize: 'clamp(2rem, 4vw, 2.7rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '0.8rem', letterSpacing: '-0.02em' }}>
             Transparent Pricing for E-Signatures
@@ -171,7 +169,7 @@ export default function Pricing() {
                 transition: 'all 0.2s ease',
               }}
             >
-              Annual (Save 20%)
+              Annual (Save up to 16%)
             </button>
             <button
               onClick={() => setBillingCycle('monthly')}
