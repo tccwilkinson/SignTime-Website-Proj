@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Clock, ArrowRight, CheckCircle2, Bookmark } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { getBlogPostBySlug, blogPosts } from '../data/blogPosts';
 
 export default function BlogDetail() {
@@ -101,9 +101,6 @@ export default function BlogDetail() {
             <Link to="/blog" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.88rem', fontWeight: 700, color: 'var(--coral)', textDecoration: 'none' }}>
               <ArrowLeft size={16} /> Back to All Articles
             </Link>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.82rem', color: 'var(--slate)', fontWeight: 600 }}>
-              <Bookmark size={14} color="var(--coral)" /> SignTime Guide
-            </div>
           </div>
 
           {/* Formatted Article Content with Spaced Headers & Paragraphs */}
