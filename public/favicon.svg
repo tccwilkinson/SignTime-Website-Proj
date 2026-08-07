@@ -1,4 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <rect width="24" height="24" rx="6" fill="#16213E"/>
-  <path d="M5 15.5l3-7 3 5.5 3-9 3 10.5" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Outer circle stroke in deep SignTime navy blue (#143250) -->
+  <path d="M 44 14 A 23 23 0 1 0 54 35" stroke="#143250" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+  <!-- Fountain Pen Nib in deep SignTime navy blue (#143250) -->
+  <path d="M 53 7 L 57 11 L 34 34 L 21 39 L 26 26 Z" fill="#143250"/>
+  <!-- Breather hole in nib -->
+  <circle cx="28.5" cy="31.5" r="2" fill="#FFFFFF"/>
+  <!-- Nib slit line -->
+  <path d="M 28.5 31.5 L 21 39" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round"/>
+  <!-- Signature underline stroke -->
+  <path d="M 18 40.5 L 45 40.5" stroke="#143250" stroke-width="4" stroke-linecap="round"/>
 </svg>
