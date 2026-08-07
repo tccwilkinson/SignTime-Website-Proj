@@ -38,10 +38,10 @@ export default function BlogHub() {
     // Apply Sorting
     return result.sort((a, b) => {
       if (sortBy === 'newest') {
-        return new Date(b.date) - new Date(a.date);
+        return new Date(b.rawDate || b.date) - new Date(a.rawDate || a.date);
       }
       if (sortBy === 'oldest') {
-        return new Date(a.date) - new Date(b.date);
+        return new Date(a.rawDate || a.date) - new Date(b.rawDate || b.date);
       }
       if (sortBy === 'longest') {
         return (b.wordCount || 0) - (a.wordCount || 0);

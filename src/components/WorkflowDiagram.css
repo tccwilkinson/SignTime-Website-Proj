@@ -108,7 +108,7 @@
   flex: 1;
   min-width: 0;
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .wd-lane-labels + .wd-track {
@@ -202,7 +202,7 @@
   align-items: center;
   justify-content: center;
   min-width: 0;
-  padding: 0 0.4rem;
+  padding: 0 0.3rem;
 }
 
 /* Step card — shared by horizontal grid cells and the vertical stack */
@@ -215,8 +215,7 @@
   gap: 0.55rem;
   width: 100%;
   min-width: 0;
-  max-width: 168px;
-  padding: 0.5rem 0.7rem;
+  padding: 0.6rem 0.75rem;
   background: var(--paper);
   border: 1.5px solid var(--line);
   border-radius: var(--radius-md);
@@ -225,7 +224,7 @@
   text-align: left;
   opacity: 1;
   transform: scale(1);
-  transition: transform var(--transition-fast), opacity var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: transform var(--transition-fast), opacity var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
 }
 
 .wd-card:hover {
@@ -238,17 +237,18 @@
 }
 
 .wd-card.is-active {
+  background: var(--coral);
   border-color: var(--coral);
-  box-shadow: var(--shadow-coral);
-  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(255, 107, 80, 0.35);
+  transform: scale(1.03);
 }
 
 .wd-card.is-complete {
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .wd-card.is-future {
-  opacity: 0.6;
+  opacity: 0.65;
 }
 
 .wd-card-num-wrap {
@@ -275,9 +275,9 @@
 }
 
 .wd-card.is-active .wd-card-num {
-  background: var(--coral);
-  border-color: var(--coral);
-  color: var(--paper);
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #ffffff;
 }
 
 .wd-card.is-complete .wd-card-num {
@@ -307,7 +307,7 @@
 }
 
 .wd-card.is-active .wd-card-icon {
-  color: var(--coral);
+  color: #ffffff;
 }
 
 .wd-card.is-complete .wd-card-icon {
@@ -319,18 +319,22 @@
   flex-direction: column;
   gap: 0.15rem;
   min-width: 0;
+  flex: 1;
 }
 
 .wd-card-label {
   font-family: var(--font-heading);
-  font-size: 0.76rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  color: var(--slate);
+  color: var(--navy);
   line-height: 1.25;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .wd-card.is-active .wd-card-label {
-  color: var(--navy);
+  color: #ffffff;
   font-weight: 700;
 }
 

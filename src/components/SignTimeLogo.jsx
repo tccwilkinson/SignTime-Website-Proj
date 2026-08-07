@@ -58,15 +58,15 @@ export default function SignTimeLogo({ size = 'medium', textColor = '#ffffff', i
         >
           SignTime
         </div>
+
         <div
           style={{
             fontSize: subtitleSize,
-            fontWeight: 400,
-            color: subtitleColor ?? (textColor === '#ffffff' ? 'rgba(255, 255, 255, 0.85)' : 'var(--slate)'),
+            fontWeight: 500,
+            color: subtitleColor || (textColor === '#ffffff' ? 'rgba(255, 255, 255, 0.85)' : 'var(--slate)'),
             lineHeight: 1.2,
-            letterSpacing: '0.01em',
             marginTop: '2px',
-            fontFamily: 'system-ui, -apple-system, sans-serif',
+            letterSpacing: '0.01em',
           }}
         >
           Intuitive e-signatures

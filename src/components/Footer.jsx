@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Youtube, Facebook, Twitter, Instagram } from 'lucide-react';
 import { useDemoModal } from '../context/DemoModalContext';
 import SignTimeLogo from './SignTimeLogo';
 
@@ -30,12 +30,45 @@ export default function Footer() {
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.88rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Mail size={14} color="var(--coral)" /> support@signtime.com
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Phone size={14} color="var(--coral)" /> +1 (800) 555-SIGN
-              </div>
+              <a href="mailto:support+privacy@signtime.com" className="f-link" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Mail size={14} color="var(--coral)" /> support+privacy@signtime.com
+              </a>
+              <a
+                href="https://www.youtube.com/channel/UCgGfqo7Z4wRk7qhg0z4a_MQ"
+                target="_blank"
+                rel="noreferrer"
+                className="f-link"
+                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+              >
+                <Youtube size={14} color="var(--coral)" /> YouTube
+              </a>
+              <a
+                href="https://www.facebook.com/signtimekk"
+                target="_blank"
+                rel="noreferrer"
+                className="f-link"
+                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+              >
+                <Facebook size={14} color="var(--coral)" /> Facebook
+              </a>
+              <a
+                href="https://twitter.com/SignTime_JP"
+                target="_blank"
+                rel="noreferrer"
+                className="f-link"
+                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+              >
+                <Twitter size={14} color="var(--coral)" /> Twitter
+              </a>
+              <a
+                href="https://www.instagram.com/signtimekk/"
+                target="_blank"
+                rel="noreferrer"
+                className="f-link"
+                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+              >
+                <Instagram size={14} color="var(--coral)" /> Instagram
+              </a>
             </div>
           </div>
 

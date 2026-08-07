@@ -331,11 +331,8 @@ h1, h2, h3, h4, h5, h6 {
   gap: 44px;
   width: max-content;
   animation: marqueeScroll 28s linear infinite;
+  animation-play-state: running !important;
   will-change: transform;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
 }
 
 @keyframes marqueeScroll {

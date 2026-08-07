@@ -6,8 +6,8 @@ import {
 } from 'lucide-react';
 import './WorkflowDiagram.css';
 
-const ROW_H_DESKTOP = 96;
-const ROW_H_MOBILE = 84;
+const ROW_H_DESKTOP = 108;
+const ROW_H_MOBILE = 88;
 const AUTO_ADVANCE_MS = 2500;
 const DESKTOP_BREAKPOINT = 900;
 
@@ -224,14 +224,22 @@ function StepCard({ step, i, state, uid, nodeRef, onClick, onKeyDown, orientatio
           <span
             className="wd-card-lane"
             style={{
-              fontSize: '0.68rem',
+              fontSize: '0.64rem',
               fontWeight: 800,
               textTransform: 'uppercase',
               letterSpacing: '0.04em',
-              color: state === 'active' ? '#fff' : 'var(--coral)',
-              marginBottom: '2px',
-              display: 'block',
-              lineHeight: 1.1,
+              background: state === 'active' ? 'var(--navy)' : '#EAF2FC',
+              color: state === 'active' ? '#ffffff' : 'var(--navy)',
+              padding: '2px 6px',
+              borderRadius: '4px',
+              marginBottom: '3px',
+              display: 'inline-block',
+              width: 'fit-content',
+              lineHeight: 1.15,
+              whiteSpace: 'nowrap',
+              maxWidth: '100%',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
             }}
           >
             {step.lane}
@@ -269,22 +277,20 @@ function StepFlow({ steps, lanes, reduceMotion }) {
   }, []);
 
   useEffect(() => {
-    if (reduceMotion || !hasEntered || isPaused) return undefined;
+    if (reduceMotion || !hasEntered) return undefined;
     const timer = setTimeout(() => {
       setActiveIndex((i) => (i + 1) % steps.length);
     }, AUTO_ADVANCE_MS);
     return () => clearTimeout(timer);
-  }, [reduceMotion, hasEntered, isPaused, activeIndex, steps.length]);
+  }, [reduceMotion, hasEntered, activeIndex, steps.length]);
 
   const jumpTo = (index) => {
     const clamped = Math.max(0, Math.min(steps.length - 1, index));
-    setIsPaused(true);
     setActiveIndex(clamped);
   };
 
   const replay = () => {
     setActiveIndex(0);
-    setIsPaused(false);
   };
 
   const handleNodeKeyDown = (e, i) => {
@@ -308,19 +314,19 @@ function StepFlow({ steps, lanes, reduceMotion }) {
         style={{
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '8px',
-          background: 'var(--navy)',
-          color: '#fff',
-          padding: '6px 16px',
+          gap: '6px',
+          background: '#EAF2FC',
+          border: '1px solid #D6E4F7',
+          color: 'var(--navy)',
+          padding: '5px 14px',
           borderRadius: '20px',
-          fontSize: '0.78rem',
-          fontWeight: 700,
-          marginBottom: '1rem',
-          boxShadow: 'var(--shadow-subtle)',
+          fontSize: '0.8rem',
+          fontWeight: 600,
+          marginBottom: '1.2rem',
         }}
       >
-        <Zap size={14} color="var(--coral)" />
-        All steps execute seamlessly through <strong>SignTime</strong> e-signatures &amp; workflow automation
+        <Zap size={13} color="var(--coral)" />
+        <span>All steps execute seamlessly through <strong style={{ fontWeight: 800, color: 'var(--navy)' }}>SignTime</strong> e-signatures &amp; workflow automation</span>
       </div>
       {layout.orientation === 'horizontal' ? (
         <div className="wd-lanes-row horizontal">

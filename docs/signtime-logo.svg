@@ -12,8 +12,8 @@
       d="M 53 7 L 57 11 L 34 34 L 21 39 L 26 26 Z"
       fill="#ffffff"
     />
-    <circle cx="28.5" cy="31.5" r="2" fill="#16213E" />
-    <path d="M 28.5 31.5 L 21 39" stroke="#16213E" stroke-width="1.4" stroke-linecap="round" />
+    <circle cx="28.5" cy="31.5" r="2" fill="#143250" />
+    <path d="M 28.5 31.5 L 21 39" stroke="#143250" stroke-width="1.4" stroke-linecap="round" />
     <path
       d="M 18 40.5 L 45 40.5"
       stroke="#ffffff"
