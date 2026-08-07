@@ -43,7 +43,7 @@ export default function SolutionDetail({ category, basePath }) {
             This solutions page is routable and ready for content — copy will follow once the rest of the site is reviewed.
           </div>
           <div className="st-subpage-card-2" style={{ textAlign: 'center' }}>
-            <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+            <a href="https://app.signtime.com/register?chosen_plan=Otameshi" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
               Start Free Trial — No Credit Card Required <ArrowRight size={16} className="hero-cta-arrow" />
             </a>
           </div>

@@ -272,6 +272,7 @@ export default function Navbar() {
                     <h4>News</h4>
                     <Link to="/news" onClick={closeMenus}>Press Releases</Link>
                     <Link to="/news" onClick={closeMenus}>Product Updates</Link>
+                    <Link to="/blog" onClick={closeMenus}>SignTime Blog</Link>
                   </div>
                   <div className="st-col">
                     <h4>Get Started</h4>
@@ -313,7 +314,7 @@ export default function Navbar() {
             Login
           </a>
           <a
-            href="https://app.signtime.com/register"
+            href="https://app.signtime.com/register?chosen_plan=Otameshi"
             className={isHome ? 'btn nav-cta-cream' : 'btn btn-coral'}
             style={{ padding: '10px 20px', fontSize: '14px', textDecoration: 'none', display: 'inline-block' }}
           >
@@ -368,12 +369,13 @@ export default function Navbar() {
           <Link to="/integrations" className="mobile-link" onClick={closeMenus}>Integrations</Link>
           <Link to="/solutions" className="mobile-link" onClick={closeMenus}>Solutions</Link>
           <Link to="/news" className="mobile-link" onClick={closeMenus}>News</Link>
+          <Link to="/blog" className="mobile-link" onClick={closeMenus}>Blog</Link>
           <Link to="/resources/manuals-support" className="mobile-link" onClick={closeMenus}>Manuals &amp; Support</Link>
           <Link to="/resources" className="mobile-link" onClick={closeMenus}>Learn</Link>
           <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" className="mobile-link" onClick={closeMenus}>Contact Us</a>
           <a href="https://app.signtime.com/login" className="mobile-link" onClick={closeMenus}>Log In</a>
           <a
-            href="https://app.signtime.com/register"
+            href="https://app.signtime.com/register?chosen_plan=Otameshi"
             className="btn btn-coral"
             style={{ width: '100%', marginTop: '1rem', textAlign: 'center', textDecoration: 'none' }}
           >

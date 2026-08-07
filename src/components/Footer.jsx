@@ -68,7 +68,7 @@ export default function Footer() {
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.9rem' }}>
               <li><Link to="/resources" className="f-link">Learn</Link></li>
               <li><Link to="/news" className="f-link">News &amp; Updates</Link></li>
-              <li><Link to="/resources" className="f-link">Blog</Link></li>
+              <li><Link to="/blog" className="f-link">Blog</Link></li>
               <li><Link to="/customers" className="f-link">Customer Success Stories</Link></li>
             </ul>
           </div>

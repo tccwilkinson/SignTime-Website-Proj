@@ -114,7 +114,7 @@ export default function Pricing() {
         'In-person signing & delegation of authority',
         'Internal workflows & workflow per template',
         'Third party additional signers & multi-departments',
-        'IP restrictions, MFA for signers & anti-phishing',
+        'IP restrictions, MFA for signers & Email Customization(Anti-Phishing)',
         'Corporate logo, email & domain branding',
         'File import with timestamp',
       ],
@@ -378,7 +378,7 @@ export default function Pricing() {
                   </div>
 
                   <a
-                    href={tier.cta.kind === 'demo' ? 'https://app.signtime.com/register' : 'https://support.signtime.com/hc/en-us/requests/new'}
+                    href={tier.cta.kind === 'demo' ? 'https://app.signtime.com/register?chosen_plan=Otameshi' : 'https://app.spirinc.com/t/QWnlnIiRv-irWPqwYW34v/as/LEZvsXsv_7hy-TlF7tC_h/confirm-guest'}
                     {...(tier.cta.kind === 'contact' ? { target: '_blank', rel: 'noreferrer' } : {})}
                     className="btn btn-coral"
                     style={{ width: '100%', padding: '10px', marginBottom: '1.2rem', fontSize: '0.88rem', textDecoration: 'none', textAlign: 'center', display: 'block' }}
@@ -397,6 +397,30 @@ export default function Pricing() {
                 </div>
               );
             })}
+          </div>
+
+          {/* Included in Every Plan summary list - Above Feature Matrix */}
+          <div
+            style={{
+              maxWidth: '760px',
+              margin: '0 auto 2.5rem',
+              textAlign: 'center',
+              background: '#FAFBFD',
+              border: '1px solid var(--line)',
+              borderRadius: '16px',
+              padding: '1.8rem 1.5rem',
+            }}
+          >
+            <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--navy)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '1rem' }}>
+              Included in every SignTime plan
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px 20px' }}>
+              {includedInEveryPlan.map((f) => (
+                <span key={f} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: 'var(--ink)', fontWeight: 600 }}>
+                  <Check size={15} color="var(--emerald)" /> {f}
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* Compact Feature Matrix Table with Expand/Collapse & Footnotes */}
@@ -839,7 +863,7 @@ export default function Pricing() {
                     </tr>
 
                     <tr style={{ borderBottom: '1px solid var(--line)' }}>
-                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Anti-Phishing Customization</td>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Email Customization(Anti-Phishing)</td>
                       <td style={{ padding: '10px 16px', textAlign: 'center' }}><CrossBadge /></td>
                       <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
                       <td style={{ padding: '10px 16px', textAlign: 'center' }}><CheckBadge /></td>
@@ -923,10 +947,10 @@ export default function Pricing() {
                     </tr>
 
                     <tr style={{ borderBottom: '1px solid var(--line)' }}>
-                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>SignTime for Salesforce</td>
-                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</a></td>
-                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</a></td>
-                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</a></td>
+                      <td style={{ padding: '10px 16px', fontWeight: 600, fontSize: '0.85rem', color: 'var(--ink)' }}>Storage with SignTime</td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><a href="https://app.spirinc.com/t/QWnlnIiRv-irWPqwYW34v/as/LEZvsXsv_7hy-TlF7tC_h/confirm-guest" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</a></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><a href="https://app.spirinc.com/t/QWnlnIiRv-irWPqwYW34v/as/LEZvsXsv_7hy-TlF7tC_h/confirm-guest" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</a></td>
+                      <td style={{ padding: '10px 16px', textAlign: 'center' }}><a href="https://app.spirinc.com/t/QWnlnIiRv-irWPqwYW34v/as/LEZvsXsv_7hy-TlF7tC_h/confirm-guest" target="_blank" rel="noreferrer" style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none', fontSize: '0.85rem' }}>Contact Us!</a></td>
                     </tr>
                   </>
                 )}
@@ -937,28 +961,6 @@ export default function Pricing() {
             {/* Footnote matching user screenshot */}
             <div style={{ marginTop: '10px', fontSize: '0.82rem', color: 'var(--slate)', fontStyle: 'normal' }}>
               **Additional fee applies
-            </div>
-          </div>
-
-          {/* Included in Every Plan summary list */}
-          <div
-            style={{
-              maxWidth: '760px',
-              margin: '0 auto',
-              textAlign: 'center',
-              borderTop: '1px solid var(--line)',
-              paddingTop: '2rem',
-            }}
-          >
-            <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--slate)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '1rem' }}>
-              Included in every SignTime plan
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px 20px' }}>
-              {includedInEveryPlan.map((f) => (
-                <span key={f} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: 'var(--ink)', fontWeight: 500 }}>
-                  <Check size={15} color="var(--emerald)" /> {f}
-                </span>
-              ))}
             </div>
           </div>
         </div>

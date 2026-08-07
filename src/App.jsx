@@ -27,6 +27,8 @@ import Partners from './pages/Partners';
 import Resources from './pages/Resources';
 import ResourceArticleStub from './pages/ResourceArticleStub';
 import News from './pages/News';
+import BlogHub from './pages/BlogHub';
+import BlogDetail from './pages/BlogDetail';
 import Contact from './pages/Contact';
 import SolutionsHub from './pages/solutions/SolutionsHub';
 import SolutionCategoryHub from './pages/solutions/SolutionCategoryHub';
@@ -81,8 +83,13 @@ function PageRouteWrapper() {
 
             <Route path="/resources" element={<Resources />} />
             <Route path="/resources/manuals-support" element={<ManualsSupport />} />
+            <Route path="/resources/blog" element={<BlogHub />} />
+            <Route path="/resources/blog/:slug" element={<BlogDetail />} />
             <Route path="/resources/:slug" element={<ResourceArticleStub />} />
             <Route path="/news" element={<News />} />
+            <Route path="/news/blog" element={<BlogHub />} />
+            <Route path="/blog" element={<BlogHub />} />
+            <Route path="/blog/:slug" element={<BlogDetail />} />
 
             <Route path="/contact" element={<Contact />} />
 

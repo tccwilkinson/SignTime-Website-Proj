@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { TrendingDown } from 'lucide-react';
 
 const SIGNTIME_FLAT_RATE = 86;
-const COMPETITOR_PER_SEAT_RATE = 40;
+const COMPETITOR_PER_SEAT_RATE = 25;
 
 export default function CostComparisonSlider() {
   const [users, setUsers] = useState(20);

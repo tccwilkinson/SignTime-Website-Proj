@@ -67,7 +67,7 @@ export default function FeatureDetail() {
           </p>
 
           <div className="st-subpage-subhead" style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
-            <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none' }}>
+            <a href="https://app.signtime.com/register?chosen_plan=Otameshi" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none' }}>
               Try for Free Today <ArrowRight size={16} />
             </a>
             <Link to="/pricing" className="btn btn-outline-navy" style={{ padding: '14px 28px', fontSize: '15px' }}>
@@ -172,7 +172,7 @@ export default function FeatureDetail() {
               Get started with SignTime today. No credit card required to start your free trial.
             </p>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
-              <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none' }}>
+              <a href="https://app.signtime.com/register?chosen_plan=Otameshi" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none' }}>
                 Start Free Trial <ArrowRight size={16} />
               </a>
               <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" className="btn btn-outline-navy" style={{ padding: '14px 28px', fontSize: '15px', color: '#fff', borderColor: 'rgba(255,255,255,0.3)', textDecoration: 'none' }}>

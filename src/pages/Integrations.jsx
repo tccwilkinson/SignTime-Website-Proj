@@ -52,7 +52,7 @@ export default function Integrations() {
             Native Salesforce integration, a full Web API, and webhooks — for unlimited users, at one flat price. No middleware required.
           </p>
           <div className="st-subpage-subhead" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-            <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+            <a href="https://app.signtime.com/register?chosen_plan=Otameshi" className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
               Start Free Trial — No Credit Card Required <ArrowRight size={18} className="hero-cta-arrow" />
             </a>
             <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" className="btn btn-outline-navy" style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none' }}>
@@ -146,7 +146,7 @@ export default function Integrations() {
             One flat price. However many people — or systems — need it.
           </h2>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-            <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+            <a href="https://app.signtime.com/register?chosen_plan=Otameshi" className="btn btn-coral" style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
               Start Free Trial — No Credit Card Required <ArrowRight size={18} />
             </a>
             <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" className="btn btn-outline-navy" style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none' }}>

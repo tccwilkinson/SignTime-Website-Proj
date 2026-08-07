@@ -112,49 +112,28 @@ function usePrefersReducedMotion() {
 // the fill-state math correct — see WorkflowDiagram.css / ConnectorLayer.
 function computeLayout(steps, lanes, isDesktop) {
   const N = steps.length;
-  const hasLanes = Array.isArray(lanes) && lanes.length > 0 && steps.every((s) => s.lane);
   const orientation = isDesktop ? 'horizontal' : 'vertical';
-  const laneCount = orientation === 'horizontal' && hasLanes ? lanes.length : 1;
   const rowHeight = orientation === 'horizontal' ? ROW_H_DESKTOP : ROW_H_MOBILE;
-  const trackHeight = orientation === 'horizontal' ? laneCount * rowHeight : N * rowHeight;
-
-  const rowOf = (step) => (hasLanes ? Math.max(lanes.indexOf(step.lane), 0) : 0);
+  const trackHeight = rowHeight;
 
   const nodes = steps.map((step, i) => {
     if (orientation === 'horizontal') {
       const colCenter = ((i + 0.5) / N) * 100;
-      const row = rowOf(step);
-      return { x: colCenter, y: row * rowHeight + rowHeight / 2, row, col: i };
+      return { x: colCenter, y: rowHeight / 2, row: 0, col: i };
     }
     return { x: 50, y: i * rowHeight + rowHeight / 2, row: i, col: 0 };
   });
 
-  // One "elbow" per step-to-step transition. Same lane => one horizontal
-  // bar. Lane change => horizontal run to the column boundary, a vertical
-  // drop/rise, then horizontal run into the next card. Every bar lives in a
-  // single axis's unit (% for horizontal runs, px for vertical runs).
   const segments =
     orientation === 'horizontal'
       ? nodes.slice(0, -1).map((p, i) => {
           const p2 = nodes[i + 1];
-          const boundaryX = ((i + 1) / N) * 100;
-          if (p.row === p2.row) {
-            return { from: i, bars: [{ kind: 'h', y: p.y, x1: p.x, x2: p2.x }] };
-          }
-          return {
-            from: i,
-            bars: [
-              { kind: 'h', y: p.y, x1: p.x, x2: boundaryX },
-              { kind: 'v', x: boundaryX, y1: p.y, y2: p2.y },
-              { kind: 'h', y: p2.y, x1: boundaryX, x2: p2.x },
-            ],
-          };
+          return { from: i, bars: [{ kind: 'h', y: p.y, x1: p.x, x2: p2.x }] };
         })
       : [];
 
-  // Contiguous same-lane runs, for the vertical mode's stacked bands.
   const laneRuns = [];
-  if (orientation === 'vertical' && hasLanes) {
+  if (orientation === 'vertical' && Array.isArray(lanes)) {
     let runStart = 0;
     for (let i = 1; i <= N; i += 1) {
       if (i === N || steps[i].lane !== steps[runStart].lane) {
@@ -164,7 +143,7 @@ function computeLayout(steps, lanes, isDesktop) {
     }
   }
 
-  return { orientation, hasLanes, laneCount, rowHeight, trackHeight, nodes, segments, laneRuns };
+  return { orientation, hasLanes: false, laneCount: 1, rowHeight, trackHeight, nodes, segments, laneRuns };
 }
 
 function stepState(i, activeIndex) {
@@ -241,7 +220,23 @@ function StepCard({ step, i, state, uid, nodeRef, onClick, onKeyDown, orientatio
       </span>
       <Icon className="wd-card-icon" size={16} aria-hidden="true" />
       <span className="wd-card-body">
-        {orientation === 'vertical' && step.lane && <span className="wd-card-lane">{step.lane}</span>}
+        {step.lane && (
+          <span
+            className="wd-card-lane"
+            style={{
+              fontSize: '0.68rem',
+              fontWeight: 800,
+              textTransform: 'uppercase',
+              letterSpacing: '0.04em',
+              color: state === 'active' ? '#fff' : 'var(--coral)',
+              marginBottom: '2px',
+              display: 'block',
+              lineHeight: 1.1,
+            }}
+          >
+            {step.lane}
+          </span>
+        )}
         <span className="wd-card-label">{step.title}</span>
       </span>
     </button>
@@ -309,6 +304,24 @@ function StepFlow({ steps, lanes, reduceMotion }) {
 
   return (
     <div className={cx('wd-diagram', reduceMotion && 'reduce-motion')} ref={rootRef}>
+      <div
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '8px',
+          background: 'var(--navy)',
+          color: '#fff',
+          padding: '6px 16px',
+          borderRadius: '20px',
+          fontSize: '0.78rem',
+          fontWeight: 700,
+          marginBottom: '1rem',
+          boxShadow: 'var(--shadow-subtle)',
+        }}
+      >
+        <Zap size={14} color="var(--coral)" />
+        All steps execute seamlessly through <strong>SignTime</strong> e-signatures &amp; workflow automation
+      </div>
       {layout.orientation === 'horizontal' ? (
         <div className="wd-lanes-row horizontal">
           {layout.hasLanes && (

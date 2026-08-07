@@ -277,7 +277,7 @@ export default function Login() {
           <div style={{ textAlign: 'center', marginTop: '1.8rem', paddingTop: '1.2rem', borderTop: '1px solid var(--line)', fontSize: '0.88rem', color: 'var(--slate)' }}>
             Don't have a SignTime account?{' '}
             <a
-              href="https://app.signtime.com/register"
+              href="https://app.signtime.com/register?chosen_plan=Otameshi"
               style={{ color: 'var(--coral)', fontWeight: 700, textDecoration: 'none' }}
             >
               Start Free Trial

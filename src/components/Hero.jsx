@@ -115,7 +115,7 @@ export default function Hero({ onOpenDemo }) {
         {/* Buttons */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '1rem', flexWrap: 'wrap' }}>
           <a
-            href="https://app.signtime.com/register"
+            href="https://app.signtime.com/register?chosen_plan=Otameshi"
             className={`btn hero-cta-primary hero-btn-primary${heroSigned ? ' hero-btn-pulse' : ''}`}
             style={{ padding: '16px 32px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
           >

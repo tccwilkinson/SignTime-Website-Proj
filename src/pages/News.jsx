@@ -50,9 +50,12 @@ export default function News() {
           <p className="st-subpage-subhead" style={{ fontSize: '1.1rem', lineHeight: 1.6, color: 'var(--slate)', marginBottom: '1.8rem' }}>
             Press releases, company news, and product updates — all in one place.
           </p>
-          <div className="st-subpage-subhead">
-            <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+          <div className="st-subpage-subhead" style={{ marginTop: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
+            <a href="https://app.signtime.com/register?chosen_plan=Otameshi" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
               Start Free Trial — No Credit Card Required <ArrowRight size={16} className="hero-cta-arrow" />
+            </a>
+            <a href="/blog" className="btn btn-outline-navy" style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              Visit SignTime Blog →
             </a>
           </div>
         </div>

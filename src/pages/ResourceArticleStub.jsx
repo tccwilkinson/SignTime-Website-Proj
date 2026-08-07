@@ -278,7 +278,7 @@ export default function ResourceArticleStub() {
               Unlimited users, flat-rate pricing, and enterprise-grade security for U.S. teams.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
-              <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '14px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+              <a href="https://app.signtime.com/register?chosen_plan=Otameshi" className="btn btn-coral" style={{ padding: '14px 28px', fontSize: '14px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
                 Start Free Trial <ArrowRight size={16} />
               </a>
               <a href="https://support.signtime.com/hc/en-us/requests/new" target="_blank" rel="noreferrer" className="btn btn-outline-navy" style={{ padding: '14px 28px', fontSize: '14px', color: '#fff', borderColor: 'rgba(255,255,255,0.3)', textDecoration: 'none' }}>

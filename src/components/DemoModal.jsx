@@ -138,7 +138,7 @@ export default function DemoModal() {
                 />
               </div>
 
-              <a href="https://app.signtime.com/register" className="btn btn-coral" style={{ width: '100%', marginTop: '0.8rem', padding: '0.85rem', fontSize: '1rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+              <a href="https://app.signtime.com/register?chosen_plan=Otameshi" className="btn btn-coral" style={{ width: '100%', marginTop: '0.8rem', padding: '0.85rem', fontSize: '1rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
                 Start Free Today <ArrowRight size={18} />
               </a>
 
