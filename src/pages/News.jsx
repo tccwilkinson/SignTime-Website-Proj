@@ -55,7 +55,7 @@ export default function News() {
               Start Free Trial — No Credit Card Required <ArrowRight size={16} className="hero-cta-arrow" />
             </a>
             <a href="/blog" className="btn btn-outline-navy" style={{ padding: '14px 28px', fontSize: '15px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-              Visit SignTime Blog →
+              Visit Blog →
             </a>
           </div>
         </div>

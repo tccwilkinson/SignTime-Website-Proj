@@ -67,7 +67,7 @@ export default function BlogHub() {
             </span>
           </div>
           <h1 className="st-subpage-title" style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.2rem)', fontWeight: 800, color: 'var(--navy)', marginBottom: '1rem', letterSpacing: '-0.02em' }}>
-            SignTime Blog &amp; E-Signature Guides
+            Blog
           </h1>
           <p className="st-subpage-subhead" style={{ fontSize: '1.15rem', lineHeight: 1.6, color: 'var(--slate)', marginBottom: '2rem', maxWidth: '680px', margin: '0 auto 2rem' }}>
             Practical guides on digital contract management, workflow automation, e-signature compliance, and closing deals faster.

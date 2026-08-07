@@ -272,7 +272,7 @@ export default function Navbar() {
                     <h4>News</h4>
                     <Link to="/news" onClick={closeMenus}>Press Releases</Link>
                     <Link to="/news" onClick={closeMenus}>Product Updates</Link>
-                    <Link to="/blog" onClick={closeMenus}>SignTime Blog</Link>
+                    <Link to="/blog" onClick={closeMenus}>Blog</Link>
                   </div>
                   <div className="st-col">
                     <h4>Get Started</h4>
