@@ -50,6 +50,56 @@ function PageRouteWrapper() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [location.pathname]);
 
+  // Subtle Web Audio UI Synthesizer Helper
+  useEffect(() => {
+    let audioCtx = null;
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playTick(freq, duration, gainVal) {
+      try {
+        initAudio();
+        if (!audioCtx || audioCtx.state !== 'running') return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq || 950, audioCtx.currentTime);
+        gain.gain.setValueAtTime(gainVal || 0.025, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + (duration || 0.025));
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + (duration || 0.025));
+      } catch (e) {
+        // Fallback silently if audio context restricted
+      }
+    }
+
+    const handleClick = (e) => {
+      const target = e.target.closest('button, a, .st-trigger, .st-card, input[type="submit"], .btn');
+      if (target) playTick(1000, 0.02, 0.025);
+    };
+
+    const handleMouseEnter = (e) => {
+      const target = e.target.closest('button, .st-card, .btn');
+      if (target) playTick(750, 0.015, 0.012);
+    };
+
+    document.addEventListener('click', handleClick, { passive: true });
+    document.addEventListener('mouseenter', handleMouseEnter, true);
+    return () => {
+      document.removeEventListener('click', handleClick);
+      document.removeEventListener('mouseenter', handleMouseEnter, true);
+    };
+  }, []);
+
   return (
     <main id="main-content" key={location.pathname} className="st-page-enter" style={{ flex: 1 }}>
       <Routes>

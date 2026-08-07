@@ -105,6 +105,152 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.25;
 }
 
+/* Fluid Type Scaling */
+h1, .h1 {
+  font-size: clamp(2.1rem, 4vw + 1rem, 3.25rem) !important;
+}
+h2, .h2 {
+  font-size: clamp(1.75rem, 3.2vw + 1rem, 2.6rem) !important;
+}
+h3, .h3 {
+  font-size: clamp(1.15rem, 1.8vw + 0.75rem, 1.45rem) !important;
+}
+
+/* Custom Selection Color */
+::selection {
+  background: var(--coral, #F54146);
+  color: #ffffff;
+}
+::-moz-selection {
+  background: var(--coral, #F54146);
+  color: #ffffff;
+}
+
+/* Intentional Focus States for Keyboard Accessibility */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--coral, #F54146) !important;
+  outline-offset: 3px !important;
+  border-radius: 4px;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+.st-trigger:focus-visible,
+.st-card:focus-visible {
+  outline: 2px solid var(--coral, #F54146) !important;
+  outline-offset: 3px !important;
+}
+
+/* Micro-interactions & Motion Feedback */
+button,
+a,
+input,
+.btn,
+.st-trigger,
+.nav-link,
+.st-card,
+.feature-card {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease,
+              opacity 0.2s ease;
+}
+
+button:hover,
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(20, 33, 62, 0.2);
+}
+
+button:active,
+.btn:active {
+  transform: scale(0.97) translateY(0) !important;
+  box-shadow: 0 2px 8px rgba(20, 33, 62, 0.15) !important;
+}
+
+a:hover,
+.st-trigger:hover,
+.nav-link:hover {
+  transform: translateY(-1px);
+}
+
+a:active,
+.st-trigger:active,
+.nav-link:active {
+  transform: scale(0.97);
+}
+
+/* Smart Sticky Header Helper Classes */
+.st-nav-container {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease !important;
+  will-change: transform;
+}
+.st-nav-hidden {
+  transform: translateY(-100%) !important;
+}
+
+/* Site-wide Sticky Subnav & TOC Coordinate Sync */
+.uc-subnav,
+.st-subnav,
+.st-sticky-subnav {
+  position: sticky;
+  top: 70px;
+  z-index: 40;
+  transition: top 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease !important;
+}
+
+body.st-nav-is-hidden .uc-subnav,
+body.st-nav-is-hidden .st-subnav,
+body.st-nav-is-hidden .st-sticky-subnav {
+  top: 0px !important;
+}
+
+body.st-nav-is-hidden .terms-toc,
+body.st-nav-is-hidden .privacy-toc {
+  top: 1.5rem !important;
+}
+
+/* Optical Alignment Adjustments */
+svg {
+  vertical-align: middle;
+}
+.st-trigger svg,
+.st-col h4 svg,
+a svg,
+button svg,
+.btn svg {
+  transform: translateY(-1px);
+  transition: transform 0.2s ease;
+}
+li > span:first-child,
+.bullet-dot {
+  transform: translateY(-1px);
+}
+
+/* Skeleton Pulse Shimmer Animations */
+@keyframes skeleton-pulse {
+  0% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.55;
+  }
+}
+.skeleton-pulse,
+.skeleton,
+div[style*="background:#EEF1F5"],
+div[style*="background:var(--skyline)"] {
+  animation: skeleton-pulse 2.2s ease-in-out infinite;
+}
+
 .gradient-text-coral {
   background: linear-gradient(135deg, var(--coral) 0%, #F43F5E 100%);
   -webkit-background-clip: text;

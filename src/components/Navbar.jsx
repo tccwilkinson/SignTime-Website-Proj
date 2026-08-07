@@ -15,13 +15,40 @@ export default function Navbar() {
   const isHome = location.pathname === '/';
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
     const handleScroll = () => {
-      const threshold = isHome ? 560 : 20;
-      setScrolled(window.scrollY > threshold);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const navContainer = navRef.current;
+
+          if (navContainer) {
+            if (currentScrollY > 120 && currentScrollY > lastScrollY) {
+              navContainer.classList.add('st-nav-hidden');
+              document.body.classList.add('st-nav-is-hidden');
+            } else {
+              navContainer.classList.remove('st-nav-hidden');
+              document.body.classList.remove('st-nav-is-hidden');
+            }
+          }
+
+          const threshold = isHome ? 560 : 20;
+          setScrolled(currentScrollY > threshold);
+          lastScrollY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
+
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.body.classList.remove('st-nav-is-hidden');
+    };
   }, [isHome]);
 
   const navTextColor = '#fff';
@@ -49,7 +76,7 @@ export default function Navbar() {
   };
 
   return (
-    <div ref={navRef} style={{ position: 'sticky', top: 0, zIndex: 100 }}>
+    <div ref={navRef} className="st-nav-container" style={{ position: 'sticky', top: 0, zIndex: 100 }}>
       <nav
         style={{
           display: 'flex',

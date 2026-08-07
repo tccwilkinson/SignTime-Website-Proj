@@ -11,11 +11,12 @@
 
 .uc-subnav {
   position: sticky;
-  top: 81px;
+  top: 70px;
   z-index: 40;
   background: var(--paper);
   border-bottom: 1px solid var(--line);
   box-shadow: var(--shadow-subtle);
+  transition: top 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .uc-subnav-inner {
@@ -64,7 +65,7 @@
 
 .uc-section {
   padding: 4rem 0;
-  scroll-margin-top: 156px;
+  scroll-margin-top: 140px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -80,7 +81,7 @@
 
 .uc-subblock {
   margin-top: 2.5rem;
-  scroll-margin-top: 156px;
+  scroll-margin-top: 140px;
 }
 
 .uc-subblock:first-child {

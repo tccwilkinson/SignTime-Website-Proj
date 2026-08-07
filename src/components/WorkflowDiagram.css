@@ -139,6 +139,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 0;
 }
 
 .wd-conn {
@@ -194,10 +195,12 @@
   position: relative;
   display: grid;
   width: 100%;
+  z-index: 2;
 }
 
 .wd-card-cell {
   position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -209,22 +212,22 @@
 
 .wd-card {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: 0.55rem;
   width: 100%;
   min-width: 0;
   padding: 0.6rem 0.75rem;
-  background: var(--paper);
+  background: #ffffff !important;
   border: 1.5px solid var(--line);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-subtle);
+  box-shadow: 0 4px 14px rgba(20, 33, 62, 0.08);
   cursor: pointer;
   text-align: left;
-  opacity: 1;
+  opacity: 1 !important;
   transform: scale(1);
-  transition: transform var(--transition-fast), opacity var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
 }
 
 .wd-card:hover {
@@ -237,18 +240,24 @@
 }
 
 .wd-card.is-active {
-  background: var(--coral);
+  background: var(--coral) !important;
   border-color: var(--coral);
-  box-shadow: 0 8px 24px rgba(255, 107, 80, 0.35);
+  box-shadow: 0 8px 24px rgba(245, 65, 70, 0.35);
   transform: scale(1.03);
+  opacity: 1 !important;
+  z-index: 3;
 }
 
 .wd-card.is-complete {
-  opacity: 0.9;
+  opacity: 1 !important;
+  background: #ffffff !important;
+  border-color: #CBD5E1;
 }
 
 .wd-card.is-future {
-  opacity: 0.65;
+  opacity: 1 !important;
+  background: #ffffff !important;
+  border-color: var(--line);
 }
 
 .wd-card-num-wrap {

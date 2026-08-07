@@ -13,12 +13,12 @@ export const workflows = [
     subtitle: 'Subcontractor agreements, routed and signed without leaving your system',
     intro:
       'Prime contractors send subcontract agreements and itemized statements straight from their existing system. Internal approvals run automatically, and the subcontractor signs from a phone in the field.',
-    lanes: ['Your company', 'Subcontractor'],
+    lanes: ['Your company', 'Subcontract-or'],
     steps: [
       { n: 1, lane: 'Your company', title: 'Create and send', body: 'Your project team creates the subcontract agreement in your existing system and dispatches it via the SignTime API.' },
       { n: 2, lane: 'Your company', title: 'Route for approval', body: 'The agreement and itemized statement enter automated internal approval routing powered by SignTime.' },
       { n: 3, lane: 'Your company', title: 'Internal sign-off', body: 'Project Manager, Operations Manager, and Division Director approve in sequence. Any rejection returns it to the sender.' },
-      { n: 4, lane: 'Subcontractor', title: 'Sign from the field', body: 'The subcontractor\'s owner receives the document link by SMS, reviews it, and signs from a phone. No app, no account, no printer.' },
+      { n: 4, lane: 'Subcontract-or', title: 'Sign from the field', body: 'The subcontractor\'s owner receives the document link by SMS, reviews it, and signs from a phone. No app, no account, no printer.' },
       { n: 5, lane: 'Your company', title: 'Execute and store', body: 'The executed agreement is cryptographically sealed and archived in the SignTime cloud with a full audit trail.' },
       { n: 6, lane: 'Your company', title: 'Sync back', body: 'The executed document link writes back to your system of record automatically through SignTime.' },
     ],

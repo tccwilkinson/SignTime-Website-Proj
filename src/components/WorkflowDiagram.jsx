@@ -41,7 +41,7 @@ const TITLE_ICON_RULES = [
 
 const LANE_ICON_RULES = [
   [/signtime|salesforce/i, Zap],
-  [/qa department|university|your company|^hr$/i, Building2],
+  [/qa department|university|your company|^hr$|subcontract/i, Building2],
 ];
 
 function getStepIcon(step) {
@@ -224,10 +224,10 @@ function StepCard({ step, i, state, uid, nodeRef, onClick, onKeyDown, orientatio
           <span
             className="wd-card-lane"
             style={{
-              fontSize: '0.64rem',
+              fontSize: 'clamp(0.58rem, 0.75vw + 0.44rem, 0.65rem)',
               fontWeight: 800,
               textTransform: 'uppercase',
-              letterSpacing: '0.04em',
+              letterSpacing: '0.03em',
               background: state === 'active' ? 'var(--navy)' : '#EAF2FC',
               color: state === 'active' ? '#ffffff' : 'var(--navy)',
               padding: '2px 6px',
@@ -235,11 +235,12 @@ function StepCard({ step, i, state, uid, nodeRef, onClick, onKeyDown, orientatio
               marginBottom: '3px',
               display: 'inline-block',
               width: 'fit-content',
-              lineHeight: 1.15,
-              whiteSpace: 'nowrap',
+              lineHeight: 1.2,
+              whiteSpace: 'normal',
+              wordBreak: 'break-word',
+              overflowWrap: 'break-word',
+              hyphens: 'none',
               maxWidth: '100%',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
             }}
           >
             {step.lane}
@@ -452,7 +453,7 @@ function StepFlow({ steps, lanes, reduceMotion }) {
 
       <div className="wd-detail" role="tabpanel" id={`wd-panel-${uid}`} aria-labelledby={`wd-tab-${uid}-${activeIndex}`}>
         <div className="wd-detail-inner" key={activeIndex}>
-          {activeStep.lane && <span className="wd-detail-lane">{activeStep.lane}</span>}
+          {activeStep.lane && <span className="wd-detail-lane">{activeStep.lane.replace('Subcontract-or', 'Subcontractor')}</span>}
           {ACTOR_META[activeStep.actor] && (
             <span className="wd-detail-actor">{ACTOR_META[activeStep.actor].label}</span>
           )}
